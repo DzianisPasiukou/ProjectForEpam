@@ -51,7 +51,6 @@ namespace LoggingManager
 
                 XmlSerializer writer = new XmlSerializer(arguments[i].GetType());
 
-
                 FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i), FileMode.Create);
                 writer.Serialize(stream, arguments[i]);
 
