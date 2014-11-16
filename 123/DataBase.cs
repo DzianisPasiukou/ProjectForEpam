@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace DataBaseLayer
+namespace DBLabOne
 {
 
     public class DataBase :IDataReader
     {
         string _connectionString;
         string _table;
-        string _key;
-        public DataBase(string connectionString, string table, string key)
+
+        public DataBase(string connectionString, string table)
         {
             _connectionString = connectionString;
             _table = table;
-            _key = key;
         }
-        public DataBase():this(GetConnectionstring(), "Users", "ID")
+        public DataBase():this(GetConnectionstring(), "Users")
         {
         }
         public DataBase(string table)
-            : this(GetConnectionstring(), table, "ID")
+            : this(GetConnectionstring(), table)
         {
 
         }
@@ -39,17 +38,17 @@ namespace DataBaseLayer
            string comm = String.Format(@"INSERT INTO {0} ({1}) VALUES ({2})",_table,nameProp,valueProp);
            return DataBaseManager.Execute(comm, _connectionString);
         }
-        public bool Update(object obj)
+        public bool Update(object obj, string key)
         {
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
 
-            string prop = DataBaseManager.FindProperty(obj, _key);
+            string prop = DataBaseManager.FindProperty(obj, key);
 
             if (String.IsNullOrEmpty(prop))
             {
-                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), DataBaseManager.FindProperty(obj, _key));
+                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, key.ToUpper(), DataBaseManager.FindProperty(obj, key));
                 return DataBaseManager.Execute(comm, _connectionString);
             }
             else

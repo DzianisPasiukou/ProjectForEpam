@@ -1,13 +1,13 @@
 ﻿
 using System.Collections.Generic;
 
-namespace DataBaseLayer
+namespace DBLabOne
 {
   public  interface IDataReader
     {
         IEnumerable<object[]> GetData(string args);
         bool Add(object obj);
-        bool Update(object obj);
+        bool Update(object obj, string key);
         bool Delete(object obj);
     }
 }

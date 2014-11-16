@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Reflection;
 
-namespace DataBaseLayer
+namespace DBLabOne
 {
    static public class DataBaseManager
     {
