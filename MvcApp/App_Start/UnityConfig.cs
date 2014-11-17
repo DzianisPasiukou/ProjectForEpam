@@ -40,8 +40,11 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.AddNewExtension<Interception>();
 
-            container.RegisterType<IDataReader, DataBase>(new Interceptor<InterfaceInterceptor>(),
+            container.RegisterType<IDataReader, DataBase>(new InjectionConstructor(
+                  ),
+                new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
         }
