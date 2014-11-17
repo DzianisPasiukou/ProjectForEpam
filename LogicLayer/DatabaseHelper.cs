@@ -1,5 +1,6 @@
 ﻿using DataBaseLayer;
 using DatabaseModels;
+using LogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

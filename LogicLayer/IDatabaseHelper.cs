@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer
 {
-    interface IDatabaseHelper
+    public interface IDatabaseHelper
     {
         bool RegisterUser(string login, string password, string email, string name, string surname,string avatar);
 
