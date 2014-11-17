@@ -28,7 +28,7 @@ namespace DataBaseLayer
        static string GetConnectionstring()
        {
          //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=LENOVO\SQLEXPRESS;Initial Catalog=Users;Integrated Security=True";
+           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
        }
         
         public bool Add(object obj)

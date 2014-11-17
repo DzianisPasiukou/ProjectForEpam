@@ -8,21 +8,23 @@ namespace DatabaseModels
 {
     public class User
     {
-        public int ID { get; set; }
-
         public string Name { get; set; }
 
         public string Surname { get; set; }
+
+        public string Email { get; set; }
 
         public string Login { get; set; }
 
         public string Password { get; set; }
 
-        public string Email { get; set; }
+        public string Avatar { get; set; }
 
-        public bool IsActive { get; set; }
+        public int RoleID { get; set; }
 
         public DateTime DateOfRegistration { get; set; }
+
+        public bool IsActive { get; set; }
 
         public double Downloaded { get; set; }
 
@@ -32,8 +34,5 @@ namespace DatabaseModels
 
         public int HaveLikes { get; set; }
 
-        public int RoleID { get; set; }
-
-        public string Avatar { get; set; }
     }
 }

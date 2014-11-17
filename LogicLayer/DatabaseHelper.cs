@@ -11,7 +11,7 @@ namespace LogicLayer
 {
     public class DatabaseHelper : IDatabaseHelper
     {
-        private IDataReader _dataReader;
+        private DataBase _dataReader = new DataBase();
 
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
@@ -37,12 +37,10 @@ namespace LogicLayer
             }
             if (String.IsNullOrEmpty(avatar))
             {
-                throw new ArgumentNullException("image");
+                avatar = "defAVATARPath";
             }
 
-            Role role = new Role { RoleName = "Student" };
-
-            User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = role.ID, Avatar = avatar };
+            User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = 1, Avatar = avatar };
 
             return _dataReader.Add(user);
 
@@ -63,7 +61,6 @@ namespace LogicLayer
 
             foreach (var item in _dataReader.GetData(String.Format("Login={1}", login)))
             {
-                user.ID = (int)item.GetValue(0);
                 user.Login = (string)item.GetValue(3);
                 user.Password = (string)item.GetValue(4);
             }
