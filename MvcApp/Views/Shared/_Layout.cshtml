@@ -1,40 +1,64 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/navigation.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />  <!--верхняя строка-->
+    </div>
+
+    <div class="navbar navbar-inverse navbar-static-top">
+        <!--navbar-default делает навигацию белой(фон)
+            navbar-static-top прижимает к верхнему элементу нашу навигацию-->
+
         <div class="container">
+            <!--Чтобы хорошо лежала навигация, некуда не уползала-->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsiveMenu">
+                    <span class="sr-only">Открыть навигацию</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.Partial("_LoginPartial")
+                <!--navbar-toggle означает что кнопка будет отвечать за поялвение навигации
+                 data-toggle ="collapse" collapse-класс который внизу
+                 data-target ="id navbar"
+                 span обычно для выделения заглавной буквы-->
+                <a class="navbar-brand" href="#">Логотип</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+
+            <div class="collapse navbar-collapse" id="responsiveMenu">
+                <ul class="nav navbar-nav">
+                    <!--Обычный список-->
+                    <li>    <a href="#">Пункт 1</a>  </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Пункт 2 <b class="caret"></b> </a>  <!--треугольник, направленный вниз-->
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Пункт1</a></li>
+                            <li><a href="#">Пункт2</a></li>
+                            <li><a href="#">Пункт3</a></li>
+                            <li class="divider"> </li>  <!--разделитель-->
+                            <li><a href="#">Пункт4</a></li>
+                        </ul>
+                    </li>
+                    <li>    <a href="#">Пункт 3</a>  </li>
+                </ul>
+                <div class="right">
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/Bootstrap 3/js/bootstrap.js"></script>
 </body>
 </html>

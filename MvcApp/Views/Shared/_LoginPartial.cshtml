@@ -1,12 +1,18 @@
-﻿@if (Request.IsAuthenticated)
+﻿<link href="~/Content/navigation.css" rel="stylesheet" />
+@if (Request.IsAuthenticated)
 {
-    <div>
+    <div class="b">
         Пользователь: @User.Identity.Name
         @Html.ActionLink("Log Out", "Logout", "Account")
     </div>
 }
 else
 {
-    @Html.ActionLink("Log In ", "Login", "Account")
-    @Html.ActionLink("Register", "Register", "Account")
+    <div class="b">
+        @Html.ActionLink("Log In ", "Login", "Account")
+    </div>
+    
+    <div class="b">
+        @Html.ActionLink("Register", "Register", "Account")
+    </div>
 }

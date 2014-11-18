@@ -5,27 +5,83 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Register", "Account"))
 {
-    @Html.LabelFor(model=>model.Login)
-    @Html.EditorFor(model=>model.Login)
-    <br />
-    @Html.LabelFor(model => model.Password)
-    @Html.EditorFor(model => model.Password)
-    <br />
-    @Html.LabelFor(model => model.ConfirmPassword)
-    @Html.EditorFor(model => model.ConfirmPassword)
-    <br />
-    @Html.LabelFor(model => model.Email)
-    @Html.EditorFor(model => model.Email)
-    <br />
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
-    <br />
-    @Html.LabelFor(model => model.Surname)
-    @Html.EditorFor(model => model.Surname)
-    <br />
-    <button type="submit">Register</button>
+    <div class="container">
+        <h2>  Register</h2>
+         <hr />
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.Login)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Login)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.ConfirmPassword)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.ConfirmPassword)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Email)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Name)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.LabelFor(model => model.Surname)
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Surname)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="btn btn-success">Register</div>
+    </div>
+
 }
+
+<script src="~/Scripts/Bootstrap 3/js/bootstrap.js"></script>
