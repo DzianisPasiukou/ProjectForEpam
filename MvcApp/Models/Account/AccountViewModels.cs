@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MvcApp.Models
+namespace MvcApp.Models.Account
 {
     public class RegisterViewModel
     {
@@ -35,6 +35,9 @@ namespace MvcApp.Models
         [Required]
         [Display(Name = "Surname")]
         public string Surname { get; set; }
+
+        [Display(Name = "Avatar")]
+        public string Avatar { get; set; }
     }
 
     public class LoginViewModel

@@ -22,7 +22,7 @@ namespace LogicLayer.Models
 
         public int RoleID { get; set; }
 
-        public DateTime DateOfRegistration { get; set; }
+        public string DateOfRegistration { get; set; }
 
         public bool IsActive { get; set; }
 
