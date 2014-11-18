@@ -15,7 +15,7 @@ namespace DataBaseLayer
             _connectionString = connectionString;
             _table = table;
             _key = key;
-        }
+        } 
         public DataBase():this(GetConnectionstring(), "Users", "ID")
         {
         }
@@ -33,8 +33,8 @@ namespace DataBaseLayer
         
         public bool Add(object obj)
         {
-            string nameProp, valueProp;
-            DataBaseManager.Properties(obj,out nameProp,out valueProp);
+           string nameProp, valueProp;
+           DataBaseManager.Properties(obj,out nameProp,out valueProp);
 
            string comm = String.Format(@"INSERT INTO {0} ({1}) VALUES ({2})",_table,nameProp,valueProp);
            return DataBaseManager.Execute(comm, _connectionString);
@@ -84,6 +84,7 @@ namespace DataBaseLayer
                         {
                             object[] objs = new object[reader.FieldCount];
                             reader.GetValues(objs);
+
                             yield return objs;
                         }
                     }
