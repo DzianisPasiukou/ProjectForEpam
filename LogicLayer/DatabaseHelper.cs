@@ -40,7 +40,7 @@ namespace LogicLayer
                 avatar = "defAVATARPath";
             }
 
-            User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = 1, Avatar = avatar };
+            User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now.ToShortDateString(), RoleID = 1, Avatar = avatar };
 
             return _dataReader.Add(user);
 
