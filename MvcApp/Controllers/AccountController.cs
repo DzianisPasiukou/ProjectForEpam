@@ -22,7 +22,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, "");
+            _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar);
             return View();
         }
 

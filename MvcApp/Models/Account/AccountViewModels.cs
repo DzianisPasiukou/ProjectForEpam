@@ -35,6 +35,9 @@ namespace MvcApp.Models.Account
         [Required]
         [Display(Name = "Surname")]
         public string Surname { get; set; }
+
+        [Display(Name = "Avatar")]
+        public string Avatar { get; set; }
     }
 
     public class LoginViewModel

@@ -11,7 +11,7 @@ namespace LogicLayer
 {
     public class DatabaseHelper : IDatabaseHelper
     {
-        private DataBase _dataReader = new DataBase();
+        private IDataReader _dataReader;
 
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
