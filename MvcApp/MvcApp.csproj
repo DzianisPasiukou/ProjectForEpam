@@ -140,6 +140,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -170,16 +171,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataBaseLayer\DataBaseLayer.csproj">
-      <Project>{90e30d24-4ed2-4788-b628-2d560208e82f}</Project>
-      <Name>DataBaseLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LoggingManager\LoggingManager.csproj">
       <Project>{199a8659-02b6-48c8-bba0-3ee9baae47ac}</Project>
       <Name>LoggingManager</Name>

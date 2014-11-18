@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using LoggingManager;
-using DataBaseLayer;
+using LogicLayer;
 
 namespace MvcApp.App_Start
 {
@@ -41,12 +41,12 @@ namespace MvcApp.App_Start
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.AddNewExtension<Interception>();
-
-            container.RegisterType<IDataReader, DataBase>(new InjectionConstructor(
-                  ),
-                new Interceptor<InterfaceInterceptor>(),
+           
+            container.RegisterType<IDatabaseHelper, DatabaseHelper>(
+                new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
+            
         }
     }
 }

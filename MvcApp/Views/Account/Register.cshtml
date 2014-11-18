@@ -1,7 +1,21 @@
+<<<<<<< HEAD
 ﻿@model MvcApp.Models.Account.RegisterViewModel
+=======
+﻿@model MvcApp.Models.RegisterViewModel
+>>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
 
 @{
     ViewBag.Title = "Register";
 }
 
 <h2>Register</h2>
+<<<<<<< HEAD
+=======
+
+@using (Html.BeginForm("Register", "Account"))
+{
+    @Html.EditorFor(model => model.Name)
+    <button type="submit">Сохранить</button>
+}
+
+>>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8

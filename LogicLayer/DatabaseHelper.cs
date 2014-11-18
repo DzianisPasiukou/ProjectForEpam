@@ -1,18 +1,21 @@
 ﻿using DataBaseLayer;
-using DatabaseModels;
 using LogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LogicLayer.Entities;
 
 namespace LogicLayer
 {
     public class DatabaseHelper : IDatabaseHelper
     {
+<<<<<<< HEAD
         private IDataReader _dataReader;
 
+=======
+>>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
             if (String.IsNullOrEmpty(login))
@@ -39,10 +42,27 @@ namespace LogicLayer
             {
                 avatar = "defAVATARPath";
             }
+            using (DBEntities entity = new DBEntities())
+            {
+              return  entity.User.Add(new User { 
+                    Login = login,
+                    Password = password,
+                    Email = email,
+                    IsActive = false,
+                    Name = name,
+                    Surname = surname, 
+                    DateOfRegistration = DateTime.Now,
+                    RoleID = 1, 
+                    Avatar = avatar });
+            }
 
+<<<<<<< HEAD
             User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now.ToShortDateString(), RoleID = 1, Avatar = avatar };
+=======
+          //  User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = 1, Avatar = avatar };
+>>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
 
-            return _dataReader.Add(user);
+           // return _dataReader.Add(user);
 
         }
 
@@ -58,13 +78,13 @@ namespace LogicLayer
             }
 
             User user = new User();
-
+            /*
             foreach (var item in _dataReader.GetData(String.Format("Login={1}", login)))
             {
                 user.Login = (string)item.GetValue(3);
                 user.Password = (string)item.GetValue(4);
             }
-
+            */
             return user;
         }
     }

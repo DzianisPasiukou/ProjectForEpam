@@ -13,6 +13,16 @@ namespace MvcApp.Controllers
     {
         private IDatabaseHelper _databaseHelper;
 
+        public AccountController(IDatabaseHelper databaseHelper)
+        {
+            if (databaseHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _databaseHelper = databaseHelper;
+        }
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -22,7 +32,11 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
+<<<<<<< HEAD
             _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar);
+=======
+            _databaseHelper.RegisterUser("1", "12", "asd", "sf", "sdf", "sadf");
+>>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
             return View();
         }
 
