@@ -48,7 +48,7 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now,
+                    DateOfRegistration = DateTime.Now.ToShortDateString(),
                     RoleID = 1,
                     Avatar = avatar
                 });
@@ -66,9 +66,19 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
+            User user = new User();
+
             using (DBEntities entity = new DBEntities())
             {
-                User user = entity.User.FirstOrDefault(u => u.Login.Equals(login));
+                DBSet<User> users = entity.User;
+
+                foreach (var item in users)
+                {
+                    if (item.Login.Equals(login))
+                    {
+                        user = item;
+                    }
+                }
 
                 return user != null && user.Password.Equals(password);
             }
