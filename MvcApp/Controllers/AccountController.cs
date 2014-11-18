@@ -12,6 +12,16 @@ namespace MvcApp.Controllers
     {
         private IDatabaseHelper _databaseHelper;
 
+        public AccountController(IDatabaseHelper databaseHelper)
+        {
+            if (databaseHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _databaseHelper = databaseHelper;
+        }
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -21,7 +31,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-          
+            _databaseHelper.RegisterUser("1", "12", "asd", "sf", "sdf", "sadf");
             return View();
         }
 

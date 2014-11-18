@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModels
+namespace LogicLayer.Models
 {
     public class User
     {

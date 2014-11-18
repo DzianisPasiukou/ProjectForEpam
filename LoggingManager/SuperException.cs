@@ -13,7 +13,7 @@ namespace LoggingManager
             Except.Add(this);
         }
 
-        private static List<SuperException> Except = new List<SuperException>();
+        public static List<SuperException> Except = new List<SuperException>();
 
        
     }

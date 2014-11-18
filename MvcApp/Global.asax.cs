@@ -14,12 +14,6 @@ namespace MvcApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-           // UnityWebActivator.Start();
         }
-        protected void Session_End()
-        {
-           // UnityWebActivator.Shutdown();
-        }
-        
     }
 }

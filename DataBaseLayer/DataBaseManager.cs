@@ -6,18 +6,14 @@ namespace DataBaseLayer
 {
    static public class DataBaseManager
     {
-       static public bool Execute(string comm, string _connectionString)
+       static public bool Execute(string comm, SqlConnection connection)
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand command = new SqlCommand(comm, conn))
+                    using (SqlCommand command = new SqlCommand(comm, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                }
             }
             catch
             {
