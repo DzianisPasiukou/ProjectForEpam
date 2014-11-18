@@ -1,21 +1,31 @@
-<<<<<<< HEAD
 ﻿@model MvcApp.Models.Account.RegisterViewModel
-=======
-﻿@model MvcApp.Models.RegisterViewModel
->>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
+
 
 @{
     ViewBag.Title = "Register";
 }
 
 <h2>Register</h2>
-<<<<<<< HEAD
-=======
 
 @using (Html.BeginForm("Register", "Account"))
 {
+    @Html.LabelFor(model=>model.Login)
+    @Html.EditorFor(model=>model.Login)
+    <br />
+    @Html.LabelFor(model => model.Password)
+    @Html.EditorFor(model => model.Password)
+    <br />
+    @Html.LabelFor(model => model.ConfirmPassword)
+    @Html.EditorFor(model => model.ConfirmPassword)
+    <br />
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)
+    <br />
+    @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
-    <button type="submit">Сохранить</button>
+    <br />
+    @Html.LabelFor(model => model.Surname)
+    @Html.EditorFor(model => model.Surname)
+    <br />
+    <button type="submit">Register</button>
 }
-
->>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8

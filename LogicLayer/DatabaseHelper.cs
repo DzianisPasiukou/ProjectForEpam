@@ -11,11 +11,7 @@ namespace LogicLayer
 {
     public class DatabaseHelper : IDatabaseHelper
     {
-<<<<<<< HEAD
-        private IDataReader _dataReader;
 
-=======
->>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
             if (String.IsNullOrEmpty(login))
@@ -44,29 +40,22 @@ namespace LogicLayer
             }
             using (DBEntities entity = new DBEntities())
             {
-              return  entity.User.Add(new User { 
+                return entity.User.Add(new User
+                {
                     Login = login,
                     Password = password,
                     Email = email,
                     IsActive = false,
                     Name = name,
-                    Surname = surname, 
+                    Surname = surname,
                     DateOfRegistration = DateTime.Now,
-                    RoleID = 1, 
-                    Avatar = avatar });
+                    RoleID = 1,
+                    Avatar = avatar
+                });
             }
-
-<<<<<<< HEAD
-            User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now.ToShortDateString(), RoleID = 1, Avatar = avatar };
-=======
-          //  User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = 1, Avatar = avatar };
->>>>>>> 53331d9d77ac54ec8f282d65ed79b8dd2b9752e8
-
-           // return _dataReader.Add(user);
-
         }
 
-        public User LoginUser(string login, string password)
+        public bool LoginUser(string login, string password)
         {
             if (String.IsNullOrEmpty(login))
             {
@@ -77,15 +66,12 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
-            User user = new User();
-            /*
-            foreach (var item in _dataReader.GetData(String.Format("Login={1}", login)))
+            using (DBEntities entity = new DBEntities())
             {
-                user.Login = (string)item.GetValue(3);
-                user.Password = (string)item.GetValue(4);
+                User user = entity.User.FirstOrDefault(u => u.Login.Equals(login));
+
+                return user != null && user.Password.Equals(password);
             }
-            */
-            return user;
         }
     }
 }

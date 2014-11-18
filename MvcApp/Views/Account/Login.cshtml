@@ -1,0 +1,18 @@
+﻿@model MvcApp.Models.Account.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Account"))
+{
+    @Html.LabelFor(model => model.Login)
+    @Html.EditorFor(model => model.Login)
+    <br />
+    @Html.LabelFor(model => model.Password)
+    @Html.EditorFor(model => model.Password)
+    <br />
+    <button type="submit">Log In</button>
+}
