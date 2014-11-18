@@ -48,7 +48,7 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now,
+                    DateOfRegistration = DateTime.Now.ToShortDateString(),
                     RoleID = 1,
                     Avatar = avatar
                 });

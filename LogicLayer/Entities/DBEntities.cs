@@ -15,7 +15,7 @@ namespace LogicLayer.Entities
 
       public DBEntities():base()
       {
-          User = new DBSet<User>("User", "ID");
+          User = new DBSet<User>("Users", "ID");
           Role = new DBSet<Role>("Role", "ID");
       }
     }

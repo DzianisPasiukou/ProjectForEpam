@@ -27,7 +27,7 @@ namespace DataBaseLayer
        static string GetConnectionstring()
        {
          //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
+           return @"Data Source=LENOVO\SQLEXPRESS2012;Initial Catalog=D:\С#\ASP_PROJECT\EPAMPROJECT\MVCAPP\APP_DATA\EPAMPROJECT.MDF;Integrated Security=True";
        }
 
        static public void ConnectionOpen()
@@ -46,14 +46,15 @@ namespace DataBaseLayer
        }
        static public void ConnectionOpen(string connectionString)
         {
-            if ((_connection == null) || (_connection.ConnectionString != connectionString))
+            if (_connection == null) 
             {
+                if (_connection.ConnectionString != connectionString)
+                    _connection.Close();
                 _connection = new SqlConnection(connectionString);
                 _connection.Open();
             }
             else
             {
-                _connection.Close();
                 _connection = new SqlConnection(connectionString);
                 _connection.Open();
             }
@@ -106,8 +107,12 @@ namespace DataBaseLayer
                     {
                         for (int i = 0; reader.Read(); i++)
                         {
-                           Dictionary<string,object> dict = new Dictionary<string,object>();
-                            dict.Add(reader.GetName(i), reader.GetValue(i));
+                            Dictionary<string, object> dict = new Dictionary<string, object>();
+
+                            for (int j = 0; j < reader.FieldCount; j++)
+                            {
+                                dict.Add(reader.GetName(j), reader.GetValue(j));
+                            }
 
                             yield return dict;
                         }

@@ -45,6 +45,7 @@ namespace DataBaseLayer
                             a => obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]));
                     }
                 }
+                
                 yield return obj;
                 count += 1;
             }
