@@ -38,6 +38,8 @@ namespace MvcApp.Models.Account
 
         [Display(Name = "Avatar")]
         public string Avatar { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 
     public class LoginViewModel
@@ -50,5 +52,7 @@ namespace MvcApp.Models.Account
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

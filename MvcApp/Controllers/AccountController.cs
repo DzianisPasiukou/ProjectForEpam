@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using LogicLayer;
 using MvcApp.Models.Account;
+using System.Web.Security;
 
 namespace MvcApp.Controllers
 {
@@ -32,7 +33,15 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            return View();
+            if (ModelState.IsValid && _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            {
+                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         [HttpGet]
@@ -44,7 +53,15 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            return View();
+            if (ModelState.IsValid && _databaseHelper.LoginUser(model.Login, model.Password))
+            {
+                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

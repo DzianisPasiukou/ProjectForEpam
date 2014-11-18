@@ -11,6 +11,7 @@ namespace LogicLayer
 {
     public class DatabaseHelper : IDatabaseHelper
     {
+
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
             if (String.IsNullOrEmpty(login))
@@ -39,20 +40,22 @@ namespace LogicLayer
             }
             using (DBEntities entity = new DBEntities())
             {
-              return  entity.User.Add(new User { 
+                return entity.User.Add(new User
+                {
                     Login = login,
                     Password = password,
                     Email = email,
                     IsActive = false,
                     Name = name,
-                    Surname = surname, 
-                    DateOfRegistration = DateTime.Now.ToShortDateString(),
-                    RoleID = 1, 
-                    Avatar = avatar });
+                    Surname = surname,
+                    DateOfRegistration = DateTime.Now,
+                    RoleID = 1,
+                    Avatar = avatar
+                });
             }
         }
 
-        public User LoginUser(string login, string password)
+        public bool LoginUser(string login, string password)
         {
             if (String.IsNullOrEmpty(login))
             {
@@ -63,15 +66,12 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
-            User user;
-            
             using (DBEntities entity = new DBEntities())
             {
-                user = entity.User.First(u => (u.Login == login) && (u.Password == password));
-            }
+                User user = entity.User.FirstOrDefault(u => u.Login.Equals(login));
 
-            return user;
-               
+                return user != null && user.Password.Equals(password);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace LogicLayer
     {
         bool RegisterUser(string login, string password, string email, string name, string surname,string avatar);
 
-        User LoginUser(string login, string password);
+        bool LoginUser(string login, string password);
 
     }
 }
