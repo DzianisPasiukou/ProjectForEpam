@@ -63,5 +63,11 @@ namespace MvcApp.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -46,14 +46,15 @@ namespace DataBaseLayer
        }
        static public void ConnectionOpen(string connectionString)
         {
-            if ((_connection == null) || (_connection.ConnectionString != connectionString))
+            if (_connection == null) 
             {
+                if (_connection.ConnectionString != connectionString)
+                    _connection.Close();
                 _connection = new SqlConnection(connectionString);
                 _connection.Open();
             }
             else
             {
-                _connection.Close();
                 _connection = new SqlConnection(connectionString);
                 _connection.Open();
             }
@@ -106,8 +107,12 @@ namespace DataBaseLayer
                     {
                         for (int i = 0; reader.Read(); i++)
                         {
-                           Dictionary<string,object> dict = new Dictionary<string,object>();
-                            dict.Add(reader.GetName(i), reader.GetValue(i));
+                            Dictionary<string, object> dict = new Dictionary<string, object>();
+
+                            for (int j = 0; j < reader.FieldCount; j++)
+                            {
+                                dict.Add(reader.GetName(j), reader.GetValue(j));
+                            }
 
                             yield return dict;
                         }
