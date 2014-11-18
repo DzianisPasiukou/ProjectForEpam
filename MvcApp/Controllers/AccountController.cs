@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LogicLayer;
+using MvcApp.Models.Account;
 
 namespace MvcApp.Controllers
 {
