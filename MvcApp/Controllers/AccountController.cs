@@ -31,7 +31,6 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            _databaseHelper.RegisterUser("1", "12", "asd", "sf", "sdf", "sadf");
             return View();
         }
 

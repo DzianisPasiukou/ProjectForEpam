@@ -50,11 +50,6 @@ namespace LogicLayer
                     RoleID = 1, 
                     Avatar = avatar });
             }
-
-          //  User user = new User { Login = login, Password = password, Email = email, IsActive = false, Name = name, Surname = surname, DateOfRegistration = DateTime.Now, RoleID = 1, Avatar = avatar };
-
-           // return _dataReader.Add(user);
-
         }
 
         public User LoginUser(string login, string password)
@@ -68,15 +63,15 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
-            User user = new User();
-            /*
-            foreach (var item in _dataReader.GetData(String.Format("Login={1}", login)))
+            User user;
+            
+            using (DBEntities entity = new DBEntities())
             {
-                user.Login = (string)item.GetValue(3);
-                user.Password = (string)item.GetValue(4);
+                user = entity.User.First(u => (u.Login == login) && (u.Password == password));
             }
-            */
+
             return user;
+               
         }
     }
 }

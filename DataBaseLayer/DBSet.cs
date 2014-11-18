@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace DataBaseLayer
 {
-    public class DBSet<T> : IEnumerable<T>, IQueryable<T>
+    public class DBSet<T> : IEnumerable<T>
         where T: new()
     {
         private IDataReader _dataReader;
@@ -29,7 +29,7 @@ namespace DataBaseLayer
         }
         IEnumerable<T> Reflection(IEnumerable<Dictionary<string, object>> data)
         {
-            string[] propsName = typeof(T).GetProperties().Select((p, n) => p.Name).ToArray();
+            string[] propsName = typeof(T).GetProperties().Select(p => p.Name).ToArray();
             T obj = new T();
             int count = 0;
 
@@ -43,7 +43,6 @@ namespace DataBaseLayer
                     {
                         Array.ForEach<PropertyInfo>(obj.GetType().GetProperties(),
                             a => obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]));
-                        
                     }
                 }
                 yield return obj;
@@ -84,25 +83,11 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object delete");
             }
         }
-        
-        public Type ElementType
-        {
-            get { return this.GetType(); }
-        }
 
-        public Expression Expression
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IQueryProvider Provider
-        {
-            get { throw new NotImplementedException(); }
-        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return default(T).ToString().GetEnumerator();
         }
     }
 }
