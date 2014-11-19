@@ -1,19 +1,22 @@
-﻿<link href="~/Content/navigation.css" rel="stylesheet">
-
-@if (Request.IsAuthenticated)
+﻿@if (Request.IsAuthenticated)
 {
-    <div class="b">
-        @Html.ActionLink(@User.Identity.Name, "Account", "Account")
-        @Html.ActionLink("Log Out", "Logout", "Account")
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink(@User.Identity.Name, "Account", "Account")
+        </li>
+        <li>
+            @Html.ActionLink("Log Out", "Logout", "Account")
+        </li>
+    </ul>
 }
 else
 {
-    <div class="b">
-        @Html.ActionLink("Log In ", "Login", "Account")
-    </div>
-
-    <div class="b">
-        @Html.ActionLink("Register", "Register", "Account")
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Register", "Register", "Account")
+        </li>
+        <li>
+            @Html.ActionLink("Log in", "Login", "Account")
+        </li>
+    </ul>
 }

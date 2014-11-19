@@ -9,9 +9,12 @@ namespace LogicLayer
 {
     public interface IDatabaseHelper
     {
-        bool RegisterUser(string login, string password, string email, string name, string surname,string avatar);
+        bool RegisterUser(string login, string password, string email, string name, string surname, string avatar);
 
-        string LoginUser(string login, string password);
+        LoginValidate LoginUser(string login, string password);
 
+        User Account(string login);
+
+        bool CheckPermission(string login);
     }
 }

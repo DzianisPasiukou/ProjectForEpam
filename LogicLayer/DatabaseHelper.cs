@@ -68,7 +68,7 @@ namespace LogicLayer
             }
         }
 
-        public string LoginUser(string login, string password)
+        public LoginValidate LoginUser(string login, string password)
         {
             if (String.IsNullOrEmpty(login))
             {
@@ -90,16 +90,31 @@ namespace LogicLayer
                     if (item.Login.Equals(login))
                     {
                         user = item;
-                        if (user.Password.Equals(password))
+                        if (user != null && user.Password.Equals(password) && user.IsActive)
                         {
-                            return String.Concat(user.Name," ", user.Surname);
+                            return LoginValidate.Seccess;
                         }
-                        break;
+                        else
+                        {
+                            return LoginValidate.NotApproved;
+                        }
                     }
                 }
 
-                return null;
+                return LoginValidate.NotRegistered;
             }
+        }
+
+
+        public User Account(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public bool CheckPermission(string login)
+        {
+            throw new NotImplementedException();
         }
     }
 }

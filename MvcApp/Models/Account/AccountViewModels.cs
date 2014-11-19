@@ -14,7 +14,7 @@ namespace MvcApp.Models.Account
 
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long", MinimumLength = 6)]
+        [StringLength(16, ErrorMessage = "The {0} must be at least {2} characters long", MinimumLength = 8)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
@@ -53,6 +53,9 @@ namespace MvcApp.Models.Account
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        public string Message { get; set; }
+
+        [Display(Name="Remember me?")]
         public bool RememberMe { get; set; }
     }
 

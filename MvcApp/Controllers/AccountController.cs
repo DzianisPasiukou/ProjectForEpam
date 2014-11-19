@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
+using LogicLayer.Models;
 
 namespace MvcApp.Controllers
 {
@@ -33,7 +34,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (_databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            if (ModelState.IsValid && _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
@@ -51,19 +52,31 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
-            string fullName = _databaseHelper.LoginUser(model.Login, model.Password);
-
-            if (!String.IsNullOrEmpty(fullName))
-            {
-                FormsAuthentication.SetAuthCookie(fullName, model.RememberMe);
-                return RedirectToAction("Index", "Home");
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
+            LoginValidate valid = _databaseHelper.LoginUser(model.Login, model.Password);
+
+            if (valid == LoginValidate.Seccess)
+            {
+                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
+                return RedirectToAction("Index", "Home");
+            }
+            if (valid == LoginValidate.NotApproved)
+            {
+                model.Message = "Not approved";
+            }
+            else
+            {
+                model.Message = "Not registered";
+            }
+            return View(model);
         }
 
         public ActionResult Logout()
@@ -74,6 +87,7 @@ namespace MvcApp.Controllers
 
         public ActionResult Account()
         {
+            User user = new User();
             return View();
         }
     }
