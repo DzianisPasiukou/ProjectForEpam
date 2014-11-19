@@ -10,14 +10,11 @@
 <body>
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />  <!--верхняя строка-->
     </div>
 
     <div class="navbar navbar-inverse navbar-static-top">
         <!--navbar-default делает навигацию белой(фон)
             navbar-static-top прижимает к верхнему элементу нашу навигацию-->
-
         <div class="container">
             <!--Чтобы хорошо лежала навигация, некуда не уползала-->
             <div class="navbar-header">
@@ -53,12 +50,15 @@
                 </ul>
                 <div class="right">
                     @Html.Partial("_LoginPartial")
+
                 </div>
             </div>
+
         </div>
     </div>
+    @RenderBody()
 
     <script src="~/Scripts/jquery-1.11.1.min.js"></script>
-    <script src="~/Scripts/Bootstrap 3/js/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 </body>
 </html>

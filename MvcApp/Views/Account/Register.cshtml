@@ -11,13 +11,13 @@
 @using (Html.BeginForm("Register", "Account"))
 {
     <div class="container">
-        <h2>  Register</h2>
+        <h1>  Register</h1>
          <hr />
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3" >
                 @Html.LabelFor(model => model.Login)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.Login)
             </div>
         </div>
@@ -25,10 +25,10 @@
         <br />
 
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3">
                 @Html.LabelFor(model => model.Password)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.Password)
             </div>
         </div>
@@ -36,10 +36,10 @@
         <br />
 
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3">
                 @Html.LabelFor(model => model.ConfirmPassword)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.ConfirmPassword)
             </div>
         </div>
@@ -47,10 +47,10 @@
         <br />
 
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3">
                 @Html.LabelFor(model => model.Email)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.Email)
             </div>
         </div>
@@ -58,10 +58,10 @@
         <br />
 
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3">
                 @Html.LabelFor(model => model.Name)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.Name)
             </div>
         </div>
@@ -69,17 +69,17 @@
         <br />
 
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-2 col-lg-2 col-sm-3">
                 @Html.LabelFor(model => model.Surname)
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+            <div class="col-md-1 col-lg-2 col-sm-2">
                 @Html.EditorFor(model => model.Surname)
             </div>
         </div>
 
         <br />
 
-        <div class="btn btn-success">Register</div>
+        <button class="btn btn-success" type="submit">Log In</button>
     </div>
 
 }

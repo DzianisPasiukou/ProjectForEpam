@@ -6,7 +6,7 @@ namespace DataBaseLayer
 {
 
     public class DataBase :IDataReader
-    {
+    {   
         static SqlConnection _connection;
         string _table;
         string _key;
@@ -27,7 +27,7 @@ namespace DataBaseLayer
        static string GetConnectionstring()
        {
          //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
+           return @"Data Source=.\SQLEXPRESS;Initial Catalog=D:\TRAINING EPAM\PROJECT\MVCAPP\APP_DATA\EPAMPROJECT.MDF;Integrated Security=True";
        }
 
        static public void ConnectionOpen()
