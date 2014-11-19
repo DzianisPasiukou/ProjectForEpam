@@ -53,9 +53,11 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if (_databaseHelper.LoginUser(model.Login, model.Password))
+            string fullName = _databaseHelper.LoginUser(model.Login, model.Password);
+
+            if (!String.IsNullOrEmpty(fullName))
             {
-                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
+                FormsAuthentication.SetAuthCookie(fullName, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -68,6 +70,11 @@ namespace MvcApp.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Account()
+        {
+            return View();
         }
     }
 }

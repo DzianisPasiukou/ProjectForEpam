@@ -68,7 +68,7 @@ namespace LogicLayer
             }
         }
 
-        public bool LoginUser(string login, string password)
+        public string LoginUser(string login, string password)
         {
             if (String.IsNullOrEmpty(login))
             {
@@ -90,11 +90,15 @@ namespace LogicLayer
                     if (item.Login.Equals(login))
                     {
                         user = item;
+                        if (user.Password.Equals(password))
+                        {
+                            return String.Concat(user.Name," ", user.Surname);
+                        }
                         break;
                     }
                 }
 
-                return user != null && user.Password.Equals(password);
+                return null;
             }
         }
     }
