@@ -38,8 +38,21 @@ namespace LogicLayer
             {
                 avatar = "defAVATARPath";
             }
+
             using (DBEntities entity = new DBEntities())
             {
+                User user = new User();
+
+                DBSet<User> users = entity.User;
+
+                foreach (var item in users)
+                {
+                    if (item.Login.Equals(login))
+                    {
+                        return false;
+                    }
+                }
+
                 return entity.User.Add(new User
                 {
                     Login = login,
@@ -66,9 +79,20 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
+            User user = new User();
+
             using (DBEntities entity = new DBEntities())
             {
-                User user = entity.User.FirstOrDefault(u => u.Login.Equals(login));
+                DBSet<User> users = entity.User;
+
+                foreach (var item in users)
+                {
+                    if (item.Login.Equals(login))
+                    {
+                        user = item;
+                        break;
+                    }
+                }
 
                 return user != null && user.Password.Equals(password);
             }

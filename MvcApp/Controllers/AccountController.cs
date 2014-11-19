@@ -33,7 +33,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid && _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            if (_databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
@@ -53,7 +53,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid && _databaseHelper.LoginUser(model.Login, model.Password))
+            if (_databaseHelper.LoginUser(model.Login, model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
@@ -62,6 +62,12 @@ namespace MvcApp.Controllers
             {
                 return View(model);
             }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
