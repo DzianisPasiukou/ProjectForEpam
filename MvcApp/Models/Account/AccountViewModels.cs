@@ -35,6 +35,14 @@ namespace MvcApp.Models.Account
         [Required]
         [Display(Name = "Surname")]
         public string Surname { get; set; }
+<<<<<<< HEAD
+=======
+
+        [Display(Name = "Avatar")]
+        public string Avatar { get; set; }
+
+        public bool RememberMe { get; set; }
+>>>>>>> 33d132971a994212b9b3b5fc539129d632651f03
     }
 
     public class LoginViewModel
@@ -47,5 +55,7 @@ namespace MvcApp.Models.Account
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

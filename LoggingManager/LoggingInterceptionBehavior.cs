@@ -38,7 +38,7 @@ namespace LoggingManager
                     message += "\n";
                     message += Serialization(input.Arguments);
                     result.Exception = new SuperException(message, result.Exception);
-                   // SuperException.Except.Add((SuperException)result.Exception);
+                    SuperException.Except.Add((SuperException)result.Exception);
 
                 }
             }
