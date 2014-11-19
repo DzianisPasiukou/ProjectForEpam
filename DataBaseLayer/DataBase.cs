@@ -6,7 +6,7 @@ namespace DataBaseLayer
 {
 
     public class DataBase :IDataReader
-    {
+    {   
         static SqlConnection _connection;
         string _table;
         string _key;

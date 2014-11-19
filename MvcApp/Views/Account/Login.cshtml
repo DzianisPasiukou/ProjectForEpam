@@ -4,15 +4,33 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
-
 @using (Html.BeginForm("Login", "Account"))
 {
-    @Html.LabelFor(model => model.Login)
-    @Html.EditorFor(model => model.Login)
-    <br />
-    @Html.LabelFor(model => model.Password)
-    @Html.EditorFor(model => model.Password)
-    <br />
-    <button type="submit">Log In</button>
+    <div class="container" id="Login">
+        <h1> Login</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-1 col-lg-1 col-sm-2 col-xs-3">
+                @Html.LabelFor(model => model.Login)
+            </div>
+            <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Login)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-1 col-lg-1 col-sm-2 col-xs-3">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+        <br />
+
+        <button class="btn btn-success" type="submit" >Log In</button>
+    </div>
 }

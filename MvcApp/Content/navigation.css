@@ -1,0 +1,13 @@
+﻿.dropdown:hover .dropdown-menu {
+    display: block;
+ } /*при НАВЕДЕНИИ раскрывается*/
+
+.right {
+    float: right;
+}
+
+.b{
+    float:right;
+    padding: 3px 6px;
+    font-size: 14px;
+}
