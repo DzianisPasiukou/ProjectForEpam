@@ -27,7 +27,7 @@ namespace DataBaseLayer
        static string GetConnectionstring()
        {
          //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
+           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\С#\asp_project\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
        }
 
        static public void ConnectionOpen()

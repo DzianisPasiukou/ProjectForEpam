@@ -1,0 +1,20 @@
+﻿@model IEnumerable<LogicLayer.Entities.Catalog>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("DetailsCatalog", "DetailsCatalog", new {ID = item.Name})
+        </td>
+    </tr>
+}
+
+</table>
