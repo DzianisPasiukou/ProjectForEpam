@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Entities\DBEntities.cs" />
+    <Compile Include="LoginValidate.cs" />
     <Compile Include="IDatabaseHelper.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
