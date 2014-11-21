@@ -11,36 +11,42 @@ namespace LogicLayer.CatalogManager
     {
        private static InitializeTree _init;
 
-       private static TreeView _tree;
+       private static TreeView _tree = new TreeView();
        private static object _lockObj = new object();
 
        private InitializeTree(DBEntities entity)
         {
-                _tree.roleName = "Catalogs";
+            _tree.NodeName = "Catalogs";
+            _tree.ChildNode = new List<TreeView>();
+                IEnumerator<Catalog> cats = entity.Catalog.GetEnumerator();
 
-                for (int i = 0; entity.Catalog.GetEnumerator().MoveNext(); i++)
+                for (int i = 0; cats.MoveNext(); i++)
                 {
-                    _tree.children.Add(new TreeView()
+                    _tree.ChildNode.Add(new TreeView()
                     {
-                        roleName = entity.Catalog.GetEnumerator().Current.Name,
-                        children = new List<TreeView>()
+                        NodeName = cats.Current.Name,
+                        ChildNode = new List<TreeView>()
                     });
 
-                    IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.NameCatalog == entity.Catalog.GetEnumerator().Current.Name);
+                    IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.CatalogID == entity.Catalog.GetEnumerator().Current.Name);
+                    IEnumerator<Theme> thms = currentThemes.GetEnumerator();
 
-                    for (int j = 0;currentThemes.GetEnumerator().MoveNext(); j++)
+                    for (int j = 0; thms.MoveNext(); j++)
                     {
-                        _tree.children[i].children.Add(new TreeView()
+                        _tree.ChildNode[i].ChildNode.Add(new TreeView()
                         {
-                            roleName = currentThemes.ElementAt(j).Name,
-                            children = new List<TreeView>()
+                            NodeName = currentThemes.ElementAt(j).Name,
+                            ChildNode = new List<TreeView>()
                         });
-                        IEnumerable<Record> currentRecords = entity.Record.Where(r => r.NameTheme == currentThemes.ElementAt(j).Name);
-                        for (int k = 0; currentRecords.GetEnumerator().MoveNext(); k++)
+                        IEnumerable<Record> currentRecords = entity.Record.Where(r => r.ThemeID == currentThemes.ElementAt(j).Name);
+                        IEnumerator<Record> rc = currentRecords.GetEnumerator();
+
+                        for (int k = 0; rc.MoveNext(); k++)
                         {
-                            _tree.children[i].children[j].children.Add(new TreeView()
+                            _tree.ChildNode[i].ChildNode[j].ChildNode.Add(new TreeView()
                             {
-                                roleName = currentRecords.ElementAt(k).Name
+                                NodeName = currentRecords.ElementAt(k).Name,
+                                ChildNode = new List<TreeView>()
                             });
                         }
                     }

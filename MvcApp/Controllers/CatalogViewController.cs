@@ -13,7 +13,7 @@ namespace MvcApp.Controllers
         //
         // GET: /CatalogView/
         ITree _tree;
-        public CatalogViewController(ITree tree) 
+        public CatalogViewController(ITree tree)
         {
             if (tree == null)
             {
@@ -25,22 +25,10 @@ namespace MvcApp.Controllers
         // GET: /CatalogView/
         public ActionResult Index()
         {
-            return View();
-        }
-        /*
-        public ActionResult DetailsTheme(string nameCatalog)
-        {
-            IEnumerable<TreeView> treeThemes = _tree.GetTree().children.Find(t => t.roleName == nameCatalog).children;
 
-            return View(treeThemes);
-        }
+            TreeView treeCatalog = _tree.GetTree();
 
-        public ActionResult DetailsRecord(string themeName, string nameCatalog)
-        {
-            IEnumerable<TreeView> treeRecord = _tree.GetTree().children.Find(t => t.roleName == nameCatalog).children.Find(r => r.roleName == themeName).children;
-
-            return View(treeRecord);
+            return View(treeCatalog);
         }
-         * */
-	}
+    }
 }

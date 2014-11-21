@@ -10,7 +10,6 @@ namespace LogicLayer.CatalogManager
    public interface IDataBaseManager<TEntity>
        where TEntity: new()
     {
-
         IEnumerable<TEntity> Get();
 
         IEnumerable<TEntity> GetBy(string id);

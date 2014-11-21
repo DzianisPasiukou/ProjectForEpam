@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 
 namespace DataBaseLayer
 {
@@ -26,26 +27,30 @@ namespace DataBaseLayer
         {
             PropertyInfo[] prop = obj.GetType().GetProperties();
 
-            nameProp = "";
+            StringBuilder namePropBuilder = new StringBuilder();
+
             for (int i = 0; i < prop.Length; i++)
             {
-                nameProp += prop[i].Name;
+                namePropBuilder.Append(prop[i].Name);
                 if (i != prop.Length - 1)
                 {
-                    nameProp += ", ";
+                    namePropBuilder.Append(", ");
                 }
             }
-            valueProp = "";
+            nameProp = namePropBuilder.ToString();
+
+            StringBuilder valuePropBuilder = new StringBuilder();
             for (int i = 0; i < prop.Length; i++)
             {
-                valueProp += "'";
-                valueProp += prop[i].GetValue(obj, null);
-                valueProp += "'";
+                valuePropBuilder.Append("'");
+                valuePropBuilder.Append(prop[i].GetValue(obj, null));
+                valuePropBuilder.Append("'");
                 if (i != prop.Length - 1)
                 {
-                    valueProp += ", ";
+                   valuePropBuilder.Append(", ");
                 }
             }
+            valueProp = valuePropBuilder.ToString();
         }
        static public string Modification(string arg1, string arg2, string arg3)
         {
@@ -53,30 +58,32 @@ namespace DataBaseLayer
             arg2 = arg2.Trim(' ');
             string[] newArrName = arg1.Split(',');
             string[] newArrValue = arg2.Split(',');
-            string str = "";
+
+            StringBuilder str = new StringBuilder();
+           
             for (int i = 0; i < newArrName.Length; i++)
             {
-                str += String.Format("{0} = {1}", newArrName[i], newArrValue[i]);
+                str.Append(String.Format("{0} = {1}", newArrName[i], newArrValue[i]));
                 if (i != newArrName.Length - 1)
                 {
-                    str += String.Format(" {0} ", arg3);
+                    str.Append(String.Format(" {0} ", arg3));
                 }
             }
 
-            return str;
+            return str.ToString();
         }
        static public string View(string view)
         {
             char separator = Array.Find<char>(view.ToCharArray(), a => (a == '=') || (a == '>') || (a == '<'));
             string[] arr = view.Split('=', ' ', '\'', '\"', '>', '<');
-            
-            view = "";
-            string[] args = Array.FindAll<string>(arr, a => !String.IsNullOrEmpty(a));
-            view += args[0];
-            view += separator;
-            view += String.Format("'{0}'", args[1]);
 
-            return view;
+            StringBuilder viewBuilder = new StringBuilder();
+            string[] args = Array.FindAll<string>(arr, a => !String.IsNullOrEmpty(a));
+            viewBuilder.Append(args[0]);
+            viewBuilder.Append(view += separator);
+            viewBuilder.Append(view += String.Format("'{0}'", args[1]));
+
+            return viewBuilder.ToString();
         }
        static public string FindProperty(object obj, string key)
        {
@@ -90,6 +97,46 @@ namespace DataBaseLayer
                return "";
            }
            return prop;
+       }
+       static public void ClearID(object obj, ref string nameProp, ref string valueProp)
+       {
+           PropertyInfo[] props = obj.GetType().GetProperties();
+           string[] arrName = nameProp.Split(',');
+           string[] arrValue = valueProp.Split(',');
+           int indexId = 0;
+
+           StringBuilder nameBuilder = new StringBuilder();
+           
+           for (int i = 0; i < props.Length; i++)
+           {
+               if (props[i].Name.ToLower() != "id")
+               {
+                   nameBuilder.Append(arrName[i]);
+               }
+               else
+               {
+                   indexId = i;
+               }
+               if (i != props.Length - 1)
+               {
+                   nameBuilder.Append(", ");
+               }
+           }
+           
+           arrValue[indexId] = arrValue[indexId].Remove(0);
+           StringBuilder valueBuilder = new StringBuilder();
+
+           for (int i = 0; i < props.Length; i++)
+           {
+                valueBuilder.Append(arrValue[i]);
+                if (i != props.Length - 1)
+                {
+                    valueBuilder.Append(", ");
+                }
+           }
+
+           nameProp = nameBuilder.ToString();
+           valueProp = nameBuilder.ToString();
        }
     }
 }

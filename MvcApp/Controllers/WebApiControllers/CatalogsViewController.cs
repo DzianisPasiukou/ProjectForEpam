@@ -26,7 +26,7 @@ namespace MvcApp.Controllers.WebApiControllers
         [HttpGet]
         public IEnumerable<TreeView> Get()
         {
-           return _tree.GetTree().children;
+            return _tree.GetTree().ChildNode;
         }
     }
 }

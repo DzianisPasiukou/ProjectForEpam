@@ -126,14 +126,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="App_Data\EpamProject.mdf" />
     <Content Include="App_Data\EpamProject_log.ldf">
       <DependentUpon>EpamProject.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\default-dark\32px.png" />
+    <Content Include="Content\themes\default-dark\40px.png" />
+    <Content Include="Content\themes\default-dark\style.css" />
+    <Content Include="Content\themes\default-dark\style.min.css" />
+    <Content Include="Content\themes\default-dark\throbber.gif" />
+    <Content Include="Content\themes\default\32px.png" />
+    <Content Include="Content\themes\default\40px.png" />
+    <Content Include="Content\themes\default\style.css" />
+    <Content Include="Content\themes\default\style.min.css" />
+    <Content Include="Content\themes\default\throbber.gif" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -909,12 +919,21 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Scripts\jsTree3\jstree.js" />
+    <Content Include="Scripts\jsTree3\jstree.min.js" />
+    <Content Include="Scripts\themes\default\32px.png" />
+    <Content Include="Scripts\themes\default\40px.png" />
+    <Content Include="Scripts\themes\style.css" />
+    <Content Include="Scripts\themes\default\style.min.css" />
+    <Content Include="Scripts\themes\default\throbber.gif" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myCSS\treeview.css" />
     <Content Include="Scripts\myScripts\App.js" />
     <Content Include="Scripts\myScripts\treeview.js" />
-    <Content Include="Scripts\myScripts\userCtrl.js" />
-    <Content Include="Scripts\myScripts\usersService.js" />
+    <Content Include="Scripts\myScripts\catalogCtrl.js" />
+    <Content Include="Scripts\myScripts\catalogService.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -947,6 +966,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CatalogView\Index.cshtml" />
+    <Content Include="Views\CatalogView\ChildNode.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -956,10 +976,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DataBaseLayer\DataBaseLayer.csproj">
-      <Project>{90e30d24-4ed2-4788-b628-2d560208e82f}</Project>
-      <Name>DataBaseLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LoggingManager\LoggingManager.csproj">
       <Project>{199a8659-02b6-48c8-bba0-3ee9baae47ac}</Project>
       <Name>LoggingManager</Name>

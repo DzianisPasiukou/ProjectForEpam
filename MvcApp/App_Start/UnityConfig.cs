@@ -44,15 +44,19 @@ namespace MvcApp.App_Start
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.AddNewExtension<Interception>();
 
+            
+
             container.RegisterType<ISecurityHelper, SecurityHelper>(
                 new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
+
 
             container.RegisterType<IDataBaseManager<Catalog>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
+
         }
     }
 }

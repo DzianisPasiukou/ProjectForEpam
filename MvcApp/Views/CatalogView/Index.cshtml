@@ -1,14 +1,13 @@
-﻿@model IEnumerable<LogicLayer.CatalogManager.TreeView>
-
+﻿@model LogicLayer.CatalogManager.TreeView
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Index";
 }
-
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
-
-
-</table>
-
+<div id="catalog">
+    <ul id="tree">
+        <li>
+            <a href="#">@Model.NodeName</a>
+            @Html.Partial("ChildNode", Model.ChildNode)
+        </li>
+    </ul>
+</div> 

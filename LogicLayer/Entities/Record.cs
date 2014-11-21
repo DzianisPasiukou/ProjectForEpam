@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Entities
 {
-   public class Record
+    public class Record
     {
-      public string Name { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
 
-      public string NameTheme { get; set; }
+        public string Description { get; set; }
+        public string ThemeID { get; set; }
     }
 }

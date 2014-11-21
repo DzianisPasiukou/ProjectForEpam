@@ -10,7 +10,6 @@ namespace LogicLayer
 {
     public class SecurityHelper : ISecurityHelper
     {
-
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
         {
             if (String.IsNullOrEmpty(login))
@@ -78,20 +77,9 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
-            User user = new User();
-
             using (DBEntities entity = new DBEntities())
             {
-                DBSet<User> users = entity.User;
-
-                foreach (var item in users)
-                {
-                    if (item.Login.Equals(login))
-                    {
-                        user = item;
-                        break;
-                    }
-                }
+                 User user = entity.User.GetBy(String.Format("Login = {0}", login)).Current;
 
                 return user != null && user.Password.Equals(password);
             }
