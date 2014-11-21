@@ -41,16 +41,16 @@
   <ItemGroup>
     <Compile Include="CatalogManager\CatalogManager.cs" />
     <Compile Include="CatalogManager\IDataBaseManager.cs" />
-    <Compile Include="CatalogManager\IInitializeTree.cs" />
+    <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />
     <Compile Include="CatalogManager\ThemeManager\RecordManager\RecordManager.cs" />
     <Compile Include="CatalogManager\ThemeManager\ThemeManager.cs" />
     <Compile Include="CatalogManager\TreeView.cs" />
     <Compile Include="Entities\Record.cs" />
     <Compile Include="Entities\Theme.cs" />
-    <Compile Include="UserHelper.cs" />
+    <Compile Include="SecurityHelper.cs" />
     <Compile Include="Entities\DBEntities.cs" />
-    <Compile Include="IUserHelper.cs" />
+    <Compile Include="ISecurityHelper.cs" />
     <Compile Include="Entities\Catalog.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />

@@ -7,7 +7,7 @@ using LogicLayer.Entities;
 
 namespace LogicLayer.CatalogManager
 {
-  public  class CatalogManager: IDataBaseManager<Catalog>
+  public  class CatalogManager: IDataBaseManager<Catalog>, ITree
     {
         public IEnumerable<Catalog> Get()
         {
@@ -47,6 +47,14 @@ namespace LogicLayer.CatalogManager
             using (DBEntities entity = new DBEntities())
             {
                 return entity.Catalog.Where(c => c.Name == id);
+            }
+        }
+
+      public TreeView GetTree()
+        {
+            using (DBEntities entity = new DBEntities())
+            {
+                return InitializeTree.InstanceTree(entity, false);
             }
         }
     }

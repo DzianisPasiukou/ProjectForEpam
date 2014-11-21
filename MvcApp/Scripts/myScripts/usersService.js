@@ -1,6 +1,6 @@
-﻿myApp.service("usersData", function ($http) {
+﻿myApp.service("catalogData", function ($http) {
     this.getUsers = function () {
-        var url = "api/users"
+        var url = "api/catalogs"
         return $http.get(url);
     }
 })

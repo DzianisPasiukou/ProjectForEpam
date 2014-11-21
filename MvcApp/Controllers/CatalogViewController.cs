@@ -12,52 +12,35 @@ namespace MvcApp.Controllers
     {
         //
         // GET: /CatalogView/
-        IDataBaseManager<Catalog> _catalogs;
-        IDataBaseManager<Theme> _themes;
-        IDataBaseManager<Record> _records;
-
-        public CatalogViewController(IDataBaseManager<Catalog> catalogs, IDataBaseManager<Theme> themes, IDataBaseManager<Record> records) 
+        ITree _tree;
+        public CatalogViewController(ITree tree) 
         {
-            if (catalogs == null)
+            if (tree == null)
             {
                 throw new ArgumentNullException();
             }
-            _catalogs = catalogs;
-
-            if (themes == null)
-            {
-                throw new ArgumentException();
-            }
-            _themes = themes;
-
-            if (records == null)
-            {
-                throw new ArgumentException();
-            }
-            _records = records;
+            _tree = tree;
         }
-
         //
         // GET: /CatalogView/
         public ActionResult Index()
         {
-            IEnumerable<Catalog> cats = _catalogs.Get();
-
-            return View(cats);
+            return View();
         }
-
-        public ActionResult DetailsCatalog(string nameCatalog)
+        /*
+        public ActionResult DetailsTheme(string nameCatalog)
         {
-            IEnumerable<Theme> ths = _themes.GetBy(nameCatalog);
+            IEnumerable<TreeView> treeThemes = _tree.GetTree().children.Find(t => t.roleName == nameCatalog).children;
 
-            return View(ths);
+            return View(treeThemes);
         }
 
-        public ActionResult DetailsTheme(string theme)
+        public ActionResult DetailsRecord(string themeName, string nameCatalog)
         {
-            IEnumerable<Record> rcs = _records.GetBy(theme);
+            IEnumerable<TreeView> treeRecord = _tree.GetTree().children.Find(t => t.roleName == nameCatalog).children.Find(r => r.roleName == themeName).children;
 
-            return View(rcs);
+            return View(treeRecord);
         }
+         * */
 	}
 }

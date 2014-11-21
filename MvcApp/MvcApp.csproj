@@ -925,7 +925,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CatalogViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\WebApiControllers\UsersController.cs" />
+    <Compile Include="Controllers\WebApiControllers\CatalogsViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

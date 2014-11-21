@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LogicLayer.Entities.Catalog>
+﻿@model IEnumerable<LogicLayer.CatalogManager.TreeView>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,12 +9,6 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("DetailsCatalog", "DetailsCatalog", new {ID = item.Name})
-        </td>
-    </tr>
-}
 
 </table>
+

@@ -16,31 +16,31 @@ namespace LogicLayer.CatalogManager
 
        private InitializeTree(DBEntities entity)
         {
-                _tree.NameNode = "Catalogs";
+                _tree.roleName = "Catalogs";
 
                 for (int i = 0; entity.Catalog.GetEnumerator().MoveNext(); i++)
                 {
-                    _tree.Tree.Add(new TreeView()
+                    _tree.children.Add(new TreeView()
                     {
-                        NameNode = entity.Catalog.GetEnumerator().Current.Name,
-                        Tree = new List<TreeView>()
+                        roleName = entity.Catalog.GetEnumerator().Current.Name,
+                        children = new List<TreeView>()
                     });
 
                     IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.NameCatalog == entity.Catalog.GetEnumerator().Current.Name);
 
                     for (int j = 0;currentThemes.GetEnumerator().MoveNext(); j++)
                     {
-                        _tree.Tree[i].Tree.Add(new TreeView()
+                        _tree.children[i].children.Add(new TreeView()
                         {
-                            NameNode = currentThemes.ElementAt(j).Name,
-                            Tree = new List<TreeView>()
+                            roleName = currentThemes.ElementAt(j).Name,
+                            children = new List<TreeView>()
                         });
                         IEnumerable<Record> currentRecords = entity.Record.Where(r => r.NameTheme == currentThemes.ElementAt(j).Name);
                         for (int k = 0; currentRecords.GetEnumerator().MoveNext(); k++)
                         {
-                            _tree.Tree[i].Tree[j].Tree.Add(new TreeView()
+                            _tree.children[i].children[j].children.Add(new TreeView()
                             {
-                                NameNode = currentRecords.ElementAt(k).Name
+                                roleName = currentRecords.ElementAt(k).Name
                             });
                         }
                     }

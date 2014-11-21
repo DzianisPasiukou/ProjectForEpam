@@ -12,9 +12,9 @@ namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
-        private IUserHelper _databaseHelper;
+        private ISecurityHelper _databaseHelper;
 
-        public AccountController(IUserHelper databaseHelper)
+        public AccountController(ISecurityHelper databaseHelper)
         {
             if (databaseHelper == null)
             {

@@ -8,8 +8,8 @@ namespace LogicLayer.CatalogManager
 {
    public class TreeView
     {
-       public string NameNode { get; set; }
+       public string roleName { get; set; }
 
-       public List<TreeView> Tree { get; set; }
+       public List<TreeView> children { get; set; }
     }
 }
