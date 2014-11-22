@@ -13,7 +13,7 @@ namespace LogicLayer
 
         LoginValidate LoginUser(string login, string password);
 
-        User Account(string login);
+        User GetUser(string login);
 
         bool CheckPermission(string login);
     }

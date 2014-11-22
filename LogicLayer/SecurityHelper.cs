@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace LogicLayer
 {
+    public enum LoginValidate
+    {
+        Seccess,
+        NotApproved,
+        NotRegistered
+    }
     public class SecurityHelper : ISecurityHelper
     {
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
@@ -37,11 +43,11 @@ namespace LogicLayer
                 avatar = "defAVATARPath";
             }
 
-            using (DBEntities entity = new DBEntities())
+            using (DBEntities db = new DBEntities())
             {
                 User user = new User();
 
-                DBSet<User> users = entity.User;
+                DBSet<User> users = db.User;
 
                 foreach (var item in users)
                 {
@@ -51,7 +57,7 @@ namespace LogicLayer
                     }
                 }
 
-                return entity.User.Add(new User
+                return db.User.Add(new User
                 {
                     Login = login,
                     Password = password,
@@ -59,14 +65,14 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now.ToShortDateString(),
+                    DateOfRegistration = DateTime.Now,
                     RoleID = 1,
                     Avatar = avatar
                 });
             }
         }
 
-        public bool LoginUser(string login, string password)
+        public LoginValidate LoginUser(string login, string password)
         {
             if (String.IsNullOrEmpty(login))
             {
@@ -77,12 +83,62 @@ namespace LogicLayer
                 throw new ArgumentNullException("password");
             }
 
-            using (DBEntities entity = new DBEntities())
-            {
-                 User user = entity.User.GetBy(String.Format("Login = {0}", login)).Current;
+            User user = new User();
 
-                return user != null && user.Password.Equals(password);
+            using (DBEntities db = new DBEntities())
+            {
+                DBSet<User> users = db.User;
+
+                foreach (var item in users)
+                {
+                    if (item.Login.Equals(login))
+                    {
+                        user = item;
+                        if (user != null && user.Password.Equals(password) && user.IsActive)
+                        {
+                            return LoginValidate.Seccess;
+                        }
+                        else
+                        {
+                            return LoginValidate.NotApproved;
+                        }
+                    }
+                }
+
+                return LoginValidate.NotRegistered;
             }
+        }
+
+
+        public User GetUser(string login)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.User.FirstOrDefault(user => user.Login == login);
+            }
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                IEnumerable<User> users = db.User;
+                return users;
+            }
+        }
+
+        public IEnumerable<Role> GetRoles()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                IEnumerable<Role> roles = db.Role;
+                return roles;
+            }
+        }
+
+        public bool CheckPermission(string login)
+        {
+            throw new NotImplementedException();
         }
     }
 }

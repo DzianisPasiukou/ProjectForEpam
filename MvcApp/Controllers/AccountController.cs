@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
-using LogicLayer.Models;
+using LogicLayer.Entities;
 
 namespace MvcApp.Controllers
 {
