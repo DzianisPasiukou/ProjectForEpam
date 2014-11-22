@@ -9,12 +9,12 @@ namespace DataBaseLayer
     public class DbContext : IDisposable
     {
         public DbContext()
-        { 
+        {
             DataBase.ConnectionOpen();
         }
         public void Dispose()
         {
-            DataBase.CloseConnection();
+            DataBase.ConnectionClose();
         }
     }
 }

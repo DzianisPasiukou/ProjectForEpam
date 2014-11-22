@@ -7,15 +7,15 @@ using System.Web.Mvc;
 using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
-using LogicLayer.Models;
+using LogicLayer.Entities;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
-        private IDatabaseHelper _databaseHelper;
+        private ISecurityHelper _databaseHelper;
 
-        public AccountController(IDatabaseHelper databaseHelper)
+        public AccountController(ISecurityHelper databaseHelper)
         {
             if (databaseHelper == null)
             {

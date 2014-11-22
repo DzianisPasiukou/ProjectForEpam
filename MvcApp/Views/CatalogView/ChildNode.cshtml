@@ -1,0 +1,18 @@
+﻿@model IEnumerable<LogicLayer.CatalogManager.TreeView>
+@foreach (var treeNode in Model)
+{
+    <ul id="treeChild">
+        @if (treeNode != null)
+        { 
+            <li><a href="#" onclick="$('#disc').html('@treeNode.NodeDescription')">
+    @treeNode.NodeName
+</a>
+                @if (treeNode.ChildNode.Count > 0)
+                {
+                    @Html.Partial("ChildNode", treeNode.ChildNode)
+                }
+                <button type="button" id="" >123</button>
+            </li> 
+        }
+    </ul>
+} 

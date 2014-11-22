@@ -3,11 +3,14 @@ using System.Collections.Generic;
 
 namespace DataBaseLayer
 {
-  public  interface IDataReader
+    public interface IDataReader
     {
-      IEnumerable<Dictionary<string, object>> GetData(string args);
+        List<Dictionary<string, object>> GetData(string args);
         bool Add(object obj);
         bool Update(object obj);
         bool Delete(object obj);
+        string KeyEntity { get; set; }
+        string EntityName { get; set; }
+        
     }
 }
