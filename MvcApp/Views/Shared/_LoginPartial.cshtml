@@ -1,12 +1,22 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <div>
-        Пользователь: @User.Identity.Name
-        @Html.ActionLink("Log Out", "Logout", "Account")
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink(@User.Identity.Name, "Account", "Account")
+        </li>
+        <li>
+            @Html.ActionLink("Log Out", "Logout", "Account")
+        </li>
+    </ul>
 }
 else
 {
-    @Html.ActionLink("Log In ", "Login", "Account")
-    @Html.ActionLink("Register", "Register", "Account")
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Register", "Register", "Account")
+        </li>
+        <li>
+            @Html.ActionLink("Log in", "Login", "Account")
+        </li>
+    </ul>
 }

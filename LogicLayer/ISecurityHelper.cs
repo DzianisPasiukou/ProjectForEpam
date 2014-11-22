@@ -9,9 +9,12 @@ namespace LogicLayer
 {
     public interface ISecurityHelper
     {
-        bool RegisterUser(string login, string password, string email, string name, string surname,string avatar);
+        bool RegisterUser(string login, string password, string email, string name, string surname, string avatar);
 
-        bool LoginUser(string login, string password);
+        LoginValidate LoginUser(string login, string password);
 
+        User Account(string login);
+
+        bool CheckPermission(string login);
     }
 }
