@@ -8,6 +8,8 @@ namespace LogicLayer.Models
 {
     public class User
     {
+        public int ID { get; set; }
+
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -22,7 +24,7 @@ namespace LogicLayer.Models
 
         public int RoleID { get; set; }
 
-        public string DateOfRegistration { get; set; }
+        public DateTime DateOfRegistration { get; set; }
 
         public bool IsActive { get; set; }
 

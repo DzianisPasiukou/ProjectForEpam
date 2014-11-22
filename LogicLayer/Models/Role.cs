@@ -8,7 +8,9 @@ namespace LogicLayer.Models
 {
     public class Role
     {
-        public string RoleName { get; set; }
+        public int ID { get; set; }
+
+        public string Name { get; set; }
 
         public string PermissionTrafficOneFile { get; set; }
 

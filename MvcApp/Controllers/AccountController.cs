@@ -87,8 +87,67 @@ namespace MvcApp.Controllers
 
         public ActionResult Account()
         {
-            User user = new User();
-            return View();
+            AccountViewModel model = new AccountViewModel();
+
+            model.Name = "Admin";
+            model.Surname = "Admin";
+            model.Email = "admin@gmail.com";
+            model.Login = "admin";
+            model.Avatar = "default";
+            model.Role = "Admin";
+            model.DateOfRegistration = DateTime.Now.Date;
+            model.IsActive = true;
+            model.Downloaded = 0;
+            model.Uploaded = 0;
+            model.HaveLikes = 0;
+            model.GaveLikes = 0;
+
+            return View(model);
+        }
+
+        public ActionResult Users()
+        {
+            IEnumerable<User> users = _databaseHelper.GetUsers();
+
+            IEnumerable<Role> roles = _databaseHelper.GetRoles();
+
+            List<AccountViewModel> models = new List<AccountViewModel>();
+
+            /*foreach (var item in users)
+            {
+                AccountViewModel model = new AccountViewModel();
+
+                model.Name = item.Name;
+                model.Surname = item.Surname;
+                model.Email = item.Email;
+                model.Login = item.Login;
+                model.Avatar = item.Avatar;
+                //model.Role = roles.FirstOrDefault(role => role.ID == item.RoleID).Name;
+                model.DateOfRegistration = item.DateOfRegistration;
+                model.IsActive = item.IsActive;
+                model.Downloaded = item.Downloaded;
+                model.Uploaded = item.Uploaded;
+                model.HaveLikes = item.HaveLikes;
+                model.GaveLikes = item.GaveLikes;
+            }*/
+            AccountViewModel model = new AccountViewModel();
+
+            model.Name = "Admin";
+            model.Surname = "Admin";
+            model.Email = "admin@gmail.com";
+            model.Login = "admin";
+            model.Avatar = "default";
+            model.Role = "Admin";
+            model.DateOfRegistration = DateTime.Now;
+            model.IsActive = true;
+            model.Downloaded = 0;
+            model.Uploaded = 0;
+            model.HaveLikes = 0;
+            model.GaveLikes = 0;
+
+            models.Add(model);
+
+            return View(models);
         }
     }
 }

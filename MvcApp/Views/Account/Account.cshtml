@@ -1,13 +1,9 @@
 ﻿@model MvcApp.Models.Account.AccountViewModel
 
 @{
+    Layout = "~/Views/Shared/_AdminAccount.cshtml";
     ViewBag.Title = "Account";
 }
 
-<h2>Account</h2>
+<h2 class="page-header">Overview</h2>
 
-@using (Html.BeginForm("Account", "Account"))
-{
-    <h3>@Html.LabelFor(model =>model.Role)</h3>
-    
-}

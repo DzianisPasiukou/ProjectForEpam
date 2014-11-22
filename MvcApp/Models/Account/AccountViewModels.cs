@@ -55,7 +55,7 @@ namespace MvcApp.Models.Account
 
         public string Message { get; set; }
 
-        [Display(Name="Remember me?")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 
@@ -72,6 +72,10 @@ namespace MvcApp.Models.Account
         public string Avatar { get; set; }
 
         public string Role { get; set; }
+
+        public DateTime DateOfRegistration { get; set; }
+
+        public bool IsActive { get; set; }
 
         public double Downloaded { get; set; }
 

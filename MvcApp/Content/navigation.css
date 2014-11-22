@@ -1,3 +1,7 @@
 ﻿.inline {
     display: inline;
 }
+
+.table th {
+   text-align: center;   
+}

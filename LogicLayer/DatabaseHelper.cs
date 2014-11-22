@@ -39,11 +39,11 @@ namespace LogicLayer
                 avatar = "defAVATARPath";
             }
 
-            using (DBEntities entity = new DBEntities())
+            using (DBEntities db = new DBEntities())
             {
                 User user = new User();
 
-                DBSet<User> users = entity.User;
+                DBSet<User> users = db.User;
 
                 foreach (var item in users)
                 {
@@ -53,7 +53,7 @@ namespace LogicLayer
                     }
                 }
 
-                return entity.User.Add(new User
+                return db.User.Add(new User
                 {
                     Login = login,
                     Password = password,
@@ -61,7 +61,7 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now.ToShortDateString(),
+                    DateOfRegistration = DateTime.Now,
                     RoleID = 1,
                     Avatar = avatar
                 });
@@ -81,9 +81,9 @@ namespace LogicLayer
 
             User user = new User();
 
-            using (DBEntities entity = new DBEntities())
+            using (DBEntities db = new DBEntities())
             {
-                DBSet<User> users = entity.User;
+                DBSet<User> users = db.User;
 
                 foreach (var item in users)
                 {
@@ -106,15 +106,37 @@ namespace LogicLayer
         }
 
 
-        public User Account(string login)
+        public User GetUser(string login)
         {
-            throw new NotImplementedException();
+            using (DBEntities db = new DBEntities())
+            {
+                return db.User.FirstOrDefault(user => user.Login == login);
+            }
         }
 
+        public IEnumerable<User> GetUsers()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                IEnumerable<User> users = db.User;
+                return users;
+            }
+        }
+
+        public IEnumerable<Role> GetRoles()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                IEnumerable<Role> roles = db.Role;
+                return roles;
+            }
+        }
 
         public bool CheckPermission(string login)
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

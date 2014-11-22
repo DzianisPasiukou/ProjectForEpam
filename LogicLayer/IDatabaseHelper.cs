@@ -13,7 +13,11 @@ namespace LogicLayer
 
         LoginValidate LoginUser(string login, string password);
 
-        User Account(string login);
+        User GetUser(string login);
+
+        IEnumerable <User> GetUsers();
+
+        IEnumerable<Role> GetRoles();
 
         bool CheckPermission(string login);
     }
