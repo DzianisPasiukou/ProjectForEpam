@@ -9,7 +9,7 @@ namespace LogicLayer.CatalogManager
    public class TreeView
     {
        public string NodeName { get; set; }
-
+       public string NodeDescription { get; set; }
        public List<TreeView> ChildNode { get; set; }
     }
 }

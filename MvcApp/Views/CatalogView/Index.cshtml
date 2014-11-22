@@ -6,8 +6,11 @@
 <div id="catalog">
     <ul id="tree">
         <li>
-            <a href="#">@Model.NodeName</a>
+            <a href="#" onclick="$('#disc').html('@Model.NodeDescription')">@Model.NodeName</a>
             @Html.Partial("ChildNode", Model.ChildNode)
         </li>
     </ul>
 </div> 
+<div id="disc">
+
+</div>

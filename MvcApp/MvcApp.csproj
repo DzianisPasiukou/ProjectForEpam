@@ -974,7 +974,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\TreeLayout\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoggingManager\LoggingManager.csproj">
       <Project>{199a8659-02b6-48c8-bba0-3ee9baae47ac}</Project>
