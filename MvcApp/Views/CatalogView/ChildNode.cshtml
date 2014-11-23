@@ -1,0 +1,29 @@
+﻿@model IEnumerable<LogicLayer.CatalogManager.TreeView>
+@foreach (var treeNode in Model)
+{
+    <ul id="treeChild">
+        @if (treeNode != null)
+        { 
+            <li><a href="#" onclick="view('@(treeNode.NodeDescription)',@(Json.Encode(treeNode.IsRecord)), @(treeNode.Rec.ID))">
+    @treeNode.NodeName
+</a>
+                @if (treeNode.ChildNode.Count > 0)
+                {
+                    @Html.Partial("ChildNode", treeNode.ChildNode)
+                }
+            </li> 
+        }
+    </ul>
+} 
+
+<script>
+    function view(description, isRecord, record) {
+        if (!isRecord)
+            $('#disc').html(description);
+        else
+            $.get('@Url.Action("Details", "CatalogView")', { id: record }, function (data) {
+                $('#disc').html(data);
+            });
+
+    }
+</script>

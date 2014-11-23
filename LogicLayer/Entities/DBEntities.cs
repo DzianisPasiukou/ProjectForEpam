@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataBaseLayer;
-using LogicLayer.Models;
+using LogicLayer.Entities;
 
 namespace LogicLayer.Entities
 {
@@ -13,10 +13,17 @@ namespace LogicLayer.Entities
       public DBSet<User> User { get; set; }
       public DBSet<Role> Role { get; set; }
 
+      public DBSet<Catalog> Catalog { get; set; }
+
+      public DBSet<Theme> Theme { get; set; }
+      public DBSet<Record> Record { get; set; }
       public DBEntities():base()
       {
-          User = new DBSet<User>("Users", "ID");
-          Role = new DBSet<Role>("Role", "ID");
+          User = new DBSet<User>();
+          Role = new DBSet<Role>();
+          Catalog = new DBSet<Catalog>();
+          Theme = new DBSet<Theme>();
+          Record = new DBSet<Record>();
       }
     }
 }

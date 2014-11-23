@@ -8,33 +8,36 @@ using System.Reflection;
 
 namespace DataBaseLayer
 {
-    public class DBSet<T> : IEnumerable<T>
-        where T: new()
+    public class DBSet<TEntity>: IEnumerable<TEntity>
+        where TEntity: new()
     {
         private IDataReader _dataReader;
 
-        public DBSet(string entity, string entityKey)
+        public DBSet()
         {
-            _dataReader = new DataBase(entity, entityKey);
+            _dataReader = new DataBase();
+
+            _dataReader.EntityName = typeof(TEntity).Name+"s";
         }
          
        
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TEntity> GetEnumerator()
         {
             IEnumerable<Dictionary<string,object>> data = _dataReader.GetData("*");
 
-            IEnumerator<T> valueData = Reflection(data).GetEnumerator();
+            IEnumerator<TEntity> valueData = Reflection(data).GetEnumerator();
 
             return valueData;
         }
-        IEnumerable<T> Reflection(IEnumerable<Dictionary<string, object>> data)
+        IEnumerable<TEntity> Reflection(IEnumerable<Dictionary<string, object>> data)
         {
-            string[] propsName = typeof(T).GetProperties().Select(p => p.Name).ToArray();
-            T obj = new T();
-            int count = 0;
+            string[] propsName = typeof(TEntity).GetProperties().Select(p => p.Name).ToArray();
+            TEntity obj = new TEntity();
 
             foreach (var d in data)
             {
+                obj = new TEntity();
+
                 for (int i = 0; i < propsName.Length; i++)
                 {
                     string key = d.Keys.FirstOrDefault(s => s.ToLower() == propsName[i].ToLower());
@@ -47,11 +50,10 @@ namespace DataBaseLayer
                 }
                 
                 yield return obj;
-                count += 1;
             }
 
         }
-        public bool Add(T obj)
+        public bool Add(TEntity obj)
         {
             if (obj != null)
             {
@@ -62,7 +64,7 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object add");
             }
         }
-        public bool Update(T obj)
+        public bool Update(TEntity obj)
         {
             if (obj != null)
             {
@@ -73,7 +75,7 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object update");
             }
         }
-        public bool Delete(T obj)
+        public bool Delete(TEntity obj)
         {
             if (obj != null)
             {
@@ -84,11 +86,17 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object delete");
             }
         }
+        public IEnumerable<TEntity> GetBy(string args)
+        {
+            IEnumerable<Dictionary<string, object>> data = _dataReader.GetData(args);
 
+            IEnumerable<TEntity> valueData = Reflection(data);
 
+            return valueData;
+        }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return default(T).ToString().GetEnumerator();
+            return default(TEntity).ToString().GetEnumerator();
         }
     }
 }

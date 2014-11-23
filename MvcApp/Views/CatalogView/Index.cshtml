@@ -1,0 +1,28 @@
+﻿@model LogicLayer.CatalogManager.TreeView
+@{
+
+    ViewBag.Title = "Index";
+}
+<div id="catalog">
+    <ul id="tree">
+        <li>
+            <a href="#" onclick="myfunction()">@Model.NodeName</a>
+            @Html.Partial("ChildNode", Model.ChildNode)
+        </li>
+    </ul>
+</div> 
+<div id="disc">
+</div>
+
+<script>
+    function myfunction() {
+        $('#disc').html('@Model.NodeDescription')
+    }
+</script>
+
+<style>
+    #disc
+    {
+
+    }
+</style>

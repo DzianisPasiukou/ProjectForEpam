@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jquery.jstree</id>
+    <version>3.0.8.2</version>
+    <title>jstree</title>
+    <authors>Ivan Bozhanov, nuget pkg Adam Pluciński</authors>
+    <owners>Ivan Bozhanov, nuget pkg Adam Pluciński</owners>
+    <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://www.jstree.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>jsTree is jquery plugin, that provides interactive trees. It is absolutely free, open source(https://github.com/vakata/jstree) and distributed under the MIT license. 
+
+jsTree is easily extendable, themable and configurable, it supports HTML &amp; JSON data sources, AJAX &amp; async callback loading.
+
+jsTree functions properly in either box-model (content-box or border-box), can be loaded as an AMD module, and has a built in mobile theme for responsive design, that can easily be customized. It uses jQuery's event system, so binding callbacks on various events in the tree is familiar and easy.
+
+You also get:
+ * drag &amp; drop support
+ * keyboard navigation
+ * inline edit, create and delete
+ * tri-state checkboxes
+ * fuzzy searching
+ * customizable node types
+
+Aside from this readme you can find a lot more info on http://www.jstree.com and the discussion group https://groups.google.com/forum/#!forum/jstree</description>
+    <summary>jsTree is jquery plugin, that provides interactive trees</summary>
+    <releaseNotes>3.0.8 release fc8b480</releaseNotes>
+    <dependencies>
+      <dependency id="jquery" version="1.9.1" />
+    </dependencies>
+  </metadata>
+</package>

@@ -48,21 +48,30 @@ namespace LoggingManager
         {
             for (int i = 0; i < arguments.Count; i++)
             {
+                if (arguments[i] != null)
+                {
+                    XmlSerializer writer = new XmlSerializer(arguments[i].GetType());
 
-                XmlSerializer writer = new XmlSerializer(arguments[i].GetType());
+                    FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i), FileMode.Create);
+                    writer.Serialize(stream, arguments[i]);
 
-                FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i), FileMode.Create);
-                writer.Serialize(stream, arguments[i]);
-
-                stream.Close();
+                    stream.Close();
+                }
             }
             string message = "";
             for (int i = 0; i < arguments.Count; i++)
             {
-                StreamReader read = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i));
-                message += String.Format("argument {0} : \n {1} \n", i + 1, read.ReadToEnd());
-                read.Close();
-                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i));
+                if (arguments[i] != null)
+                {
+                    StreamReader read = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i));
+                    message += String.Format("argument {0} : \n {1} \n", i + 1, read.ReadToEnd());
+                    read.Close();
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + String.Format("\\{0}", i));
+                }
+                else
+                {
+                    message += String.Format("argument {0} : \n {1} \n", i + 1, arguments[i]);
+                }
             }
             return message;
 
