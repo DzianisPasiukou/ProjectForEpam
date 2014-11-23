@@ -21,7 +21,7 @@ namespace LogicLayer.CatalogManager.ThemeManager
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Theme.Where(t => t.CatalogID == id);
+                return entity.Theme.Where(t => t.CatalogID == int.Parse(id));
             }
         }
 

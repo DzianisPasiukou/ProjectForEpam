@@ -47,7 +47,7 @@ namespace LogicLayer.CatalogManager.ThemeManager.RecordManager
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Record.Where(r => r.ThemeID == id);
+                return entity.Record.GetBy(String.Format("ID = {0}", id));
             }
         }
     }

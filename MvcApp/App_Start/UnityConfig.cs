@@ -6,6 +6,7 @@ using LoggingManager;
 using LogicLayer;
 using LogicLayer.Entities;
 using LogicLayer.CatalogManager;
+using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 
 namespace MvcApp.App_Start
 {
@@ -55,6 +56,9 @@ namespace MvcApp.App_Start
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
+  new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IDataBaseManager<Record>, RecordManager>(new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
         }

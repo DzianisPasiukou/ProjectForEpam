@@ -13,16 +13,16 @@ namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
-        private ISecurityHelper _databaseHelper;
+        private ISecurityHelper _securityHelper;
 
-        public AccountController(ISecurityHelper databaseHelper)
+        public AccountController(ISecurityHelper securityHelper)
         {
-            if (databaseHelper == null)
+            if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
-            _databaseHelper = databaseHelper;
+            _securityHelper = securityHelper;
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid && _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
@@ -61,7 +61,7 @@ namespace MvcApp.Controllers
                 return View(model);
             }
 
-            LoginValidate valid = _databaseHelper.LoginUser(model.Login, model.Password);
+            LoginValidate valid = _securityHelper.LoginUser(model.Login, model.Password);
 
             if (valid == LoginValidate.Seccess)
             {

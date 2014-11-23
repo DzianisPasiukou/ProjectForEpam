@@ -33,10 +33,11 @@ namespace DataBaseLayer
         {
             string[] propsName = typeof(TEntity).GetProperties().Select(p => p.Name).ToArray();
             TEntity obj = new TEntity();
-            int count = 0;
 
             foreach (var d in data)
             {
+                obj = new TEntity();
+
                 for (int i = 0; i < propsName.Length; i++)
                 {
                     string key = d.Keys.FirstOrDefault(s => s.ToLower() == propsName[i].ToLower());
@@ -49,7 +50,6 @@ namespace DataBaseLayer
                 }
                 
                 yield return obj;
-                count += 1;
             }
 
         }
@@ -86,11 +86,11 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object delete");
             }
         }
-        public IEnumerator<TEntity> GetBy(string args)
+        public IEnumerable<TEntity> GetBy(string args)
         {
             IEnumerable<Dictionary<string, object>> data = _dataReader.GetData(args);
 
-            IEnumerator<TEntity> valueData = Reflection(data).GetEnumerator();
+            IEnumerable<TEntity> valueData = Reflection(data);
 
             return valueData;
         }

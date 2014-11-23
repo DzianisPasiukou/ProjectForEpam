@@ -27,10 +27,11 @@ namespace LogicLayer.CatalogManager
                     {
                         NodeName = cats.Current.Name,
                         NodeDescription = cats.Current.Description,
-                        ChildNode = new List<TreeView>()
+                        ChildNode = new List<TreeView>(),
+                        Rec = new Record()
                     });
 
-                    IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.CatalogID == entity.Catalog.GetEnumerator().Current.Name);
+                    IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.CatalogID == cats.Current.ID);
                     IEnumerator<Theme> thms = currentThemes.GetEnumerator();
 
                     for (int j = 0; thms.MoveNext(); j++)
@@ -38,10 +39,11 @@ namespace LogicLayer.CatalogManager
                         _tree.ChildNode[i].ChildNode.Add(new TreeView()
                         {
                             NodeName = currentThemes.ElementAt(j).Name,
-                            NodeDescription = cats.Current.Description,
-                            ChildNode = new List<TreeView>()
+                            NodeDescription = thms.Current.Description,
+                            ChildNode = new List<TreeView>(),
+                            Rec = new Record()
                         });
-                        IEnumerable<Record> currentRecords = entity.Record.Where(r => r.ThemeID == currentThemes.ElementAt(j).Name);
+                        IEnumerable<Record> currentRecords = entity.Record.Where(r => r.ThemeID == currentThemes.ElementAt(j).ID);
                         IEnumerator<Record> rc = currentRecords.GetEnumerator();
 
                         for (int k = 0; rc.MoveNext(); k++)
@@ -49,8 +51,10 @@ namespace LogicLayer.CatalogManager
                             _tree.ChildNode[i].ChildNode[j].ChildNode.Add(new TreeView()
                             {
                                 NodeName = currentRecords.ElementAt(k).Name,
-                                NodeDescription = cats.Current.Description,
-                                ChildNode = new List<TreeView>()
+                                NodeDescription = rc.Current.Description,
+                                ChildNode = new List<TreeView>(),
+                                IsRecord = true,
+                                Rec = rc.Current
                             });
                         }
                     }

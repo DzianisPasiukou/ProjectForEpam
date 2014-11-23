@@ -80,8 +80,8 @@ namespace DataBaseLayer
             StringBuilder viewBuilder = new StringBuilder();
             string[] args = Array.FindAll<string>(arr, a => !String.IsNullOrEmpty(a));
             viewBuilder.Append(args[0]);
-            viewBuilder.Append(view += separator);
-            viewBuilder.Append(view += String.Format("'{0}'", args[1]));
+            viewBuilder.Append(separator);
+            viewBuilder.Append(String.Format("'{0}'", args[1]));
 
             return viewBuilder.ToString();
         }

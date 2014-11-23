@@ -10,8 +10,13 @@ namespace LogicLayer.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-
+        public double Weight { get; set; }
+        public double Width { get; set; }
+        public double Length { get; set; }
+        public double Height { get; set; }
+        public double Power { get; set; }
+        public int UserID { get; set; }
         public string Description { get; set; }
-        public string ThemeID { get; set; }
+        public int ThemeID { get; set; }
     }
 }

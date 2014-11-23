@@ -963,6 +963,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CatalogView\Index.cshtml" />
     <Content Include="Views\CatalogView\ChildNode.cshtml" />
+    <Content Include="Views\CatalogView\RecordView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
