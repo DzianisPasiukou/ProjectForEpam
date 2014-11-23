@@ -35,13 +35,15 @@ namespace DataBaseLayer
         {
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
+            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp);
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
+            
 
             string prop = DataBaseManager.FindProperty(obj, _key);
 
-            if (String.IsNullOrEmpty(prop))
+            if (!String.IsNullOrEmpty(prop))
             {
-                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), DataBaseManager.FindProperty(obj, _key));
+                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), prop);
                 return DataBaseManager.Execute(comm, _connection);
             }
             else

@@ -1,7 +1,60 @@
-﻿@model LogicLayer.CatalogManager.TreeView
-@{
-    ViewBag.Title = "RecordView";
-}
+﻿@model LogicLayer.Entities.Record
 
-<h2>RecordView</h2>
+<script>
+    $(function () {
+        $("#recordTabs").tabs({
+            heightStyle: "fill",
+            collapsible: true,
+            hide: "slideUp"
+        });
+    });
+</script>
+<h2>RecordView
+    
+    </h2>
 
+<div id="nameModel">
+    @Model.Name
+</div>
+<div id="descriptionModel">
+   @Model.Description
+</div>
+
+<div id="recordTabs">
+    <ul id="recordTabs-nav">
+        <li>
+            @Ajax.ActionLink("Technical", "TechicalDetails", new { id = Model.ID }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "info1",
+    InsertionMode = InsertionMode.Replace
+})
+        </li>
+        <li>
+            @Ajax.ActionLink("Photo", "PhotoDetails", new { id = Model.ID }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "info1",
+    InsertionMode = InsertionMode.Replace
+})
+        </li>
+        <li>
+            @Ajax.ActionLink("Video", "VideoDetails", new { id = Model.ID }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "info1",
+    InsertionMode = InsertionMode.Replace
+})
+        </li>
+        <li>
+            @Ajax.ActionLink("Documents", "DocumentsDetails", new { id = Model.ID }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "info1",
+    InsertionMode = InsertionMode.Replace
+})
+        </li>
+    </ul>
+</div>
+<div id="info1">
+</div>

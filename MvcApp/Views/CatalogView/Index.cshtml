@@ -1,8 +1,5 @@
 ﻿@model LogicLayer.CatalogManager.TreeView
-@{
 
-    ViewBag.Title = "Index";
-}
 <div id="catalog">
     <ul id="tree">
         <li>
@@ -14,15 +11,9 @@
 <div id="disc">
 </div>
 
+
 <script>
     function myfunction() {
         $('#disc').html('@Model.NodeDescription')
     }
 </script>
-
-<style>
-    #disc
-    {
-
-    }
-</style>

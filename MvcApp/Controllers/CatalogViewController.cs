@@ -32,15 +32,32 @@ namespace MvcApp.Controllers
         // GET: /CatalogView/
         public ActionResult Index()
         {
-
             TreeView treeCatalog = _tree.GetTree();
 
             return View(treeCatalog);
         }
-       public PartialViewResult Details(int id)
+        public ActionResult Details(int id, string description)
         {
-            Record rc = _recordsManager.GetBy(id.ToString()).First();
-            return PartialView(rc);
+            if (id != 0)
+                return PartialView("RecordView", _recordsManager.GetBy(id.ToString()).First());
+            else
+                return Content(description);
+        }
+        public ActionResult TechicalDetails(int id)
+        {
+            return PartialView("TechnicalCharacteristic");
+        }
+        public ActionResult PhotoDetails(int id)
+        {
+            return PartialView("Photo");
+        }
+        public ActionResult VideoDetails(int id)
+        {
+            return PartialView("Video");
+        }
+        public ActionResult DocumentsDetails(int id)
+        {
+            return PartialView("Documents");
         }
     }
 }

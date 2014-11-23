@@ -90,7 +90,7 @@ namespace DataBaseLayer
            string prop;
            try
            {
-               prop = Array.Find<PropertyInfo>(obj.GetType().GetProperties(), p => p.Name.ToUpper() == key.ToUpper()).Name.ToUpper();
+               prop = Array.Find<PropertyInfo>(obj.GetType().GetProperties(), p => p.Name.ToUpper() == key.ToUpper()).GetValue(obj).ToString();
            }
            catch
            {
