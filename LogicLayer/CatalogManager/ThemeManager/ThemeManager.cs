@@ -17,11 +17,11 @@ namespace LogicLayer.CatalogManager.ThemeManager
             }
         }
 
-        public IEnumerable<Theme> GetBy(string id)
+        public IEnumerable<Theme> GetBy(string nameParametr, string param)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Theme.Where(t => t.CatalogID == int.Parse(id));
+                return entity.Theme.GetBy(String.Format("{0} = {1}", nameParametr, param));
             }
         }
 

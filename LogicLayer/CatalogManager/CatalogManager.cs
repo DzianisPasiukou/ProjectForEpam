@@ -42,11 +42,11 @@ namespace LogicLayer.CatalogManager
         }
 
 
-        public IEnumerable<Catalog> GetBy(string id)
+        public IEnumerable<Catalog> GetBy(string nameParametr, string param)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Catalog.Where(c => c.Name == id);
+                return entity.Catalog.GetBy(String.Format("{0} = {1}", nameParametr, param));
             }
         }
 

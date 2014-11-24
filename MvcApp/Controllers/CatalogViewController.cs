@@ -15,7 +15,8 @@ namespace MvcApp.Controllers
         // GET: /CatalogView/
         ITree _tree;
         IDataBaseManager<Record> _recordsManager;
-        public CatalogViewController(ITree tree, IDataBaseManager<Record> recordsManager)
+        IRecordCompare _recordsCompare;
+        public CatalogViewController(ITree tree, IDataBaseManager<Record> recordsManager, IRecordCompare recordsComparer)
         {
             if (tree == null)
             {
@@ -27,6 +28,11 @@ namespace MvcApp.Controllers
                 throw new ArgumentNullException();
             }
             _recordsManager = recordsManager;
+            if(recordsComparer== null)
+            {
+                throw new ArgumentNullException();
+            }
+            _recordsCompare = recordsComparer;
         }
         //
         // GET: /CatalogView/
@@ -39,7 +45,24 @@ namespace MvcApp.Controllers
         public ActionResult Details(int id, string description)
         {
             if (id != 0)
-                return PartialView("RecordView", _recordsManager.GetBy(id.ToString()).First());
+            {
+                List<SelectListItem> selectList = new List<SelectListItem>();
+                Record current = _recordsManager.GetBy("ID",id.ToString()).First();
+                IEnumerable<Record> records = _recordsManager.GetBy("ThemeID",current.ThemeID.ToString());
+
+                foreach (var rc in records)
+                {
+                    selectList.Add(new SelectListItem()
+                    {
+                        Text = rc.Name,
+                        Value = rc.ID.ToString()
+                    });
+                }
+                ViewData.Add(new KeyValuePair<string, object>("CompareList",selectList));
+                TempData["Compare"] = selectList;
+
+                return PartialView("RecordView", current);
+            }
             else
                 return Content(description);
         }
@@ -59,5 +82,19 @@ namespace MvcApp.Controllers
         {
             return PartialView("Documents");
         }
+        public ActionResult Compare(string str,string str1)
+        {
+            string[] arr = str.Split(':');
+
+            if (arr[0]==arr[1])
+            {
+                return View();
+            }
+
+            IEnumerable<Record> currentRec = _recordsCompare.GetRecords(arr[0], arr[1]); ;
+
+            return PartialView(currentRec);
+        }
+        
     }
 }

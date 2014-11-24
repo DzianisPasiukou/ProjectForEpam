@@ -1,14 +1,5 @@
 ﻿@model LogicLayer.Entities.Record
 
-<script>
-    $(function () {
-        $("#recordTabs").tabs({
-            heightStyle: "fill",
-            collapsible: true,
-            hide: "slideUp"
-        });
-    });
-</script>
 <h2>RecordView
     
     </h2>
@@ -19,42 +10,55 @@
 <div id="descriptionModel">
    @Model.Description
 </div>
+<div id="compare">
+    @Html.DropDownListFor(rc => rc.ComparerID, ViewData["CompareList"] as IEnumerable<SelectListItem>, new { id = "ddlCompare" })
+    <button type ="submit" onclick="compareFunction()">
+        Compare
+    </button>
+</div>
 
 <div id="recordTabs">
     <ul id="recordTabs-nav">
         <li>
-            @Ajax.ActionLink("Technical", "TechicalDetails", new { id = Model.ID }, new AjaxOptions()
-{
-    HttpMethod = "GET",
-    UpdateTargetId = "info1",
-    InsertionMode = InsertionMode.Replace
-})
+            <a href="@(Url.Action("TechicalDetails", new { id = Model.ID }))">
+                Techical characteristic
+            </a>
         </li>
         <li>
-            @Ajax.ActionLink("Photo", "PhotoDetails", new { id = Model.ID }, new AjaxOptions()
-{
-    HttpMethod = "GET",
-    UpdateTargetId = "info1",
-    InsertionMode = InsertionMode.Replace
-})
+            <a href="@(Url.Action("PhotoDetails", new { id = Model.ID }))">
+               Photo
+            </a>
         </li>
         <li>
-            @Ajax.ActionLink("Video", "VideoDetails", new { id = Model.ID }, new AjaxOptions()
-{
-    HttpMethod = "GET",
-    UpdateTargetId = "info1",
-    InsertionMode = InsertionMode.Replace
-})
+            <a href="@(Url.Action("VideoDetails", new { id = Model.ID }))">
+                Video
+            </a>
         </li>
         <li>
-            @Ajax.ActionLink("Documents", "DocumentsDetails", new { id = Model.ID }, new AjaxOptions()
-{
-    HttpMethod = "GET",
-    UpdateTargetId = "info1",
-    InsertionMode = InsertionMode.Replace
-})
+            <a href="@(Url.Action("DocumentsDetails", new { id = Model.ID }))">
+                Documents
+            </a>
         </li>
     </ul>
 </div>
 <div id="info1">
 </div>
+
+<script>
+    $(function () {
+        $("#recordTabs").tabs({
+            heightStyle: "fill",
+            collapsible: true,
+            hide: "slideUp"
+        });
+    });
+</script>
+<script>
+    function compareFunction() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Compare", "CatalogView")' + '?str=' +@Model.ID +':'+$('#ddlCompare').find('option:selected').val(),
+            cache: false
+        });
+    }
+</script>

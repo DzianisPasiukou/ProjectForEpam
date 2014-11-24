@@ -1008,6 +1008,7 @@
     <Content Include="Views\CatalogView\Video.cshtml" />
     <Content Include="Views\CatalogView\Photo.cshtml" />
     <Content Include="Views\CatalogView\TechnicalCharacteristic.cshtml" />
+    <Content Include="Views\CatalogView\Compare.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

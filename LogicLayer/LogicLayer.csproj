@@ -58,6 +58,7 @@
     <Compile Include="CatalogManager\IDataBaseManager.cs" />
     <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />
+    <Compile Include="CatalogManager\ThemeManager\RecordManager\IRecordCompare.cs" />
     <Compile Include="CatalogManager\ThemeManager\RecordManager\RecordManager.cs" />
     <Compile Include="CatalogManager\ThemeManager\ThemeManager.cs" />
     <Compile Include="CatalogManager\TreeView.cs" />

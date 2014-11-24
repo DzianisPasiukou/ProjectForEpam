@@ -61,6 +61,9 @@ namespace MvcApp.App_Start
             container.RegisterType<IDataBaseManager<Record>, RecordManager>(new Interceptor<InterfaceInterceptor>(),
   new InterceptionBehavior<LoggingInterceptionBehavior>());
 
+            container.RegisterType<IRecordCompare, RecordManager>(new Interceptor<InterfaceInterceptor>(),
+  new InterceptionBehavior<LoggingInterceptionBehavior>());
+
         }
     }
 }

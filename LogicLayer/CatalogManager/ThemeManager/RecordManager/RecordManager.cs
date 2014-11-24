@@ -7,7 +7,7 @@ using LogicLayer.Entities;
 
 namespace LogicLayer.CatalogManager.ThemeManager.RecordManager
 {
-   public class RecordManager : IDataBaseManager<Record>
+   public class RecordManager : IDataBaseManager<Record>, IRecordCompare
     {
         public IEnumerable<Record> Get()
         {
@@ -43,11 +43,25 @@ namespace LogicLayer.CatalogManager.ThemeManager.RecordManager
         }
 
 
-        public IEnumerable<Record> GetBy(string id)
+        public IEnumerable<Record> GetBy(string nameParametr, string param)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Record.GetBy(String.Format("ID = {0}", id));
+                return entity.Record.GetBy(String.Format("{0} = {1}", nameParametr,param));
+            }
+        }
+        public IEnumerable<Record> GetRecords(string param1, string param2)
+        {
+            using (DBEntities entity = new DBEntities())
+            {
+                IEnumerable<Record> records = entity.Record;
+                List<Record> current = new List<Record>()
+            {
+                records.First(rc=>rc.ID == int.Parse(param1)),
+                records.First(rc=>rc.ID == int.Parse(param2)),
+            };
+
+                return current;
             }
         }
     }

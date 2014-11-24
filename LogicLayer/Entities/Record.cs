@@ -18,5 +18,7 @@ namespace LogicLayer.Entities
         public int UserID { get; set; }
         public string Description { get; set; }
         public int ThemeID { get; set; }
+        public int ComparerID { get; set; }
+       
     }
 }
