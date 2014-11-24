@@ -916,6 +916,8 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -963,17 +965,16 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Shared\_AdminAccount.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
-
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CatalogView\Index.cshtml" />
     <Content Include="Views\CatalogView\ChildNode.cshtml" />
-
+    <Content Include="Views\Shared\_Account.cshtml" />
+    <Content Include="Views\Shared\_User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

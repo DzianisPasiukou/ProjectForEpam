@@ -61,19 +61,24 @@ namespace MvcApp.Models.Account
 
     public class AccountViewModel
     {
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Surname { get; set; }
 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string Login { get; set; }
 
         public string Avatar { get; set; }
 
+        [Required]
         public string Role { get; set; }
 
-        public DateTime DateOfRegistration { get; set; }
+        public string DateOfRegistration { get; set; }
 
         public bool IsActive { get; set; }
 

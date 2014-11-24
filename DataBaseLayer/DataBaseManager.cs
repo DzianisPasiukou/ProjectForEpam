@@ -90,7 +90,7 @@ namespace DataBaseLayer
            string prop;
            try
            {
-               prop = Array.Find<PropertyInfo>(obj.GetType().GetProperties(), p => p.Name.ToUpper() == key.ToUpper()).Name.ToUpper();
+               prop = Array.Find<PropertyInfo>(obj.GetType().GetProperties(), p => p.Name.ToUpper() == key.ToUpper()).GetValue(obj).ToString();
            }
            catch
            {
@@ -117,7 +117,7 @@ namespace DataBaseLayer
                {
                    indexId = i;
                }
-               if (i != props.Length - 1)
+               if ((i != props.Length - 1) && (props[i].Name.ToLower() != "id"))
                {
                    nameBuilder.Append(", ");
                }
@@ -129,14 +129,14 @@ namespace DataBaseLayer
            for (int i = 0; i < props.Length; i++)
            {
                 valueBuilder.Append(arrValue[i]);
-                if (i != props.Length - 1)
+                if ((i != props.Length - 1) && (props[i].Name.ToLower() != "id"))
                 {
                     valueBuilder.Append(", ");
                 }
            }
 
            nameProp = nameBuilder.ToString();
-           valueProp = nameBuilder.ToString();
+           valueProp = valueBuilder.ToString();
        }
     }
 }

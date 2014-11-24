@@ -2,6 +2,7 @@
 using LogicLayer.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace LogicLayer
         NotApproved,
         NotRegistered
     }
+
     public class SecurityHelper : ISecurityHelper
     {
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
@@ -65,8 +67,8 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now,
-                    RoleID = 1,
+                    DateOfRegistration = DateTime.Now.ToString(),
+                    RoleID = 3,
                     Avatar = avatar
                 });
             }
@@ -122,8 +124,17 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                IEnumerable<User> users = db.User;
+                List<User> users = db.User.ToList<User>();
+
                 return users;
+            }
+        }
+
+        public string GetRole(string login)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Role.FirstOrDefault(role => role.ID == db.User.FirstOrDefault(user => user.Login.Equals(login)).RoleID).Name;
             }
         }
 
@@ -131,16 +142,24 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                IEnumerable<Role> roles = db.Role;
-                return roles;
+                return db.Role.ToList<Role>();
             }
         }
 
-        public bool CheckPermission(string login)
+        public bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive)
         {
-            throw new NotImplementedException();
+            using (DBEntities db = new DBEntities())
+            {
+                User user = db.User.FirstOrDefault(model => model.Login == login);
+
+                user.Name = name;
+                user.Surname = surname;
+                user.Email = email;
+                user.RoleID = db.Role.FirstOrDefault(rol => rol.Name == role).ID;
+                user.IsActive = isActive;
+
+                return db.User.Update(user);
+            }
         }
-
-
     }
 }

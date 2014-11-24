@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Reflection;
+using System.Data.SqlTypes;
 
 namespace DataBaseLayer
 {
@@ -33,10 +34,11 @@ namespace DataBaseLayer
         {
             string[] propsName = typeof(TEntity).GetProperties().Select(p => p.Name).ToArray();
             TEntity obj = new TEntity();
-            int count = 0;
 
             foreach (var d in data)
             {
+                obj = new TEntity();
+
                 for (int i = 0; i < propsName.Length; i++)
                 {
                     string key = d.Keys.FirstOrDefault(s => s.ToLower() == propsName[i].ToLower());
@@ -49,7 +51,6 @@ namespace DataBaseLayer
                 }
                 
                 yield return obj;
-                count += 1;
             }
 
         }

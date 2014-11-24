@@ -8,12 +8,13 @@ using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
+using System.Data.SqlTypes;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
-        private ISecurityHelper _databaseHelper;
+        private ISecurityHelper _securityHelper;
 
         public AccountController(ISecurityHelper databaseHelper)
         {
@@ -22,7 +23,7 @@ namespace MvcApp.Controllers
                 throw new ArgumentNullException();
             }
 
-            _databaseHelper = databaseHelper;
+            _securityHelper = databaseHelper;
         }
 
         [HttpGet]
@@ -34,9 +35,8 @@ namespace MvcApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid && _databaseHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
-                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -52,7 +52,6 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
@@ -61,11 +60,12 @@ namespace MvcApp.Controllers
                 return View(model);
             }
 
-            LoginValidate valid = _databaseHelper.LoginUser(model.Login, model.Password);
+            LoginValidate valid = _securityHelper.LoginUser(model.Login, model.Password);
 
             if (valid == LoginValidate.Seccess)
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
+
                 return RedirectToAction("Index", "Home");
             }
             if (valid == LoginValidate.NotApproved)
@@ -85,35 +85,43 @@ namespace MvcApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult Account()
         {
+            ViewBag.SecurityHelper = _securityHelper;
+
             AccountViewModel model = new AccountViewModel();
 
-            model.Name = "Admin";
-            model.Surname = "Admin";
-            model.Email = "admin@gmail.com";
-            model.Login = "admin";
-            model.Avatar = "default";
-            model.Role = "Admin";
-            model.DateOfRegistration = DateTime.Now.Date;
-            model.IsActive = true;
-            model.Downloaded = 0;
-            model.Uploaded = 0;
-            model.HaveLikes = 0;
-            model.GaveLikes = 0;
+            User user = _securityHelper.GetUser(User.Identity.Name);
+
+            model.Name = user.Name;
+            model.Surname = user.Surname;
+            model.Email = user.Email;
+            model.Login = user.Login;
+            model.Avatar = user.Avatar;
+            model.Role = _securityHelper.GetRole(user.Login);
+            model.DateOfRegistration = user.DateOfRegistration;
+            model.IsActive = user.IsActive;
+            model.Downloaded = user.Downloaded;
+            model.Uploaded = user.Uploaded;
+            model.HaveLikes = user.HaveLikes;
+            model.GaveLikes = user.GaveLikes;
 
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Users()
         {
-            IEnumerable<User> users = _databaseHelper.GetUsers();
+            IEnumerable<User> users = _securityHelper.GetUsers();
 
-            IEnumerable<Role> roles = _databaseHelper.GetRoles();
+            IEnumerable<Role> roles = _securityHelper.GetRoles();
 
             List<AccountViewModel> models = new List<AccountViewModel>();
 
-            /*foreach (var item in users)
+            foreach (var item in users)
             {
                 AccountViewModel model = new AccountViewModel();
 
@@ -122,32 +130,57 @@ namespace MvcApp.Controllers
                 model.Email = item.Email;
                 model.Login = item.Login;
                 model.Avatar = item.Avatar;
-                //model.Role = roles.FirstOrDefault(role => role.ID == item.RoleID).Name;
+                model.Role = roles.FirstOrDefault(role => role.ID == item.RoleID).Name;
                 model.DateOfRegistration = item.DateOfRegistration;
                 model.IsActive = item.IsActive;
                 model.Downloaded = item.Downloaded;
                 model.Uploaded = item.Uploaded;
                 model.HaveLikes = item.HaveLikes;
                 model.GaveLikes = item.GaveLikes;
-            }*/
-            AccountViewModel model = new AccountViewModel();
 
-            model.Name = "Admin";
-            model.Surname = "Admin";
-            model.Email = "admin@gmail.com";
-            model.Login = "admin";
-            model.Avatar = "default";
-            model.Role = "Admin";
-            model.DateOfRegistration = DateTime.Now;
-            model.IsActive = true;
-            model.Downloaded = 0;
-            model.Uploaded = 0;
-            model.HaveLikes = 0;
-            model.GaveLikes = 0;
-
-            models.Add(model);
+                if (model.Role != "Admin")
+                {
+                    models.Add(model);
+                }
+            }
 
             return View(models);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public PartialViewResult GetUser(string login)
+        {
+            AccountViewModel model = new AccountViewModel();
+
+            User user = _securityHelper.GetUser(login);
+
+            model.Name = user.Name;
+            model.Surname = user.Surname;
+            model.Email = user.Email;
+            model.Login = user.Login;
+            model.Avatar = user.Avatar;
+            model.Role = _securityHelper.GetRole(user.Login);
+            model.DateOfRegistration = user.DateOfRegistration;
+            model.IsActive = user.IsActive;
+            model.Downloaded = user.Downloaded;
+            model.Uploaded = user.Uploaded;
+            model.HaveLikes = user.HaveLikes;
+            model.GaveLikes = user.GaveLikes;
+
+            return PartialView("_User", model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult SaveUser(AccountViewModel model)
+        {
+            if (_securityHelper.UpdateUser(model.Login, model.Name, model.Surname, model.Email, model.Role, model.IsActive))
+            {
+                return RedirectToAction("Users", "Account");
+            }
+
+            return View(model);
+
         }
     }
 }

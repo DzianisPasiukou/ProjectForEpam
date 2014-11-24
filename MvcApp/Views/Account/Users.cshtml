@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_AdminAccount.cshtml";
-    ViewBag.Title = "Account";
+    ViewBag.Title = "Users";
 }
 
 <h2 class="page-header">Users</h2>
@@ -36,8 +36,12 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Edit") |
-                    @Html.ActionLink("Delete", "Delete", "Delete")
+                    @Ajax.ActionLink("Edit", "GetUser", new { item.Login }, new AjaxOptions()
+               {
+                   HttpMethod = "GET",
+                   UpdateTargetId = "user",
+                   InsertionMode = InsertionMode.Replace
+               })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -49,7 +53,7 @@
                     @Html.DisplayFor(modelItem => item.Login)
                 </td>
                 <td>
-                    @Html.CheckBoxFor(modelItem => item.IsActive)
+                    @Html.CheckBoxFor(modelItem => item.IsActive, new { id = item.Login })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
@@ -59,6 +63,11 @@
                 </td>
             </tr>
         }
-
     </table>
 }
+<div id="user">
+</div>
+
+<script>
+    
+</script>

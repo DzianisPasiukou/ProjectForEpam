@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace LogicLayer.Entities
 
         public int RoleID { get; set; }
 
-        public DateTime DateOfRegistration { get; set; }
+        public string DateOfRegistration { get; set; }
 
         public bool IsActive { get; set; }
 
