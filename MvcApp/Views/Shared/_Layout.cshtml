@@ -31,26 +31,26 @@
     @RenderBody()
    
 
-    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.js")"
             type="text/javascript"></script>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jstree.js")" type="text/javascript"></script>
     <link href="../../Scripts/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        $(function () {
-            $('#catalog')
-   .jstree();
-        });
-    </script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"
             type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-
     <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
+    
+    <script src="~/Scripts/myScripts/angular.js"></script>
+    <script src="~/Scripts/myScripts/angular.treeview.js"></script>
+    <script src="~/Scripts/myScripts/App.js"></script>
+    <script src="~/Scripts/myScripts/catalogService.js"></script>
+    <script src="~/Scripts/myScripts/catalogCtrl.js"></script>
+
     <link href="~/Scripts/themes/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
     @RenderSection("scripts", required: false)
 </body>
 </html>

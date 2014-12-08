@@ -19,6 +19,7 @@ namespace LogicLayer.CatalogManager
             _tree.NodeName = "Catalogs";
             _tree.NodeDescription = "This is group of catalogs.";
             _tree.ChildNode = new List<TreeView>();
+            _tree.ID = "main 1";
                 IEnumerator<Catalog> cats = entity.Catalog.GetEnumerator();
 
                 for (int i = 0; cats.MoveNext(); i++)
@@ -28,7 +29,7 @@ namespace LogicLayer.CatalogManager
                         NodeName = cats.Current.Name,
                         NodeDescription = cats.Current.Description,
                         ChildNode = new List<TreeView>(),
-                        Rec = new Record()
+                        ID = "catalogs "+cats.Current.ID
                     });
 
                     IEnumerable<Theme> currentThemes = entity.Theme.Where(t => t.CatalogID == cats.Current.ID);
@@ -41,7 +42,7 @@ namespace LogicLayer.CatalogManager
                             NodeName = currentThemes.ElementAt(j).Name,
                             NodeDescription = thms.Current.Description,
                             ChildNode = new List<TreeView>(),
-                            Rec = new Record()
+                            ID = "themes " + thms.Current.ID
                         });
                         IEnumerable<Record> currentRecords = entity.Record.Where(r => r.ThemeID == currentThemes.ElementAt(j).ID);
                         IEnumerator<Record> rc = currentRecords.GetEnumerator();
@@ -54,7 +55,8 @@ namespace LogicLayer.CatalogManager
                                 NodeDescription = rc.Current.Description,
                                 ChildNode = new List<TreeView>(),
                                 IsRecord = true,
-                                Rec = rc.Current
+                                IdRecord = rc.Current.ID,
+                                ID = "records " + rc.Current.ID
                             });
                         }
                     }

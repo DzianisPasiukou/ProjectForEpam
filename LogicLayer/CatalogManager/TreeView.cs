@@ -9,9 +9,10 @@ namespace LogicLayer.CatalogManager
 {
    public class TreeView
     {
+       public string ID { get; set; }
        public string NodeName { get; set; }
        public bool IsRecord { get; set; }
-       public Record Rec { get; set; }
+       public int IdRecord { get; set; }
        public string NodeDescription { get; set; }
        public List<TreeView> ChildNode { get; set; }
     }

@@ -13,74 +13,52 @@ namespace MvcApp.Controllers
     {
         //
         // GET: /CatalogView/
-        ITree _tree;
-        IDataBaseManager<Record> _recordsManager;
+       
+       
         IRecordCompare _recordsCompare;
-        public CatalogViewController(ITree tree, IDataBaseManager<Record> recordsManager, IRecordCompare recordsComparer)
+        IDataBaseManager<Record> _dataRecord;
+        public CatalogViewController(IRecordCompare recordsComparer, IDataBaseManager<Record> dataRecord)
         {
-            if (tree == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _tree = tree;
-            if (recordsManager == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _recordsManager = recordsManager;
+           
             if(recordsComparer== null)
             {
                 throw new ArgumentNullException();
             }
             _recordsCompare = recordsComparer;
+            if (dataRecord == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _dataRecord = dataRecord;
         }
+        
         //
         // GET: /CatalogView/
         public ActionResult Index()
         {
-            TreeView treeCatalog = _tree.GetTree();
-
-            return View(treeCatalog);
+            return View();
         }
-        public ActionResult Details(int id, string description)
+
+        public ActionResult Details(int id)
         {
-            if (id != 0)
-            {
-                List<SelectListItem> selectList = new List<SelectListItem>();
-                Record current = _recordsManager.GetBy("ID",id.ToString()).First();
-                IEnumerable<Record> records = _recordsManager.GetBy("ThemeID",current.ThemeID.ToString());
-
-                foreach (var rc in records)
-                {
-                    selectList.Add(new SelectListItem()
-                    {
-                        Text = rc.Name,
-                        Value = rc.ID.ToString()
-                    });
-                }
-                ViewData.Add(new KeyValuePair<string, object>("CompareList",selectList));
-                TempData["Compare"] = selectList;
-
-                return PartialView("RecordView", current);
-            }
-            else
-                return Content(description);
+            Record rec = _dataRecord.GetBy("id", id.ToString()).First();
+            return PartialView("_RecordView", rec);
         }
         public ActionResult TechicalDetails(int id)
         {
-            return PartialView("TechnicalCharacteristic");
+            return PartialView("_TechnicalCharacteristic");
         }
         public ActionResult PhotoDetails(int id)
         {
-            return PartialView("Photo");
+            return PartialView("_Photo");
         }
         public ActionResult VideoDetails(int id)
         {
-            return PartialView("Video");
+            return PartialView("_Video");
         }
         public ActionResult DocumentsDetails(int id)
         {
-            return PartialView("Documents");
+            return PartialView("_Documents");
         }
         public ActionResult Compare(string str,string str1)
         {

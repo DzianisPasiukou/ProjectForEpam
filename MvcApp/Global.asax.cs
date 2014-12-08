@@ -14,8 +14,9 @@ namespace MvcApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            WebApiConfig.RegisterRoutes(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+           
         }
     }
 }

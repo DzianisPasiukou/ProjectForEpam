@@ -1,18 +1,14 @@
-﻿@model LogicLayer.CatalogManager.TreeView
-
-<div id="catalog">
-    <ul id="tree">
-        <li>
-            <a href="#" onclick="myfunction()">@Model.NodeName</a>
-            @Html.Partial("ChildNode", Model.ChildNode)
-        </li>
-    </ul>
-</div> 
-<div id="disc">
+﻿<div ng-app="myApp">
+    <div id="catalog" ng-controller="catalogCtrl">
+        <div data-angular-treeview="true"
+             data-tree-id="abc"
+             data-tree-model="treedata"
+             data-node-id="id"
+             data-node-label="label"
+             data-node-children="children"
+             data-ng-click="selectNode(abc.currentNode)">
+        </div> 
+    </div>
+    <div id="disc">
+    </div>
 </div>
-<script>
-    function myfunction() {
-        $('#disc').html('@Model.NodeDescription')
-    }
-</script>
-

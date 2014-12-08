@@ -1,12 +1,13 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using LogicLayer;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using LoggingManager;
-using LogicLayer;
-using LogicLayer.Entities;
 using LogicLayer.CatalogManager;
+using LogicLayer.Entities;
 using LogicLayer.CatalogManager.ThemeManager.RecordManager;
+using System.Web.Http.Dispatcher;
 
 namespace MvcApp.App_Start
 {
@@ -43,27 +44,21 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.AddNewExtension<Interception>();
+           // container.AddExtension(Interceptio)
 
-            
+          //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
 
             container.RegisterType<ISecurityHelper, SecurityHelper>(
-                new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
-  new InterceptionBehavior<LoggingInterceptionBehavior>());
-
-
+new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
+new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Catalog>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
-  new InterceptionBehavior<LoggingInterceptionBehavior>());
-
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
-  new InterceptionBehavior<LoggingInterceptionBehavior>());
-
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Record>, RecordManager>(new Interceptor<InterfaceInterceptor>(),
-  new InterceptionBehavior<LoggingInterceptionBehavior>());
-
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IRecordCompare, RecordManager>(new Interceptor<InterfaceInterceptor>(),
-  new InterceptionBehavior<LoggingInterceptionBehavior>());
-
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
         }
     }
 }
