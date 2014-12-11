@@ -35,15 +35,16 @@
                 "label": $scope.catalogs.ChildNode[i].NodeName,
                 "id": $scope.catalogs.ChildNode[i].ID,
                 "children": [],
-                "description": $scope.catalogs.ChildNode[i].NodeDescription
-                
+                "description": $scope.catalogs.ChildNode[i].NodeDescription,
+                "collapsed": true
             });
             for (var j = 0; j < $scope.catalogs.ChildNode[i].ChildNode.length; j++) {
                 childNode[i].children.push({
                     "label": $scope.catalogs.ChildNode[i].ChildNode[j].NodeName,
                     "id": $scope.catalogs.ChildNode[i].ChildNode[j].ID,
                     "children": [],
-                    "description": $scope.catalogs.ChildNode[i].ChildNode[j].NodeDescription
+                    "description": $scope.catalogs.ChildNode[i].ChildNode[j].NodeDescription,
+                    "collapsed": true
                 });
                 for (var k = 0; k < $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode.length; k++) {
                     childNode[i].children[j].children.push({
@@ -51,7 +52,8 @@
                         "id": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].ID,
                         "children": [],
                         "description": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].NodeDescription,
-                        "idRecord": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].IdRecord
+                        "idRecord": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].IdRecord,
+                        "collapsed": true
                     });
                 }
             }
@@ -62,7 +64,7 @@
     [
         {
             "label": $scope.catalogs.NodeName, "id": $scope.catalogs.ID, "children": childNode,
-            "description": $scope.catalogs.NodeDescription
+            "description": $scope.catalogs.NodeDescription, "collapsed": true
         }
     ];
     }

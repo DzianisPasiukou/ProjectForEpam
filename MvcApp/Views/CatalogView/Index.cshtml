@@ -10,31 +10,59 @@
         </div>
         <div id="disc">
         </div>
-        <div id="record" hidden="hidden">
-            <h2>
-                RecordView
-            </h2>
+        <div id="record" hidden="hidden" ng-controller="recordCtrl">
             <div id="nameModel">
                 {{record.Name}}
             </div>
             <div id="descriptionModel">
                 {{record.Description}}
             </div>
-            <div id="compare">
-                <button type="submit" onclick="compareFunction()">
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Compare with:</h3>
+                </div>
+                <div class="modal-body">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group ng-repeat="item in items" heading={{item.name}}>
+                            {{item.description}}
+                            <br />
+                            <button class="btn btn-default" ng-click="compareRecords(item.id, record.ID)">Compare</button>
+                        </accordion-group>
+                    </accordion>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+            <script type="text/ng-template" id="compareModal.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Records</h3>
+                </div>
+                </script>
+                <button class='btn btn-success' ng-click="open(record.ThemeID)">
                     Compare
                 </button>
-            </div>
-            <div>
-                <tabset>
-                    <tab heading="Technical characteristics">Technical characteristics</tab>
-                    <tab heading="Photo">Photo</tab>
-                    <tab heading="Video">Video</tab>
-                    <tab heading="Documents">Documents</tab>
-                </tabset>
-
-            </div>
-        </div>
+                <button id="say" class="btn btn-primary" ng-click="sayThank(record.ThemeID)">
+                    To say thank you.
+                </button>
+                <div>
+                    <tabset>
+                        <tab heading="Technical characteristics">
+                            Technical characteristics
+                        </tab>
+                        <tab heading="Photo">
+                            Photo
+                        </tab>
+                        <tab heading="Video">
+                            Video
+                        </tab>
+                        <tab heading="Documents">
+                            Documents
+                        </tab>
+                    </tabset>
+                </div>
+</div>
     </div>
 </div>
 

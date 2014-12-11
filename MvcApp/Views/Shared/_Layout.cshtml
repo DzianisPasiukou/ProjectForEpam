@@ -6,9 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/angular-animate.js"></script>
     <link href="~/Content/navigation.css" rel="stylesheet" />
     <link href="~/Content/dashboard.css" rel="stylesheet" />
+    <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -45,13 +45,14 @@
    
     <script src="~/Scripts/myScripts/angular.js"></script>
     <script src="~/Scripts/myScripts/angular.treeview.js"></script>
-    <script src="~/Scripts/myScripts/tabs.js"></script>
     <script src="~/Scripts/myScripts/App.js"></script>
     <script src="~/Scripts/myScripts/catalogService.js"></script>
     <script src="~/Scripts/myScripts/catalogCtrl.js"></script>
-    <script src="~/Scripts/ui.bootstrap/ui-bootstrap-custom-tpls-0.12.0.js"></script>
+    <script src="~/Scripts/myScripts/modalCompareCtrl.js"></script>
+    <script src="~/Scripts/myScripts/recordCtrl.js"></script>
+    <script src="~/Scripts/myScripts/modalRecordCompare.js"></script>
+    <script src="~/Scripts/ui.bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
 
-    <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
     @RenderSection("scripts", required: false)
 </body>
 </html>
