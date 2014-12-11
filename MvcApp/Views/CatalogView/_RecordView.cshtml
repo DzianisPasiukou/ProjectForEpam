@@ -1,14 +1,12 @@
-﻿@model LogicLayer.Entities.Record
-
-<h2>RecordView
+﻿<h2>RecordView
     
     </h2>
 
 <div id="nameModel">
-    @Model.Name
+    {{records}}
 </div>
 <div id="descriptionModel">
-   @Model.Description
+    {{records}}
 </div>
 <div id="compare">
     <button type ="submit" onclick="compareFunction()">
@@ -19,26 +17,39 @@
 <div id="recordTabs">
     <ul id="recordTabs-nav">
         <li>
-            <a href="@(Url.Action("TechicalDetails", new { id = Model.ID }))">
+            <a href="#techicalDetails">
                 Techical characteristic
             </a>
         </li>
         <li>
-            <a href="@(Url.Action("PhotoDetails", new { id = Model.ID }))">
-               Photo
+            <a href="#photoDetails">
+                Photo
             </a>
         </li>
         <li>
-            <a href="@(Url.Action("VideoDetails", new { id = Model.ID }))">
+            <a href="#videoDetails">
                 Video
             </a>
         </li>
         <li>
-            <a href="@(Url.Action("DocumentsDetails", new { id = Model.ID }))">
+            <a href="#documentsDetails">
                 Documents
             </a>
         </li>
     </ul>
+    <div id="techicalDetails">
+        TechnicalCharacteristic
+    </div>
+    <div id="photoDetails">
+        photo
+    </div>
+    <div id="videoDetails">
+        video
+    </div>
+    <div id="documentsDetails">
+        documents
+    </div>
+
 </div>
 <div id="info1">
 </div>
@@ -56,7 +67,7 @@
     function compareFunction() {
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Compare", "CatalogView")' + '?str=' +@Model.ID +':'+$('#ddlCompare').find('option:selected').val(),
+            url: '@Url.Action("Compare", "CatalogView")' + '?str='+':'+$('#ddlCompare').find('option:selected').val(),
             cache: false
         });
     }

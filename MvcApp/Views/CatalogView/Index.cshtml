@@ -7,8 +7,35 @@
              data-node-label="label"
              data-node-children="children"
              data-ng-click="selectNode(abc.currentNode)">
-        </div> 
-    </div>
-    <div id="disc">
+        </div>
+        <div id="disc">
+        </div>
+        <div id="record" hidden="hidden">
+            <h2>
+                RecordView
+            </h2>
+            <div id="nameModel">
+                {{record.Name}}
+            </div>
+            <div id="descriptionModel">
+                {{record.Description}}
+            </div>
+            <div id="compare">
+                <button type="submit" onclick="compareFunction()">
+                    Compare
+                </button>
+            </div>
+            <div>
+                <tabset>
+                    <tab heading="Technical characteristics">Technical characteristics</tab>
+                    <tab heading="Photo">Photo</tab>
+                    <tab heading="Video">Video</tab>
+                    <tab heading="Documents">Documents</tab>
+                </tabset>
+
+            </div>
+        </div>
     </div>
 </div>
+
+

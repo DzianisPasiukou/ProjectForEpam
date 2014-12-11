@@ -7,13 +7,26 @@
             $scope.catalogs = data;
 
             getTree();
-
+            
             if(!$scope.$$phase)
-            $scope.$apply();
+                $scope.$apply();
         });
     } 
     getCatalogs();
-   
+
+     $scope.selectNode = function (value) {
+
+         if (!value.idRecord) {
+             $('#disc').html(value.description);
+             $('#disc').show();
+             $('#record').hide();
+         }
+         else {
+             getRecord(value.idRecord);
+             $('#disc').hide();
+             $('#record').show();
+         }
+        }
     function getTree() {
         var childNode = [];
         for (var i = 0; i < $scope.catalogs.ChildNode.length; i++) {
@@ -52,25 +65,10 @@
             "description": $scope.catalogs.NodeDescription
         }
     ];
-
-        $scope.selectNode = function (value) {
-
-            if (!value.idRecord)
-                $('#disc').html(value.description);
-            else {
-
-                //$http.get("/CatalogView/Details?id=" + value.idRecord).success(function (data) {
-
-
-                $.ajax({
-                    url: "/CatalogView/Details?id=" + value.idRecord,
-                    type: 'GET',
-                    success: function (data) {
-                        $('#disc').html(data);
-                    }
-                })
-            }
-        }
-       
     }
+    function getRecord(id) {
+        catalogData.getRecord(id).success(function (data) {
+            $scope.record = data;
+        });
+    };
 });

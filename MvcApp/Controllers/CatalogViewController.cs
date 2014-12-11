@@ -16,20 +16,15 @@ namespace MvcApp.Controllers
        
        
         IRecordCompare _recordsCompare;
-        IDataBaseManager<Record> _dataRecord;
-        public CatalogViewController(IRecordCompare recordsComparer, IDataBaseManager<Record> dataRecord)
+        
+        public CatalogViewController(IRecordCompare recordsComparers)
         {
-           
-            if(recordsComparer== null)
+
+            if (recordsComparers == null)
             {
                 throw new ArgumentNullException();
             }
-            _recordsCompare = recordsComparer;
-            if (dataRecord == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _dataRecord = dataRecord;
+            _recordsCompare = recordsComparers;
         }
         
         //
@@ -37,28 +32,6 @@ namespace MvcApp.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-        public ActionResult Details(int id)
-        {
-            Record rec = _dataRecord.GetBy("id", id.ToString()).First();
-            return PartialView("_RecordView", rec);
-        }
-        public ActionResult TechicalDetails(int id)
-        {
-            return PartialView("_TechnicalCharacteristic");
-        }
-        public ActionResult PhotoDetails(int id)
-        {
-            return PartialView("_Photo");
-        }
-        public ActionResult VideoDetails(int id)
-        {
-            return PartialView("_Video");
-        }
-        public ActionResult DocumentsDetails(int id)
-        {
-            return PartialView("_Documents");
         }
         public ActionResult Compare(string str,string str1)
         {

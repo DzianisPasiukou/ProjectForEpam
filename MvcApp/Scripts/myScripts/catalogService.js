@@ -3,4 +3,8 @@
         var url = "/api/CatalogTree"
         return $http.get(url);
     }
+    this.getRecord = function (id) {
+        var url = "/api/CatalogTree/" + id
+        return $http.get(url);
+    }
 })

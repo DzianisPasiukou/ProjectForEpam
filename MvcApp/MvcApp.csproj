@@ -961,11 +961,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jstree.js" />
-    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Scripts\myCSS\animate.min.css" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
+    <Content Include="Scripts\myScripts\tabs.js" />
+    <Content Include="Scripts\myScripts\tabsCtrl.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
     <Content Include="Scripts\themes\jquery-ui.css" />
@@ -976,6 +977,10 @@
     <Content Include="Scripts\myScripts\App.js" />
     <Content Include="Scripts\myScripts\catalogCtrl.js" />
     <Content Include="Scripts\myScripts\catalogService.js" />
+    <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-0.12.0.js" />
+    <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-0.12.0.min.js" />
+    <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-tpls-0.12.0.js" />
+    <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-tpls-0.12.0.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1010,12 +1015,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CatalogView\Index.cshtml" />
-    <Content Include="Views\CatalogView\_ChildNode.cshtml" />
     <Content Include="Views\CatalogView\_RecordView.cshtml" />
-    <Content Include="Views\CatalogView\_Documents.cshtml" />
-    <Content Include="Views\CatalogView\_Video.cshtml" />
-    <Content Include="Views\CatalogView\_Photo.cshtml" />
-    <Content Include="Views\CatalogView\_TechnicalCharacteristic.cshtml" />
     <Content Include="Views\CatalogView\Compare.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
