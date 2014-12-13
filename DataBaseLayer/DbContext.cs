@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataBaseLayer;
+using System.Data.SqlClient;
 
 namespace DataBaseLayer
 {
-    public class DbContext : IDisposable
+    public abstract class DbContext : IDisposable
     {
+       public SqlConnection connection;
+
         public DbContext()
         {
-            DataBase.ConnectionOpen();
+            connection = new SqlConnection(GetConnectionstring());
+            connection.Open();
         }
         public void Dispose()
         {
-            DataBase.ConnectionClose();
+            connection.Close();
+        }
+        private static string GetConnectionstring()
+        {
+            //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
+            return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
         }
     }
 }

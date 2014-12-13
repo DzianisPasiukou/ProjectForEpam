@@ -20,7 +20,5 @@ namespace LogicLayer
         IEnumerable<User> GetUsers();
 
         string GetRole(string login);
-
-        IEnumerable<Role> GetRoles();
     }
 }

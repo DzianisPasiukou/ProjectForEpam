@@ -2,7 +2,6 @@
 using LogicLayer.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +14,6 @@ namespace LogicLayer
         NotApproved,
         NotRegistered
     }
-
     public class SecurityHelper : ISecurityHelper
     {
         public bool RegisterUser(string login, string password, string email, string name, string surname, string avatar)
@@ -49,7 +47,7 @@ namespace LogicLayer
             {
                 User user = new User();
 
-                DBSet<User> users = db.User;
+                DBSet<User> users = db.Users;
 
                 foreach (var item in users)
                 {
@@ -59,7 +57,9 @@ namespace LogicLayer
                     }
                 }
 
-                return db.User.Add(new User
+                //TODO: check id_group, check avatarpath for user adding.
+
+                return db.Users.Add(new User
                 {
                     Login = login,
                     Password = password,
@@ -67,9 +67,9 @@ namespace LogicLayer
                     IsActive = false,
                     Name = name,
                     Surname = surname,
-                    DateOfRegistration = DateTime.Now.ToString(),
-                    RoleID = 3,
-                    Avatar = avatar
+                    DateOfRegistration = DateTime.Now,
+                    Id_Group = 1,
+                    AvatarPath = avatar
                 });
             }
         }
@@ -89,7 +89,7 @@ namespace LogicLayer
 
             using (DBEntities db = new DBEntities())
             {
-                DBSet<User> users = db.User;
+                DBSet<User> users = db.Users;
 
                 foreach (var item in users)
                 {
@@ -116,7 +116,7 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                return db.User.FirstOrDefault(user => user.Login == login);
+                return db.Users.FirstOrDefault(user => user.Login == login);
             }
         }
 
@@ -124,42 +124,34 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                List<User> users = db.User.ToList<User>();
-
+                IEnumerable<User> users = db.Users;
                 return users;
             }
         }
 
-        public string GetRole(string login)
+        public IEnumerable<Group> GetRoles()
         {
             using (DBEntities db = new DBEntities())
             {
-                return db.Role.FirstOrDefault(role => role.ID == db.User.FirstOrDefault(user => user.Login.Equals(login)).RoleID).Name;
+                IEnumerable<Group> roles = db.Groups;
+                return roles;
             }
         }
 
-        public IEnumerable<Role> GetRoles()
+        public bool CheckPermission(string login)
         {
-            using (DBEntities db = new DBEntities())
-            {
-                return db.Role.ToList<Role>();
-            }
+            throw new NotImplementedException();
         }
+
 
         public bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive)
         {
-            using (DBEntities db = new DBEntities())
-            {
-                User user = db.User.FirstOrDefault(model => model.Login == login);
+            throw new NotImplementedException();
+        }
 
-                user.Name = name;
-                user.Surname = surname;
-                user.Email = email;
-                user.RoleID = db.Role.FirstOrDefault(rol => rol.Name == role).ID;
-                user.IsActive = isActive;
-
-                return db.User.Update(user);
-            }
+        public string GetRole(string login)
+        {
+            throw new NotImplementedException();
         }
     }
 }

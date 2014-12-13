@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Reflection;
-using System.Data.SqlTypes;
+using System.Data.SqlClient;
 
 namespace DataBaseLayer
 {
@@ -14,11 +14,11 @@ namespace DataBaseLayer
     {
         private IDataReader _dataReader;
 
-        public DBSet()
+        public DBSet(SqlConnection connection)
         {
-            _dataReader = new DataBase();
+            _dataReader = new DataBase(connection);
 
-            _dataReader.EntityName = typeof(TEntity).Name+"s";
+            _dataReader.EntityName = typeof(TEntity).Name;
         }
          
        
@@ -46,7 +46,15 @@ namespace DataBaseLayer
                     if (!String.IsNullOrEmpty(key))
                     {
                         Array.ForEach<PropertyInfo>(obj.GetType().GetProperties(),
-                            a => obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]));
+                            a => {
+                                try
+                                {
+                                    obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]);
+                                }
+                                catch
+                                {
+                                }
+                            });
                     }
                 }
                 
@@ -87,11 +95,11 @@ namespace DataBaseLayer
                 throw new ArgumentNullException("Object delete");
             }
         }
-        public IEnumerator<TEntity> GetBy(string args)
+        public IEnumerable<TEntity> GetBy(string args)
         {
             IEnumerable<Dictionary<string, object>> data = _dataReader.GetData(args);
 
-            IEnumerator<TEntity> valueData = Reflection(data).GetEnumerator();
+            IEnumerable<TEntity> valueData = Reflection(data);
 
             return valueData;
         }

@@ -12,7 +12,7 @@ namespace LogicLayer.CatalogManager
     {
         IEnumerable<TEntity> Get();
 
-        IEnumerable<TEntity> GetBy(string id);
+        IEnumerable<TEntity> GetBy(string nameParametr, string parametr);
         bool Add(TEntity t);
         bool Update(TEntity t);
         bool Delete(TEntity t);

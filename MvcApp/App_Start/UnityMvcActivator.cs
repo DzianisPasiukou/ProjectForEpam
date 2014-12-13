@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity.Mvc;
+using System.Web.Http;
+using System.Web.Http.Dispatcher;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MvcApp.App_Start.UnityWebActivator), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(MvcApp.App_Start.UnityWebActivator), "Shutdown")]
@@ -17,9 +19,11 @@ namespace MvcApp.App_Start
 
             FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
             FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(container));
-            
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
+
+            
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
         }

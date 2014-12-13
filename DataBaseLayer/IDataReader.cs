@@ -11,6 +11,5 @@ namespace DataBaseLayer
         bool Delete(object obj);
         string KeyEntity { get; set; }
         string EntityName { get; set; }
-        
     }
 }
