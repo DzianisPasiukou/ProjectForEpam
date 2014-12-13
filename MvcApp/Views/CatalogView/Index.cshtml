@@ -10,6 +10,16 @@
         </div>
         <div id="disc">
         </div>
+        <button class="btn btn-default" ng-click="addNote()">Add note.</button>
+        <script type="text/ng-template" id="addNoteModal.html">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    Adding
+                </h3>
+            </div>
+            <button class="btn btn-primary" ng-click="ok()">Return</button>
+            <button class="btn btn-warning" ng-click="cancel()">Close</button>
+        </script>
         <div id="record" hidden="hidden" ng-controller="recordCtrl">
             <div id="nameModel">
                 {{record.Name}}
@@ -26,7 +36,7 @@
                         <accordion-group ng-repeat="item in items" heading={{item.name}}>
                             {{item.description}}
                             <br />
-                            <button class="btn btn-default" ng-click="compareRecords(item.id, record.ID)">Compare</button>
+                            <button class="btn btn-default" ng-click="compareRecords(item.id)">Compare</button>
                         </accordion-group>
                     </accordion>
                 </div>
@@ -37,32 +47,38 @@
             </script>
             <script type="text/ng-template" id="compareModal.html">
                 <div class="modal-header">
-                    <h3 class="modal-title">Records</h3>
+                    <h3 class="modal-title">Compare 
+                    <label>
+                        {{records[0].Name}} with {{records[1].Name}}
+                        </label> 
+                    </h3>
                 </div>
-                </script>
-                <button class='btn btn-success' ng-click="open(record.ThemeID)">
-                    Compare
-                </button>
-                <button id="say" class="btn btn-primary" ng-click="sayThank(record.ThemeID)">
-                    To say thank you.
-                </button>
-                <div>
-                    <tabset>
-                        <tab heading="Technical characteristics">
-                            Technical characteristics
-                        </tab>
-                        <tab heading="Photo">
-                            Photo
-                        </tab>
-                        <tab heading="Video">
-                            Video
-                        </tab>
-                        <tab heading="Documents">
-                            Documents
-                        </tab>
-                    </tabset>
-                </div>
-</div>
+                <button class="btn btn-primary" ng-click="return()">Return</button>
+                <button class="btn btn-warning" ng-click="close()">Close</button>
+            </script>
+            <button class='btn btn-success' ng-click="open(record.ThemeID)">
+                Compare
+            </button>
+            <button id="say" class="btn btn-primary" ng-click="sayThank(record.ThemeID)">
+                To say thank you.
+            </button>
+            <div>
+                <tabset>
+                    <tab heading="Technical characteristics">
+                        Technical characteristics
+                    </tab>
+                    <tab heading="Photo">
+                        Photo
+                    </tab>
+                    <tab heading="Video">
+                        Video
+                    </tab>
+                    <tab heading="Documents">
+                        Documents
+                    </tab>
+                </tabset>
+            </div>
+        </div>
     </div>
 </div>
 

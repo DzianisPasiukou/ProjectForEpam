@@ -51,13 +51,11 @@ namespace MvcApp.App_Start
             container.RegisterType<ISecurityHelper, SecurityHelper>(
 new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
 new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IDataBaseManager<Catalog>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
+            container.RegisterType<IDataBaseManager<Category>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IDataBaseManager<Record>, RecordManager>(new Interceptor<InterfaceInterceptor>(),
-            new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IRecordCompare, RecordManager>(new Interceptor<InterfaceInterceptor>(),
+            container.RegisterType<IDataBaseManager<Note>, NoteManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
         }
     }

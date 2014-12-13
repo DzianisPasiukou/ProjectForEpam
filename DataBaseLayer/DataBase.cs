@@ -7,19 +7,16 @@ namespace DataBaseLayer
 
     public class DataBase : IDataReader
     {
-       private static SqlConnection _connection;
+       private SqlConnection _connection;
        private string _table;
        private string _key;
-        public DataBase()
+       private static object lobj = new object();
+        public DataBase(SqlConnection connection)
         {
             _table = "User";
             _key = "ID";
+            _connection = connection;
         }
-      private static string GetConnectionstring()
-       {
-         //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=LENOVO\SQLEXPRESS2012;Initial Catalog=D:\С#\ASP_PROJECT\EPAMPROJECT\MVCAPP\APP_DATA\EPAMPROJECT.MDF;Integrated Security=True";
-       }
       
         public bool Add(object obj)
         {
@@ -98,45 +95,6 @@ namespace DataBaseLayer
               _key = value;
           }
       }
-
-     static public void ConnectionOpen()
-      {
-          if (_connection == null)
-          {
-              _connection = new SqlConnection(GetConnectionstring());
-              _connection.Open();
-          }
-          else
-          {
-              _connection.Close();
-              _connection = new SqlConnection(GetConnectionstring());
-              _connection.Open();
-          }
-      }
-
-     static public void ConnectionClose()
-      {
-          _connection.Close();
-      }
-
-
-     static public void ConnectionOpen(string connectionString)
-      {
-          if (_connection == null)
-          {
-              if (_connection.ConnectionString != connectionString)
-                  _connection.Close();
-              _connection = new SqlConnection(connectionString);
-              _connection.Open();
-          }
-          else
-          {
-              _connection = new SqlConnection(connectionString);
-              _connection.Open();
-          }
-      }
-
-
       public string EntityName
       {
           get

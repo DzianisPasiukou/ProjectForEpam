@@ -14,8 +14,8 @@ namespace MvcApp.Controllers.WebApiControllers
     public class CatalogTreeController : ApiController
     {
         ITree _tree;
-        IDataBaseManager<Record> _dataRecord;
-        public CatalogTreeController(ITree tree, IDataBaseManager<Record> dataRecord)
+        IDataBaseManager<Note> _dataRecord;
+        public CatalogTreeController(ITree tree, IDataBaseManager<Note> dataRecord)
         {
             if (tree == null)
             {
@@ -31,13 +31,13 @@ namespace MvcApp.Controllers.WebApiControllers
         }
         
         // GET api/<controller>
-        public TreeView GetTree()
+        public List<TreeView> GetTree()
         {
             return _tree.GetTree();
         }
-        public Record GetRecord(int id)
+        public Note GetRecord(int id)
         {
-            Record rec = _dataRecord.GetBy("id", id.ToString()).First();
+            Note rec = _dataRecord.GetBy("id", id.ToString()).First();
             return rec;
         }
     }

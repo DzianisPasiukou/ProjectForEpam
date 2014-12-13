@@ -47,7 +47,7 @@ namespace LogicLayer
             {
                 User user = new User();
 
-                DBSet<User> users = db.User;
+                DBSet<User> users = db.Users;
 
                 foreach (var item in users)
                 {
@@ -57,7 +57,9 @@ namespace LogicLayer
                     }
                 }
 
-                return db.User.Add(new User
+                //TODO: check id_group, check avatarpath for user adding.
+
+                return db.Users.Add(new User
                 {
                     Login = login,
                     Password = password,
@@ -66,8 +68,8 @@ namespace LogicLayer
                     Name = name,
                     Surname = surname,
                     DateOfRegistration = DateTime.Now,
-                    RoleID = 1,
-                    Avatar = avatar
+                    Id_Group = 1,
+                    AvatarPath = avatar
                 });
             }
         }
@@ -87,7 +89,7 @@ namespace LogicLayer
 
             using (DBEntities db = new DBEntities())
             {
-                DBSet<User> users = db.User;
+                DBSet<User> users = db.Users;
 
                 foreach (var item in users)
                 {
@@ -114,7 +116,7 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                return db.User.FirstOrDefault(user => user.Login == login);
+                return db.Users.FirstOrDefault(user => user.Login == login);
             }
         }
 
@@ -122,16 +124,16 @@ namespace LogicLayer
         {
             using (DBEntities db = new DBEntities())
             {
-                IEnumerable<User> users = db.User;
+                IEnumerable<User> users = db.Users;
                 return users;
             }
         }
 
-        public IEnumerable<Role> GetRoles()
+        public IEnumerable<Group> GetRoles()
         {
             using (DBEntities db = new DBEntities())
             {
-                IEnumerable<Role> roles = db.Role;
+                IEnumerable<Group> roles = db.Groups;
                 return roles;
             }
         }

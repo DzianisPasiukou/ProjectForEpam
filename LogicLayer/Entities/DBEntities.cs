@@ -10,20 +10,40 @@ namespace LogicLayer.Entities
 {
   public class DBEntities : DbContext
     {
-      public DBSet<User> User { get; set; }
-      public DBSet<Role> Role { get; set; }
-
-      public DBSet<Catalog> Catalog { get; set; }
-
-      public DBSet<Theme> Theme { get; set; }
-      public DBSet<Record> Record { get; set; }
+      public DBSet<User> Users { get; set; }
+      public DBSet<Group> Groups { get; set; }
+      public DBSet<Category> Categories { get; set; }
+      public DBSet<Note> Notes { get; set; }
+      public DBSet<Characteristic> Characteristics { get; set; }
+      public DBSet<File> Files { get; set; }
+      public DBSet<Group_Category> Group_Categories { get; set; }
+      public DBSet<Group_Permission> Group_Permissions { get; set; }
+      public DBSet<LikeFile> LikeFiles { get; set; }
+      public DBSet<LikeNote> LikeNotes { get; set; }
+      public DBSet<Message> Messages { get; set; }
+      public DBSet<Note_Characteristic> Note_Characteristics { get; set; }
+      public DBSet<Note_Tag> Note_Tags { get; set; }
+      public DBSet<Permission> Permission { get; set; }
+      public DBSet<Tag> Tags { get; set; }
+      public DBSet<User_Permission> User_Permissions { get; set; }
       public DBEntities():base()
       {
-          User = new DBSet<User>();
-          Role = new DBSet<Role>();
-          Catalog = new DBSet<Catalog>();
-          Theme = new DBSet<Theme>();
-          Record = new DBSet<Record>();
+          Users = new DBSet<User>(connection);
+          Groups = new DBSet<Group>(connection);
+          Categories = new DBSet<Category>(connection);
+          Notes = new DBSet<Note>(connection);
+          Characteristics = new DBSet<Characteristic>(connection);
+          Files = new DBSet<File>(connection);
+          Group_Categories = new DBSet<Group_Category>(connection);
+          Group_Permissions = new DBSet<Group_Permission>(connection);
+          LikeFiles = new DBSet<LikeFile>(connection);
+          LikeNotes = new DBSet<LikeNote>(connection);
+          Messages = new DBSet<Message>(connection);
+          Note_Characteristics = new DBSet<Note_Characteristic>(connection);
+          Note_Tags = new DBSet<Note_Tag>(connection);
+          Permission = new DBSet<Permission>(connection);
+          Tags = new DBSet<Tag>(connection);
+          User_Permissions = new DBSet<User_Permission>(connection);
       }
     }
 }

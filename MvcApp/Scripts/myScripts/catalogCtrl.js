@@ -1,15 +1,11 @@
 ﻿myApp.controller('catalogCtrl', function ($scope, catalogData) {
 
-    $scope.catalogs = {};
 
     function getCatalogs() {
         catalogData.getTree().success(function (data) {
-            $scope.catalogs = data;
 
-            getTree();
-            
-            if(!$scope.$$phase)
-                $scope.$apply();
+            $scope.treedata = init(data);
+
         });
     } 
     getCatalogs();
@@ -27,50 +23,42 @@
              $('#record').show();
          }
         }
-    function getTree() {
-        var childNode = [];
-        for (var i = 0; i < $scope.catalogs.ChildNode.length; i++) {
+   
+     function init(childNode) {
+         
+         var child = [];
+         for (var i = 0; i < childNode.length; i++) {
+             child.push({
+                 label: childNode[i].NodeName,
+                 description: childNode[i].NodeDescription,
+                 id: childNode[i].ID,
+                 idNote: childNode[i].IDNote,
+                 children: init(childNode[i].ChildNode),
+                 collapsed: true
+             });
+         };
+         return child;
+     }
 
-            childNode.push({
-                "label": $scope.catalogs.ChildNode[i].NodeName,
-                "id": $scope.catalogs.ChildNode[i].ID,
-                "children": [],
-                "description": $scope.catalogs.ChildNode[i].NodeDescription,
-                "collapsed": true
-            });
-            for (var j = 0; j < $scope.catalogs.ChildNode[i].ChildNode.length; j++) {
-                childNode[i].children.push({
-                    "label": $scope.catalogs.ChildNode[i].ChildNode[j].NodeName,
-                    "id": $scope.catalogs.ChildNode[i].ChildNode[j].ID,
-                    "children": [],
-                    "description": $scope.catalogs.ChildNode[i].ChildNode[j].NodeDescription,
-                    "collapsed": true
-                });
-                for (var k = 0; k < $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode.length; k++) {
-                    childNode[i].children[j].children.push({
-                        "label": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].NodeName,
-                        "id": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].ID,
-                        "children": [],
-                        "description": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].NodeDescription,
-                        "idRecord": $scope.catalogs.ChildNode[i].ChildNode[j].ChildNode[k].IdRecord,
-                        "collapsed": true
-                    });
-                }
-            }
-        }
-
-
-        $scope.treedata =
-    [
-        {
-            "label": $scope.catalogs.NodeName, "id": $scope.catalogs.ID, "children": childNode,
-            "description": $scope.catalogs.NodeDescription, "collapsed": true
-        }
-    ];
-    }
     function getRecord(id) {
         catalogData.getRecord(id).success(function (data) {
             $scope.record = data;
         });
     };
+
+    function addNote(size) {
+        var modalInstance = $modal.open({
+            templateUrl: 'addNoteModal.html',
+            controller: 'addNoteCtrl',
+            size: size,
+            resolve: {
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
 });

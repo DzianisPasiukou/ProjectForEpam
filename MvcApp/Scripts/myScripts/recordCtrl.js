@@ -14,6 +14,9 @@
                 },
                 modal: function () {
                     return $modal;
+                },
+                mainRecord: function () {
+                    return $scope.record;
                 }
             }
         });

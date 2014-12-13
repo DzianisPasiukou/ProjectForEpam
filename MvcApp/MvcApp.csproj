@@ -962,12 +962,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\myCSS\animate.min.css" />
+    <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
     <Content Include="Scripts\themes\jquery-ui.css" />
@@ -1024,7 +1026,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\LoggingManager\LoggingManager.csproj">
       <Project>{199a8659-02b6-48c8-bba0-3ee9baae47ac}</Project>
