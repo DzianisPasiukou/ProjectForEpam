@@ -18,7 +18,27 @@
                 </h3>
             </div>
             <div class="modal-body">
-                <input type="file" />
+                <h3>Enter Name:</h3>
+                <input type="text" ng-model="note.name" />
+                <h3>Choose avatar:</h3>
+                <input type="file" ng-model="note.avatar" />
+                <h3>Enter description:</h3>
+                <div text-angular-toolbar class="toolbar" name="toolbar"></div>
+                <div text-angular ta-target-toolbars="toolbar" ng-model="note.description"></div>
+                <tabset>
+                    <tab heading="Technical characteristics">
+                        Technical characteristics
+                    </tab>
+                    <tab heading="Photo">
+                        Photo
+                    </tab>
+                    <tab heading="Video">
+                        Video
+                    </tab>
+                    <tab heading="Documents">
+                        Documents
+                    </tab>
+                </tabset>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">Ok</button>
