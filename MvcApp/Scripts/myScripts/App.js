@@ -1,1 +1,1 @@
-﻿var myApp = angular.module("myApp", ['angularTreeview', 'ui.bootstrap']);
+﻿var myApp = angular.module("myApp", ['angularTreeview','ui.bootstrap']);

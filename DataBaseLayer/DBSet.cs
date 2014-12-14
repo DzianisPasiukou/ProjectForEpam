@@ -14,11 +14,12 @@ namespace DataBaseLayer
     {
         private IDataReader _dataReader;
 
-        public DBSet(SqlConnection connection)
+        public DBSet(SqlConnection connection, string keyEntity)
         {
             _dataReader = new DataBase(connection);
 
             _dataReader.EntityName = typeof(TEntity).Name;
+            _dataReader.KeyEntity = keyEntity;
         }
          
        

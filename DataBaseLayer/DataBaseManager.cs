@@ -98,7 +98,7 @@ namespace DataBaseLayer
            }
            return prop;
        }
-       static public void ClearID(object obj, ref string nameProp, ref string valueProp)
+       static public void ClearID(object obj, ref string nameProp, ref string valueProp, string key)
        {
            PropertyInfo[] props = obj.GetType().GetProperties();
            string[] arrName = nameProp.Split(',');
@@ -109,7 +109,7 @@ namespace DataBaseLayer
            
            for (int i = 0; i < props.Length; i++)
            {
-               if (props[i].Name.ToLower() != "id")
+               if (props[i].Name.ToLower() != key.ToLower())
                {
                    nameBuilder.Append(arrName[i]);
                }
@@ -117,7 +117,7 @@ namespace DataBaseLayer
                {
                    indexId = i;
                }
-               if ((i != props.Length - 1) && (props[i].Name.ToLower() != "id"))
+               if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
                {
                    nameBuilder.Append(", ");
                }
@@ -129,7 +129,7 @@ namespace DataBaseLayer
            for (int i = 0; i < props.Length; i++)
            {
                 valueBuilder.Append(arrValue[i]);
-                if ((i != props.Length - 1) && (props[i].Name.ToLower() != "id"))
+                if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
                 {
                     valueBuilder.Append(", ");
                 }

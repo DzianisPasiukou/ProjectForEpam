@@ -28,22 +28,22 @@ namespace LogicLayer.Entities
       public DBSet<User_Permission> User_Permissions { get; set; }
       public DBEntities():base()
       {
-          Users = new DBSet<User>(connection);
-          Groups = new DBSet<Group>(connection);
-          Categories = new DBSet<Category>(connection);
-          Notes = new DBSet<Note>(connection);
-          Characteristics = new DBSet<Characteristic>(connection);
-          Files = new DBSet<File>(connection);
-          Group_Categories = new DBSet<Group_Category>(connection);
-          Group_Permissions = new DBSet<Group_Permission>(connection);
-          LikeFiles = new DBSet<LikeFile>(connection);
-          LikeNotes = new DBSet<LikeNote>(connection);
-          Messages = new DBSet<Message>(connection);
-          Note_Characteristics = new DBSet<Note_Characteristic>(connection);
-          Note_Tags = new DBSet<Note_Tag>(connection);
-          Permission = new DBSet<Permission>(connection);
-          Tags = new DBSet<Tag>(connection);
-          User_Permissions = new DBSet<User_Permission>(connection);
+          Users = new DBSet<User>(connection, "Id_User");
+          Groups = new DBSet<Group>(connection, "Id_Group");
+          Categories = new DBSet<Category>(connection, "Id_Category");
+          Notes = new DBSet<Note>(connection, "Id_Note");
+          Characteristics = new DBSet<Characteristic>(connection, "Id_Characteristic");
+          Files = new DBSet<File>(connection, "Id_File");
+          Group_Categories = new DBSet<Group_Category>(connection, "Id");
+          Group_Permissions = new DBSet<Group_Permission>(connection, "Id");
+          LikeFiles = new DBSet<LikeFile>(connection, "Id");
+          LikeNotes = new DBSet<LikeNote>(connection, "Id");
+          Messages = new DBSet<Message>(connection, "Id_Message");
+          Note_Characteristics = new DBSet<Note_Characteristic>(connection, "Id");
+          Note_Tags = new DBSet<Note_Tag>(connection, "Id");
+          Permission = new DBSet<Permission>(connection, "Id_Permission");
+          Tags = new DBSet<Tag>(connection, "Id_Tag");
+          User_Permissions = new DBSet<User_Permission>(connection, "Id");
       }
     }
 }

@@ -1,5 +1,7 @@
 ﻿myApp.controller('addNoteCtrl', function ($scope, $modalInstance, catalogData) {
 
+    $scope.addingNote = {};
+
     $scope.ok = function () {
 
         $modalInstance.close();

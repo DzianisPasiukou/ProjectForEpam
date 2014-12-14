@@ -215,6 +215,10 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\flow\ng-flow-standalone.js" />
+    <Content Include="Scripts\flow\ng-flow-standalone.min.js" />
+    <Content Include="Scripts\flow\ng-flow.js" />
+    <Content Include="Scripts\flow\ng-flow.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
