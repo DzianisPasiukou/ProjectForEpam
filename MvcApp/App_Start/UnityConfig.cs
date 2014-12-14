@@ -8,6 +8,7 @@ using LogicLayer.CatalogManager;
 using LogicLayer.Entities;
 using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 using System.Web.Http.Dispatcher;
+using LogicLayer.Security;
 
 namespace MvcApp.App_Start
 {
@@ -44,19 +45,20 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-           // container.AddExtension(Interceptio)
+            // container.AddExtension(Interceptio)
 
-          //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
+            //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
 
-            container.RegisterType<ISecurityHelper, SecurityHelper>(
-new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
-new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<ISecurityHelper, SecurityHelper>();
             container.RegisterType<IDataBaseManager<Category>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Note>, NoteManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IHashCalculator, Sha256HashCalculator>(new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+
         }
     }
 }
