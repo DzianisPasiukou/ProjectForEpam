@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogManager\CatalogManager.cs" />
-    <Compile Include="CatalogManager\IDataBaseManager.cs" />
+    <Compile Include="IDataBaseManager.cs" />
     <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />
     <Compile Include="CatalogManager\INoteCompare.cs" />
@@ -74,6 +74,8 @@
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User_Permission.cs" />
+    <Compile Include="LikeFileInfo.cs" />
+    <Compile Include="LikeNoteInfo.cs" />
     <Compile Include="SecurityHelper.cs" />
     <Compile Include="Entities\DBEntities.cs" />
     <Compile Include="ISecurityHelper.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataBaseLayer\DataBaseLayer.csproj">

@@ -184,6 +184,9 @@
     <Content Include="Content\themes\default\throbber.gif" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <None Include="Resources\4.jpg" />
+    <None Include="Resources\161550_294946.jpg" />
+    <None Include="Resources\url.jpg" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -998,10 +1001,17 @@
     <Compile Include="Controllers\CatalogViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CatalogTreeController.cs" />
+    <Compile Include="Controllers\NoteInfoController.cs" />
+    <Compile Include="Controllers\UsersInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="NoteAvatars.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteAvatars.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1035,6 +1045,12 @@
       <Project>{1f095f07-9954-44a9-9c39-7d6d48c0d30d}</Project>
       <Name>LogicLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NoteAvatars.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoteAvatars.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

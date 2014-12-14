@@ -1,4 +1,4 @@
-﻿myApp.controller('catalogCtrl', function ($scope, catalogData) {
+﻿myApp.controller('catalogCtrl', function ($scope, catalogData, $modal, $log) {
 
 
     function getCatalogs() {
@@ -12,18 +12,23 @@
 
      $scope.selectNode = function (value) {
 
-         if (!value.idRecord) {
+         if (!value.idNote) {
              $('#disc').html(value.description);
              $('#disc').show();
              $('#record').hide();
          }
          else {
-             getRecord(value.idRecord);
+             getRecord(value.idNote);
+             CreateByUser($scope.record.Id_User);
              $('#disc').hide();
              $('#record').show();
          }
         }
-   
+     function CreateByUser(idUser) {
+         catalogData.getUserName(idUser).success(function (data) {
+             $scope.creator =  data;
+         });
+     }
      function init(childNode) {
          
          var child = [];
@@ -45,8 +50,10 @@
             $scope.record = data;
         });
     };
+   
 
-    function addNote(size) {
+
+   $scope.addNote = function (size) {
         var modalInstance = $modal.open({
             templateUrl: 'addNoteModal.html',
             controller: 'addNoteCtrl',

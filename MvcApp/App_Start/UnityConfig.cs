@@ -57,6 +57,12 @@ new InterceptionBehavior<LoggingInterceptionBehavior>());
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Note>, NoteManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<User>, UsersInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<LikeFile>, LikeFileInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<LikeNote>, LikeNoteInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
         }
     }
 }

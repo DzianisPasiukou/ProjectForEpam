@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using LogicLayer;
 using LogicLayer.CatalogManager;
 using LogicLayer.Entities;
-using LogicLayer.CatalogManager.ThemeManager.RecordManager;
-using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 
 namespace MvcApp.Controllers.WebApiControllers
 {
     public class CatalogTreeController : ApiController
     {
         ITree _tree;
-        IDataBaseManager<Note> _dataRecord;
-        public CatalogTreeController(ITree tree, IDataBaseManager<Note> dataRecord)
+        IDataBaseManager<Note> _dataNote;
+        public CatalogTreeController(ITree tree, IDataBaseManager<Note> dataNote)
         {
             if (tree == null)
             {
                 throw new ArgumentNullException();
             }
             _tree = tree;
-            if (dataRecord == null)
+            if (dataNote == null)
             {
                 throw new ArgumentNullException();
             }
-            _dataRecord = dataRecord;
+            _dataNote = dataNote;
             
         }
         
@@ -37,7 +34,7 @@ namespace MvcApp.Controllers.WebApiControllers
         }
         public Note GetRecord(int id)
         {
-            Note rec = _dataRecord.GetBy("id", id.ToString()).First();
+            Note rec = _dataNote.GetBy("Id_Note", id.ToString()).First();
             return rec;
         }
     }

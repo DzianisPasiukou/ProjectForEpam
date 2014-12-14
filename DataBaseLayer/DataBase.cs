@@ -61,7 +61,7 @@ namespace DataBaseLayer
        }
         public List<Dictionary<string,object>> GetData(string args)
         {
-            string comm = (args == "*") ? String.Format("SELECT * FROM {0}", _table) : String.Format("SELECT * FROM {0} Where {1}", _table, DataBaseManager.View(args));
+            string comm = (args == "*") ? String.Format("SELECT * FROM [{0}]", _table) : String.Format("SELECT * FROM [{0}] Where {1}", _table, DataBaseManager.View(args));
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
 
                 using (SqlCommand command = new SqlCommand(comm,_connection))
