@@ -25,7 +25,7 @@ namespace DataBaseLayer
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
 
-           string comm = String.Format(@"INSERT INTO {0} ({1}) VALUES ({2})",_table,nameProp,valueProp);
+           string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
            return DataBaseManager.Execute(comm,_connection);
         }
         public bool Update(object obj)
