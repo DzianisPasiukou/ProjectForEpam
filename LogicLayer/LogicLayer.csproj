@@ -74,15 +74,17 @@
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User_Permission.cs" />
+    <Compile Include="Security\IHashCalculator.cs" />
+    <Compile Include="Security\SecurityHelper.cs" />
     <Compile Include="LikeFileInfo.cs" />
     <Compile Include="LikeNoteInfo.cs" />
-    <Compile Include="SecurityHelper.cs" />
     <Compile Include="Entities\DBEntities.cs" />
-    <Compile Include="ISecurityHelper.cs" />
+    <Compile Include="Security\ISecurityHelper.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Sha256HashCalculator.cs" />
     <Compile Include="UsersInfo.cs" />
   </ItemGroup>
   <ItemGroup>

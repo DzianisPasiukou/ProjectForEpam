@@ -8,6 +8,7 @@ using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
+using LogicLayer.Security;
 
 namespace MvcApp.Controllers
 {
@@ -32,11 +33,12 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
-                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             else
