@@ -1,0 +1,97 @@
+﻿@model MvcApp.Models.Account.AccountViewModel
+
+
+<div id="userr">
+    <hr />
+
+    @using (Html.BeginForm("SaveUser", "Account"))
+    {
+        @Html.HiddenFor(model => model.Login)
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control inline" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Surname, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Surname, new { @class = "form-control inline" })
+                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control inline" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Role, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Role, new { @class = "form-control inline" })
+                                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped" style="text-align:center">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Downloaded)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Uploaded)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GaveLikes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HaveLikes)
+                    </th>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Downloaded)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Uploaded)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.GaveLikes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.HaveLikes)
+                    </td>
+                </tr>
+            </table>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <button type="button" class="btn btn-primary" onclick="back()">Cancel</button>
+            </div>
+
+        </div>
+    }
+</div>
+
+<script>
+    function back() {
+        var element = document.getElementById("userr");
+        element.parentNode.removeChild(element);
+    }
+</script>

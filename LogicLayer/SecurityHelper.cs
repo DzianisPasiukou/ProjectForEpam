@@ -142,5 +142,16 @@ namespace LogicLayer
         {
             throw new NotImplementedException();
         }
+
+
+        public bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetRole(string login)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

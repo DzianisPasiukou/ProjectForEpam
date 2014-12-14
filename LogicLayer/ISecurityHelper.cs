@@ -15,6 +15,10 @@ namespace LogicLayer
 
         User GetUser(string login);
 
-        bool CheckPermission(string login);
+        bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive);
+
+        IEnumerable<User> GetUsers();
+
+        string GetRole(string login);
     }
 }
