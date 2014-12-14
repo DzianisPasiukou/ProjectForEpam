@@ -1,8 +1,11 @@
 ﻿myApp.controller('recordCtrl', function ($scope, $modal, $log) {
    
-    $scope.open = function (id, size) {
+    $scope.thankDisable = false;
 
-        findChild(id);
+    $scope.open = function (idCategory, size) {
+
+        $scope.items = [];
+        findChild(idCategory, $scope.treedata);
 
         var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',
@@ -29,38 +32,34 @@
     };
 
     $scope.sayThank = function (idRecord) {
-        $('#say').attr("disabled", "disabled");
+        $scope.thankDisable = true;
     }
    
-    function findChild(idTheme) {
+    function findChild(idCategory, category) {
 
-        $scope.items = [];
         var find = false;
-        for (var i = 0; i < $scope.treedata[0].children.length; i++) {
-            
-            for (var j = 0; j < $scope.treedata[0].children[i].children.length; j++) {
-
-                if ($scope.treedata[0].children[i].children[j].id == "themes " + idTheme) {
-                    find = true;
-
-                    for (var k = 0; k < $scope.treedata[0].children[i].children[j].children.length; k++) {
-                        if ($scope.treedata[0].children[i].children[j].children[k]["idRecord"] != $scope.record.ID) {
-                            $scope.items.push({
-                                name: $scope.treedata[0].children[i].children[j].children[k]["label"],
-                                id: $scope.treedata[0].children[i].children[j].children[k]["idRecord"],
-                                description: $scope.treedata[0].children[i].children[j].children[k]["description"]
-
-                            });
-                        }
-                    }
-
-                    break;
+       
+        for (var i = 0; i < category.length; i++) {
+            if (category[i].id == idCategory) {
+                if ((category[i].idNote) && ($scope.record.Id_Note != category[i].idNote))
+                {
+                    $scope.items.push({
+                        name: category[i].label,
+                        description: category[i].description,
+                        id: category[i].idNote
+                    });
                 }
+                else {
+                    find = findChild(idCategory, category[i].children);
+                }
+                find = true;
             }
-            if (find) {
-                break;
+            else {
+                if (find)
+                    break;
+                find = findChild(idCategory, category[i].children);
             }
         }
-        
+        return find;
     };
 });

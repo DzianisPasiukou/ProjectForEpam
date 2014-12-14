@@ -5,6 +5,7 @@
         item: $scope.items[0]
     };
     $scope.compareRecords = function (idRecord) {
+
         $modalInstance.close($scope.selected.item);
         var modalInstance = modal.open({
             templateUrl: 'compareModal.html',

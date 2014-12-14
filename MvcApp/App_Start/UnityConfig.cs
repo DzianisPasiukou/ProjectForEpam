@@ -58,7 +58,12 @@ namespace MvcApp.App_Start
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IHashCalculator, Sha256HashCalculator>(new InjectionConstructor(), new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
-
+            container.RegisterType<IDataBaseManager<User>, UsersInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<LikeFile>, LikeFileInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<LikeNote>, LikeNoteInfo>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
         }
     }
 }

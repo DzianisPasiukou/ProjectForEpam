@@ -2,7 +2,7 @@
 
     $scope.records = [];
 
-    getRecord(mainRecord.ID);
+    getRecord(mainRecord.Id_Note);
     getRecord(comparer);
 
 

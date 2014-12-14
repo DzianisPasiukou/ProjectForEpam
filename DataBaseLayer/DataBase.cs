@@ -23,7 +23,7 @@ namespace DataBaseLayer
             
            string nameProp, valueProp;
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
-           DataBaseManager.ClearID(obj, ref nameProp, ref valueProp);
+           DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
 
            string comm = String.Format(@"INSERT INTO {0} ({1}) VALUES ({2})",_table,nameProp,valueProp);
            return DataBaseManager.Execute(comm,_connection);
@@ -32,7 +32,7 @@ namespace DataBaseLayer
         {
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
-            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp);
+            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
             
 
@@ -61,7 +61,7 @@ namespace DataBaseLayer
        }
         public List<Dictionary<string,object>> GetData(string args)
         {
-            string comm = (args == "*") ? String.Format("SELECT * FROM [{0}]", _table) : String.Format("SELECT * FROM {0} Where {1}", _table, DataBaseManager.View(args));
+            string comm = (args == "*") ? String.Format("SELECT * FROM [{0}]", _table) : String.Format("SELECT * FROM [{0}] Where {1}", _table, DataBaseManager.View(args));
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
 
                 using (SqlCommand command = new SqlCommand(comm,_connection))
