@@ -7,50 +7,50 @@ using LogicLayer.Entities;
 
 namespace LogicLayer.CatalogManager
 {
-  public  class CatalogManager: IDataBaseManager<Catalog>, ITree
+  public  class CatalogManager: IDataBaseManager<Category>, ITree
     {
-        public IEnumerable<Catalog> Get()
+        public IEnumerable<Category> Get()
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Catalog;
+                return entity.Categories;
             }
         }
 
-        public bool Add(Catalog cat)
+        public bool Add(Category cat)
         {
             using ( DBEntities entity = new DBEntities())
             {
-                return entity.Catalog.Add(cat);
+                return entity.Categories.Add(cat);
             }
         }
 
-        public bool Update(Catalog cat)
+        public bool Update(Category cat)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Catalog.Update(cat);
+                return entity.Categories.Update(cat);
             }
         }
 
-        public bool Delete(Catalog cat)
+        public bool Delete(Category cat)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Catalog.Delete(cat);
+                return entity.Categories.Delete(cat);
             }
         }
 
 
-        public IEnumerable<Catalog> GetBy(string id)
+        public IEnumerable<Category> GetBy(string nameParametr, string param)
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Catalog.Where(c => c.Name == id);
+                return entity.Categories.GetBy(String.Format("{0} = {1}", nameParametr, param));
             }
         }
 
-      public TreeView GetTree()
+      public List<TreeView> GetTree()
         {
             using (DBEntities entity = new DBEntities())
             {

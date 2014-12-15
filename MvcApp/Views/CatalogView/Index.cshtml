@@ -1,16 +1,92 @@
-﻿@model LogicLayer.CatalogManager.TreeView
-@{
-
-    ViewBag.Title = "Index";
-}
-<div id="catalog">
-    <ul id="tree">
-        <li>
-            <a href="#" onclick="$('#disc').html('@Model.NodeDescription')">@Model.NodeName</a>
-            @Html.Partial("ChildNode", Model.ChildNode)
-        </li>
-    </ul>
-</div> 
-<div id="disc">
-
+﻿<div ng-app="myApp">
+    <div id="catalog" ng-controller="catalogCtrl">
+        <div data-angular-treeview="true"
+             data-tree-id="abc"
+             data-tree-model="treedata"
+             data-node-id="id"
+             data-node-label="label"
+             data-node-children="children"
+             data-ng-click="selectNode(abc.currentNode)">
+        </div>
+        <div id="disc">
+        </div>
+        <button class="btn btn-default" ng-click="addNote()">Add note</button>
+        <script type="text/ng-template" id="addNoteModal.html">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    Adding
+                </h3>
+            </div>
+            <div class="modal-body">
+                <input type="file" />
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">Ok</button>
+                <button class="btn btn-warning" ng-click="cancel()">Close</button>
+            </div>
+        </script>
+        <div id="record" hidden="hidden" ng-controller="recordCtrl">
+            <img ng-src={{record.AvatarPath}} />
+            <div id="nameModel">
+                {{record.Name}}
+            </div>
+            <div id="descriptionModel">
+                {{record.Description}}
+            </div>
+            <p>Create by {{creator.Login}}</p>
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Compare with:</h3>
+                </div>
+                <div class="modal-body">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group ng-repeat="item in items" heading={{item.name}}>
+                            {{item.description}}
+                            <br />
+                            <button class="btn btn-default" ng-click="compareRecords(item.id)">Compare</button>
+                        </accordion-group>
+                    </accordion>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+            <script type="text/ng-template" id="compareModal.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Compare 
+                    <label>
+                        {{records[0].Name}} with {{records[1].Name}}
+                        </label> 
+                    </h3>
+                </div>
+                <button class="btn btn-primary" ng-click="return()">Return</button>
+                <button class="btn btn-warning" ng-click="close()">Close</button>
+            </script>
+            <button class='btn btn-success' ng-click="open(record.Id_Category)">
+                Compare
+            </button>
+            <button id="say" class="btn btn-primary" ng-disabled="thankDisable" ng-click="sayThank(record.Id_Note)">
+                To say thank you.
+            </button>
+            <div>
+                <tabset>
+                    <tab heading="Technical characteristics">
+                        Technical characteristics
+                    </tab>
+                    <tab heading="Photo">
+                        Photo
+                    </tab>
+                    <tab heading="Video">
+                        Video
+                    </tab>
+                    <tab heading="Documents">
+                        Documents
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>
 </div>
+
+

@@ -8,6 +8,6 @@ namespace LogicLayer.CatalogManager
 {
    public interface ITree
     {
-       TreeView GetTree();
+       List<TreeView> GetTree();
     }
 }

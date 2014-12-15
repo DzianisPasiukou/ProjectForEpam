@@ -55,21 +55,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogManager\CatalogManager.cs" />
-    <Compile Include="CatalogManager\IDataBaseManager.cs" />
+    <Compile Include="IDataBaseManager.cs" />
     <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />
-    <Compile Include="CatalogManager\ThemeManager\RecordManager\RecordManager.cs" />
-    <Compile Include="CatalogManager\ThemeManager\ThemeManager.cs" />
+    <Compile Include="CatalogManager\INoteCompare.cs" />
+    <Compile Include="CatalogManager\NoteManager.cs" />
     <Compile Include="CatalogManager\TreeView.cs" />
-    <Compile Include="Entities\Record.cs" />
-    <Compile Include="Entities\Theme.cs" />
-    <Compile Include="SecurityHelper.cs" />
+    <Compile Include="Entities\Characteristic.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\Group_Category.cs" />
+    <Compile Include="Entities\Group_Permission.cs" />
+    <Compile Include="Entities\LikeFile.cs" />
+    <Compile Include="Entities\LikeNote.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Note.cs" />
+    <Compile Include="Entities\Note_Characteristic.cs" />
+    <Compile Include="Entities\Note_Tag.cs" />
+    <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\User_Permission.cs" />
+    <Compile Include="Security\IHashCalculator.cs" />
+    <Compile Include="Security\SecurityHelper.cs" />
+    <Compile Include="LikeFileInfo.cs" />
+    <Compile Include="LikeNoteInfo.cs" />
     <Compile Include="Entities\DBEntities.cs" />
-    <Compile Include="ISecurityHelper.cs" />
-    <Compile Include="Entities\Catalog.cs" />
-    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Security\ISecurityHelper.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Sha256HashCalculator.cs" />
+    <Compile Include="UsersInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataBaseLayer\DataBaseLayer.csproj">

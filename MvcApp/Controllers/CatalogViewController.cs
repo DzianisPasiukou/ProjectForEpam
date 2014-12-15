@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using LogicLayer.Entities;
 using LogicLayer.CatalogManager;
+using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 
 namespace MvcApp.Controllers
 {
@@ -12,24 +13,10 @@ namespace MvcApp.Controllers
     {
         //
         // GET: /CatalogView/
-        ITree _tree;
-        public CatalogViewController(ITree tree)
-        {
-            if (tree == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _tree = tree;
-        }
-        //
-        // GET: /CatalogView/
+        [Authorize]
         public ActionResult Index()
         {
-
-            TreeView treeCatalog = _tree.GetTree();
-
-            return View(treeCatalog);
+            return View();
         }
-       
     }
 }
