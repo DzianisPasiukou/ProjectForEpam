@@ -151,6 +151,12 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dashboard\font-awesome.css" />
+    <Content Include="Content\dashboard\font-awesome.min.css" />
+    <Content Include="Content\dashboard\metisMenu.css" />
+    <Content Include="Content\dashboard\metisMenu.min.css" />
+    <Content Include="Content\dashboard\morris.css" />
+    <Content Include="Content\dashboard\sb-admin-2.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -195,8 +201,14 @@
     <Content Include="Content\themes\default\style.css" />
     <Content Include="Content\themes\default\style.min.css" />
     <Content Include="Content\themes\default\throbber.gif" />
+    <Content Include="Content\dashboard\timeline.css" />
+    <Content Include="fonts\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fonts\FontAwesome.otf" />
     <None Include="Resources\4.jpg" />
     <None Include="Resources\161550_294946.jpg" />
     <None Include="Resources\url.jpg" />
@@ -230,6 +242,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\themes\default\Thumbs.db" />
+    <Content Include="Scripts\dashboard\metisMenu.js" />
+    <Content Include="Scripts\dashboard\metisMenu.min.js" />
+    <Content Include="Scripts\dashboard\morris-data.js" />
+    <Content Include="Scripts\dashboard\morris.js" />
+    <Content Include="Scripts\dashboard\morris.min.js" />
+    <Content Include="Scripts\dashboard\raphael.min.js" />
+    <Content Include="Scripts\dashboard\sb-admin-2.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1058,7 +1077,9 @@
     <Compile Include="Providers\MySimpleRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -1072,6 +1093,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\CatalogView\Index.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Account\Account1.cshtml" />
+    <Content Include="Views\Account\Account.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1095,6 +1118,7 @@
       <LastGenOutput>NoteAvatars.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

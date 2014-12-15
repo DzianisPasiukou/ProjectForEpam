@@ -13,6 +13,7 @@ namespace MvcApp.Controllers
     {
         //
         // GET: /CatalogView/
+        [Authorize]
         public ActionResult Index()
         {
             return View();

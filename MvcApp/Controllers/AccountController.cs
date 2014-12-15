@@ -81,15 +81,15 @@ namespace MvcApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult Account()
         {
-            User user = new User();
             return View();
         }
     }

@@ -6,9 +6,14 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/navigation.css" rel="stylesheet" />
-    <link href="~/Content/dashboard.css" rel="stylesheet" />
+    @*<link href="~/Content/navigation.css" rel="stylesheet" />*@
+    @*<link href="~/Content/dashboard.css" rel="stylesheet" />*@
     <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
+    @*<link href="~/Content/dashboard/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/timeline.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/morris.css" rel="stylesheet" />*@
+    <link href="~/Content/dashboard/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -54,6 +59,11 @@
     <script src="~/Scripts/myScripts/addNoteCtrl.js"></script>
     <script src="~/Scripts/ui.bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
     <script src="~/Scripts/textAngular.js"></script>
+    <script src="~/Scripts/dashboard/metisMenu.min.js"></script>
+    <script src="~/Scripts/dashboard/raphael.min.js"></script>
+    <script src="~/Scripts/dashboard/morris.min.js"></script>
+    <script src="~/Scripts/dashboard/morris-data.js"></script>
+    <script src="~/Scripts/dashboard/sb-admin-2.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>
