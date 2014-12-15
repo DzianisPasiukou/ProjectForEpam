@@ -1051,6 +1051,7 @@
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\SignalR\addMessageToLayoutDropMessages.js" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />

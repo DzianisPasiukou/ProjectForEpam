@@ -1,11 +1,15 @@
 ﻿@if (Request.IsAuthenticated)
 {
+   <!--test-->
+    <input type="button" id="okbtn" value="OK" />
+    <!---->
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
-            <ul class="dropdown-menu dropdown-messages">
+            <ul class="dropdown-menu dropdown-messages" id="dropMessages">
+                <!--begin message-->
                 <li>
                     <a href="#">
                         <div>
@@ -16,31 +20,8 @@
                         </div>
                         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                     </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
+                </li>                    
+                <!--end message-->
                 <li class="divider"></li>
                 <li>
                     <a class="text-center" href="#">
@@ -48,13 +29,14 @@
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
+                
             </ul>
             <!-- /.dropdown-messages -->
         </li>
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> @HttpContext.Current.User.Identity.Name  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i><span id="userName"> @HttpContext.Current.User.Identity.Name</span>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
