@@ -88,7 +88,12 @@ namespace MvcApp.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        public ActionResult Account()
+        public ActionResult ProfileInformation()
+        {
+            return View();
+        }
+
+        public ActionResult Chat()
         {
             return View();
         }

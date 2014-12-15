@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #f8f8f8;
+    /*background-color: #f8f8f8;*/
 }
 
 #wrapper {
@@ -23,7 +23,7 @@ body {
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
+        /*border-left: 1px solid #e7e7e7;*/
     }
 }
 

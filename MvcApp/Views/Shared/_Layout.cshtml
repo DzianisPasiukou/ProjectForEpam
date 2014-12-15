@@ -6,17 +6,17 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    @*<link href="~/Content/navigation.css" rel="stylesheet" />*@
-    @*<link href="~/Content/dashboard.css" rel="stylesheet" />*@
+    @*<link href="~/Content/navigation.css" rel="stylesheet" />
+    <link href="~/Content/dashboard.css" rel="stylesheet" />*@
     <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
-    @*<link href="~/Content/dashboard/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/metisMenu.min.css" rel="stylesheet" />
     <link href="~/Content/dashboard/timeline.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/morris.css" rel="stylesheet" />
     <link href="~/Content/dashboard/sb-admin-2.css" rel="stylesheet" />
-    <link href="~/Content/dashboard/morris.css" rel="stylesheet" />*@
     <link href="~/Content/dashboard/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,7 +33,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </nav>
     @RenderBody()
 
     <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
@@ -47,7 +47,7 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-   
+
     <script src="~/Scripts/myScripts/angular.js"></script>
     <script src="~/Scripts/myScripts/angular.treeview.js"></script>
     <script src="~/Scripts/myScripts/App.js"></script>
