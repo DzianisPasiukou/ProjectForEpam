@@ -1,5 +1,4 @@
-﻿myApp.controller('catalogCtrl', function ($scope, catalogData, $modal, $log) {
-
+﻿myApp.controller('catalogCtrl', function ($scope, catalogData, userInfoData, noteInfoData, $modal, $log) {
 
     function getCatalogs() {
         catalogData.getTree().success(function (data) {
@@ -19,16 +18,13 @@
          }
          else {
              getRecord(value.idNote);
+             enableLike(value.idNote, "note");
              CreateByUser($scope.record.Id_User);
              $('#disc').hide();
              $('#record').show();
          }
         }
-     function CreateByUser(idUser) {
-         catalogData.getUserName(idUser).success(function (data) {
-             $scope.creator =  data;
-         });
-     }
+    
      function init(childNode) {
          
          var child = [];
@@ -67,5 +63,20 @@
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
-    }
+   }
+   function CreateByUser(idUser) {
+       userInfoData.getUserName(idUser).success(function (data) {
+           $scope.creator = data;
+       });
+   }
+   function enableLike(id, noteOrFile) {
+       noteInfoData.getLikeEnable(id, noteOrFile).success(function (data) {
+           if (data == "true") {
+               $('#say').attr("disabled", "disabled");
+           }
+           else {
+               $('#say').removeAttr("disabled");
+           }
+       });
+   }
 });

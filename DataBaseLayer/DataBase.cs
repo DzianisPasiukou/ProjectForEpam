@@ -17,7 +17,6 @@ namespace DataBaseLayer
             _key = "ID";
             _connection = connection;
         }
-      
         public bool Add(object obj)
         {
             
@@ -26,7 +25,7 @@ namespace DataBaseLayer
            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
 
            string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
-           return DataBaseManager.Execute(comm,_connection);
+           return DataBaseManager.Execute(comm, _connection);
         }
         public bool Update(object obj)
         {

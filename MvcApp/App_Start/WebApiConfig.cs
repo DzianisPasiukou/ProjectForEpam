@@ -12,6 +12,13 @@ namespace MvcApp
                 "api/{controller}/{id}",
                 new {id = RouteParameter.Optional }
                 );
+            /*
+            config.Routes.MapHttpRoute(
+                "Like Routing",
+                "api/{controller}/{id}/{noteOrFile}",
+                new { id = RouteParameter.Optional, noteOrFile = "" }
+                );
+             * */
         }
     }
 }

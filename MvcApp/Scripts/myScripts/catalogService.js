@@ -7,8 +7,4 @@
         var url = "/api/CatalogTree/" + id
         return $http.get(url);
     }
-    this.getUserName = function (idUser) {
-        var url = "/api/UsersInfo/" + idUser;
-        return $http.get(url);
-    }
 })

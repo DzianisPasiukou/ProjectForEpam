@@ -149,6 +149,8 @@
     <Content Include="App_Data\EpamProject_log.ldf">
       <DependentUpon>EpamProject.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\1418616345_174742.ico" />
+    <Content Include="Content\1418616470_message.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -1012,8 +1014,25 @@
     <Content Include="Scripts\myScripts\angular.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
+    <Content Include="Scripts\myScripts\noteInfoService.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\myScripts\userService.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\sb-admin\bootstrap.css" />
+    <Content Include="Scripts\sb-admin\bootstrap.js" />
+    <Content Include="Scripts\sb-admin\bootstrap.min.css" />
+    <Content Include="Scripts\sb-admin\bootstrap.min.js" />
+    <Content Include="Scripts\sb-admin\font-awesome.css" />
+    <Content Include="Scripts\sb-admin\jquery.js" />
+    <Content Include="Scripts\sb-admin\metisMenu.css" />
+    <Content Include="Scripts\sb-admin\metisMenu.js" />
+    <Content Include="Scripts\sb-admin\morris-data.js" />
+    <Content Include="Scripts\sb-admin\morris.css" />
+    <Content Include="Scripts\sb-admin\morris.js" />
+    <Content Include="Scripts\sb-admin\raphael.min.js" />
+    <Content Include="Scripts\sb-admin\sb-admin-2.css" />
+    <Content Include="Scripts\sb-admin\sb-admin-2.js" />
+    <Content Include="Scripts\sb-admin\timeline.css" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
@@ -1072,6 +1091,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\CatalogView\Index.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\sb-admin\sb-admin-2.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

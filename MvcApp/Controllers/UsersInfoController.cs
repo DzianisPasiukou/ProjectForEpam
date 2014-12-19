@@ -41,12 +41,12 @@ namespace MvcApp.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        
         // GET api/<controller>/5
         public User Get(int id)
         {
             return _dataUserInfo.GetBy("Id_User", id.ToString()).First();
         }
-
         public bool GetLikeEnable(int id, string noteOrFile)
         {
             string login = User.Identity.Name.ToString();
@@ -81,8 +81,31 @@ namespace MvcApp.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(string noteOrFile,int id)
         {
+            string login = User.Identity.Name.ToString();
+            int idUser = _dataUserInfo.GetBy("Login", login).First().Id_User;
+            
+            if (noteOrFile == "note")
+            {
+                _dataNoteInfo.Add(new LikeNote()
+                    {
+                        Id_Note = id,
+                        Id_User = idUser
+                    });
+            }
+            else if (noteOrFile == "file")
+            {
+                _dataFileInfo.Add(new LikeFile()
+                {
+                    Id_File = id,
+                    Id_User = idUser
+                });
+            }
+            else
+            {
+                throw new ArgumentException("wrong description if likes");
+            }
         }
 
         // DELETE api/<controller>/5

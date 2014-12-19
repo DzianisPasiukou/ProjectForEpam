@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link href="~/Scripts/myCSS/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <link href="~/Scripts/sb-admin/bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/sb-admin/font-awesome.css" rel="stylesheet" />
     <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
     <link href="~/Scripts/myCSS/textEditor.css" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
@@ -31,7 +32,6 @@
     </div>
     @RenderBody()
 
-    <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.js")"
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
@@ -40,12 +40,17 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="~/Scripts/sb-admin/jquery.js"></script>
+    <script src="~/Scripts/sb-admin/bootstrap.js"></script>
    
     <script src="~/Scripts/myScripts/angular.js"></script>
     <script src="~/Scripts/myScripts/angular.treeview.js"></script>
     <script src="~/Scripts/myScripts/abn_tree_directive.js"></script>
     <script src="~/Scripts/myScripts/App.js"></script>
     <script src="~/Scripts/myScripts/catalogService.js"></script>
+    <script src="~/Scripts/myScripts/noteInfoService.js"></script>
+    <script src="~/Scripts/myScripts/userService.js"></script>
     <script src="~/Scripts/myScripts/catalogCtrl.js"></script>
     <script src="~/Scripts/myScripts/modalCompareCtrl.js"></script>
     <script src="~/Scripts/myScripts/recordCtrl.js"></script>
@@ -55,7 +60,8 @@
     <script src="~/Scripts/textAngularSetup.js"></script>
     <script src="~/Scripts/textAngular.js"></script>
     <script src="~/Scripts/textAngular-sanitize.js"></script>
-   
+
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

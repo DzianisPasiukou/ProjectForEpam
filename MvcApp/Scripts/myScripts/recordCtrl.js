@@ -1,6 +1,4 @@
-﻿myApp.controller('recordCtrl', function ($scope, $modal, $log) {
-   
-    $scope.thankDisable = false;
+﻿myApp.controller('recordCtrl', function ($scope, noteInfoData, $modal, $log) {
 
     $scope.open = function (idCategory, size) {
 
@@ -31,8 +29,9 @@
         });
     };
 
-    $scope.sayThank = function (idRecord) {
-        $scope.thankDisable = true;
+    $scope.sayThankToNote = function (idNote) {
+        $('#say').attr("disabled", "disabled");
+        getLike("note", $scope.record.Id_Note);
     }
    
     function findChild(idCategory, category) {
@@ -62,4 +61,8 @@
         }
         return find;
     };
+   
+    function getLike(noteOrFile, id) {
+        noteInfoData.putLike(noteOrFile, id);
+    }
 });
