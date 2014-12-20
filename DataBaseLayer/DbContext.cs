@@ -23,7 +23,7 @@ namespace DataBaseLayer
         private static string GetConnectionstring()
         {
             //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-            return @"Data Source=(LocalDb)\v11.0;AttachDbFilename=C:\Users\Vladislav\Desktop\ProjectForEpam\MvcApp\App_Data\EPAMPROJECT.mdf;Initial Catalog=EPAMPROJECT;Integrated Security=True";
+            return @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\EPAMPROJECT.mdf;Initial Catalog=EPAMPROJECT;Integrated Security=True";
         }
     }
 }
