@@ -12,13 +12,13 @@ app.controller('MyCtrl', function ($scope, $http) {
                      { Id: 10, User: "Enos", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" }];
 
 
+    $scope.lol = function (id) {
+        alert(id);
+        console.log(id);
+    };
 });
 
 
-function lol(id) {
-    alert(id);
-    console.log(id);
-};
 
 $('#minimize').click(function () {
     alert('lol');

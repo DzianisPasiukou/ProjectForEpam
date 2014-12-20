@@ -53,7 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="even gradeC" ng-repeat="data in myData" onclick="lol({{data.Id}});">
+                                        <tr class="even gradeC" ng-repeat="data in myData" ng-click="lol(data.Id)">
                                     <td> <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">{{ data.User }}</td>
                                     <td>{{data.Date}}</td>
                                     <td>{{data.Message}}</td>
