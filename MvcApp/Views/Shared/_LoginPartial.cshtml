@@ -10,40 +10,24 @@
                     <a href="#">
                         <div>
                             <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
+                            <span class="text-muted">
+                                <em>
+                                    <shortdate style="color:red">
+                                        @DateTime.Now.ToShortDateString()
+                                    </shortdate>
+                                    <shortTime style="color:blue">
+                                        @DateTime.Now.ToShortTimeString()
+                                    </shortTime>
+                                
+                                </em>
                             </span>
                         </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        <div>Lorem sdhfuiasgfuysdiyufgsuyfsdugfwuagusdg sfhiud sidhfi</div>
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
+                    <a class="text-center" href="~/Account/Chat">
                         <strong>Read All Messages</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -61,7 +45,7 @@
                     <a href="/Account/ProfileInformation"><i class="fa fa-user fa-fw"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <a href="/Account/Settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
                 <li>

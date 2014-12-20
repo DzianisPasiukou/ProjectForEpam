@@ -90,11 +90,24 @@ namespace MvcApp.Controllers
 
         public ActionResult ProfileInformation()
         {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }
+
+        public ActionResult UsersInformation()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
 
         public ActionResult Chat()
         {
+            ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
     }

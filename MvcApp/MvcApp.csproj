@@ -151,12 +151,17 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chat.css" />
+    <Content Include="Content\dashboard\dataTables.bootstrap.css" />
     <Content Include="Content\dashboard\font-awesome.css" />
     <Content Include="Content\dashboard\font-awesome.min.css" />
     <Content Include="Content\dashboard\metisMenu.css" />
     <Content Include="Content\dashboard\metisMenu.min.css" />
     <Content Include="Content\dashboard\morris.css" />
+    <Content Include="Content\dashboard\MyStyle.css" />
     <Content Include="Content\dashboard\sb-admin-2.css" />
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\ng-grid.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -242,11 +247,14 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\themes\default\Thumbs.db" />
+    <Content Include="Scripts\dashboard\dataTables.bootstrap.js" />
+    <Content Include="Scripts\dashboard\jquery.dataTables.js" />
     <Content Include="Scripts\dashboard\metisMenu.js" />
     <Content Include="Scripts\dashboard\metisMenu.min.js" />
     <Content Include="Scripts\dashboard\morris-data.js" />
     <Content Include="Scripts\dashboard\morris.js" />
     <Content Include="Scripts\dashboard\morris.min.js" />
+    <Content Include="Scripts\dashboard\ng-grid.debug.js" />
     <Content Include="Scripts\dashboard\raphael.min.js" />
     <Content Include="Scripts\dashboard\sb-admin-2.js" />
     <Content Include="Scripts\errors.json" />
@@ -260,6 +268,7 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Resources\Web.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\flow\ng-flow-standalone.js" />
     <Content Include="Scripts\flow\ng-flow-standalone.min.js" />
@@ -1027,11 +1036,14 @@
     <Content Include="Scripts\myCSS\animate.min.css" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
+    <Content Include="Scripts\myScripts\Chat.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\ng-grid.js" />
+    <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
@@ -1092,10 +1104,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\CatalogView\Index.cshtml" />
-    <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\ProfileInformation.cshtml" />
-    <Content Include="Views\Shared\_AccountPartial.cshtml" />
+    <Content Include="Views\Shared\_AccountPartialAdmin.cshtml" />
     <Content Include="Views\Account\Chat.cshtml" />
+    <Content Include="Views\Shared\_AccountPartialAll.cshtml" />
+    <Content Include="Views\Account\UsersInformation.cshtml" />
+    <Content Include="Views\Account\Settings.cshtml" />
+    <Content Include="Scripts\version.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

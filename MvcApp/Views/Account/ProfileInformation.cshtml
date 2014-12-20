@@ -1,6 +1,20 @@
-﻿@{
-    ViewBag.Title = "Account";
-    Layout = "~/Views/Shared/_AccountPartial.cshtml";
+﻿@using LogicLayer.Security
+
+@{
+    ViewBag.Title = "Profile Information";
+
+    SecurityHelper _securityHelper = ViewBag.SecurityHelper;
+
+    if (_securityHelper.GetGroupForUser(User.Identity.Name).Contains("Admin"))
+    {
+        Layout = "~/Views/Shared/_AccountPartialAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AccountPartialAll.cshtml";
+    }
+
+
 }
 
 <div id="page-wrapper">
