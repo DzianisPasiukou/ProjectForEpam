@@ -4,44 +4,48 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                <span id="count"></span>
             </a>
-            <ul class="dropdown-menu dropdown-messages" id="dropMessages">
-                <!--begin message-->
+            <ul class="dropdown-menu dropdown-messages">
                 <li>
                     <a href="#">
                         <div>
                             <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
+                            <span class="text-muted">
+                                <em>
+                                    <shortdate style="color:red">
+                                        @DateTime.Now.ToShortDateString()
+                                    </shortdate>
+                                    <shortTime style="color:blue">
+                                        @DateTime.Now.ToShortTimeString()
+                                    </shortTime>
+                                
+                                </em>
                             </span>
                         </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        <div>Lorem sdhfuiasgfuysdiyufgsuyfsdugfwuagusdg sfhiud sidhfi</div>
                     </a>
-                </li>                    
-                <!--end message-->
+                </li>
                 <li class="divider"></li>
                 <li>
-                    <a class="text-center" href="#">
+                    <a class="text-center" href="~/Account/Chat">
                         <strong>Read All Messages</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
-                
             </ul>
             <!-- /.dropdown-messages -->
         </li>
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i><span id="userName"> @HttpContext.Current.User.Identity.Name</span>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> @HttpContext.Current.User.Identity.Name  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
                     <a href="/Account/ProfileInformation"><i class="fa fa-user fa-fw"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <a href="/Account/Settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
                 <li>
