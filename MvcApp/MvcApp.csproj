@@ -230,6 +230,7 @@
     <Content Include="fonts\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fonts\FontAwesome.otf" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Resources\4.jpg" />
     <None Include="Resources\161550_294946.jpg" />
     <None Include="Resources\url.jpg" />
@@ -1038,6 +1039,7 @@
     <Content Include="Scripts\jquery-ui-1.11.2.js" />
     <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.ui.tabs.js" />
@@ -1080,7 +1082,9 @@
     <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-tpls-0.12.0.js" />
     <Content Include="Scripts\ui.bootstrap\ui-bootstrap-custom-tpls-0.12.0.min.js" />
     <Content Include="Scripts\ui.bootstrap\ui-bootstrap-tpls-0.12.0.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -1093,6 +1097,7 @@
     <Compile Include="Controllers\CatalogViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CatalogTreeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1132,6 +1137,7 @@
     <Content Include="Views\Account\UsersInformation.cshtml" />
     <Content Include="Views\Account\Settings.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Shared\_ChatPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

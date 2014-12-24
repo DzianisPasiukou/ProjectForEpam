@@ -38,6 +38,10 @@
     </nav>
     @RenderBody()
 
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("_ChatPartial");
+    }
 
     <div style="position:fixed;right:0;margin-right:20px;bottom:0px;z-index:2000000005;width:400px;overflow:hidden;">
 
