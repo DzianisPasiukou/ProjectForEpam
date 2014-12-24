@@ -38,102 +38,10 @@
     </nav>
     @RenderBody()
 
-
-    <div style="position:fixed;right:0;margin-right:20px;bottom:0px;z-index:2000000005;width:400px;overflow:hidden;">
-
-        <div class="chat-panel panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-comments fa-fw"></i>
-                Chat
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="minimize" data-toggle="dropdown">
-                        <i class="fa fa-chevron-down"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <ul class="chat">
-                    <li class="left clearfix">
-                        <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <strong class="primary-font">Jack Sparrow</strong>
-                                <small class="pull-right text-muted">
-                                    <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                </small>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <small class=" text-muted">
-                                    <i class="fa fa-clock-o fa-fw"></i> 13 mins ago
-                                </small>
-                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <strong class="primary-font">Jack Sparrow</strong>
-                                <small class="pull-right text-muted">
-                                    <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                </small>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <small class=" text-muted">
-                                    <i class="fa fa-clock-o fa-fw"></i> 15 mins ago
-                                </small>
-                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.panel-body -->
-            <div class="panel-footer">
-                <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                    <span class="input-group-btn">
-                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Send
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <!-- /.panel-footer -->
-        </div>
-    </div>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("_ChatPartial");
+    }
 
     <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.js")"
@@ -160,13 +68,12 @@
     <script src="~/Scripts/textAngular.js"></script>
     <script src="~/Scripts/dashboard/metisMenu.min.js"></script>
     <script src="~/Scripts/dashboard/raphael.min.js"></script>
-    <script src="~/Scripts/dashboard/morris.min.js"></script>
-    <script src="~/Scripts/dashboard/morris-data.js"></script>
     <script src="~/Scripts/dashboard/sb-admin-2.js"></script>
     <script src="~/Scripts/dashboard/jquery.dataTables.js"></script>
     <script src="~/Scripts/dashboard/dataTables.bootstrap.js"></script>
-    <script src="~/Scripts/myScripts/Chat.js"></script>
     <script src="~/Scripts/ng-grid.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/myScripts/Chat.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,12 +1,46 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Home page";
 }
-
 <div class="container body-content">
     <h1>Home page</h1>
     <hr />
-    
-    <h3>Some information about site</h3>
 
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>More than</div><div class="huge"> 200</div>
+                            <div> users!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Over</div>
+                            <div class="huge">1000</div>
+                            <div>items!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Join us now!</h1>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - All rights reserved</p>
+    </footer>
 </div>
