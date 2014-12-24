@@ -174,3 +174,12 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+EpamProject.v12.suo
+MvcApp/App_Data/EpamProject.mdf
+MvcApp/App_Data/EpamProject_log.ldf
+MvcApp/bin/DataBaseLayer.dll
+MvcApp/bin/DataBaseLayer.dll
+MvcApp/bin/LoggingManager.dll
+MvcApp/bin/LogicLayer.dll
+MvcApp/bin/MvcApp.dll
+MvcApp/MvcApp.csproj
