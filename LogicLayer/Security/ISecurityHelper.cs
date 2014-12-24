@@ -21,6 +21,6 @@ namespace LogicLayer.Security
 
         string GetGroupForUser(string login);
 
-        bool  AddMessage(string senderUserName, string recipientUserName,string text,string date);
+        bool AddMessage(string senderLogin, string recepientLogin, string text, string date);
     }
 }
