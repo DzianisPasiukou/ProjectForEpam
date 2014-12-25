@@ -65,7 +65,7 @@ namespace MvcApp.Controllers
 
             LoginValidate valid = _securityHelper.LoginUser(model.Login, model.Password);
 
-            if (valid == LoginValidate.Seccess)
+            if (valid == LoginValidate.Success)
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");

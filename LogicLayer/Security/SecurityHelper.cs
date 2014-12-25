@@ -11,7 +11,7 @@ namespace LogicLayer.Security
 {
     public enum LoginValidate
     {
-        Seccess,
+        Success,
         NotApproved,
         NotRegistered
     }
@@ -107,7 +107,7 @@ namespace LogicLayer.Security
             {
                 if (user.IsActive == true)
                 {
-                    return LoginValidate.Seccess;
+                    return LoginValidate.Success;
                 }
                 else
                 {

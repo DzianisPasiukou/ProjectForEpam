@@ -61,7 +61,7 @@ $('#minimize').click(function () {
             console.log('isReload - false');
         }
 
-        $.cookie('hidden', 'false');
+        $.cookie('hidden', 'false', { path: '/' });
     }
 });
 
