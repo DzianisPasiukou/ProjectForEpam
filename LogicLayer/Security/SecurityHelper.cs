@@ -148,13 +148,10 @@ namespace LogicLayer.Security
             }
         }
         public bool AddMessage(string senderLogin, string recipientLogin, string text, string date)
-        {
-            int sender, recipient;
+        {         
             using (DBEntities db = new DBEntities())
             {
-                sender = db.Users.First(user => user.Login.Equals(senderLogin)).Id_User;
-                recipient = db.Users.First(user => user.Login.Equals(recipientLogin)).Id_User;
-                return db.Messages.Add(new Message() {Id_Sender = sender, Id_Recipient = recipient, Text = text, Date = date, IsRead = false });              
+                return db.Messages.Add(new Message() { Login_Sender = senderLogin, Login_Recipient = recipientLogin, Text = text, Date = date, IsRead = false });              
             }
         }
     }

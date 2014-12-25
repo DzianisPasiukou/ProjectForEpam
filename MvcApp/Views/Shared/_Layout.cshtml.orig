@@ -42,10 +42,27 @@
     {
         @Html.Partial("_ChatPartial");
     }
+                    <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font">Jack Sparrow</strong>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
+                                </small>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                            </p>
+                        </div>
+                    </li>
+                    <!--left end-->
+                    <!--right begin-->
+                    <!--right end-->
 
-   
-
-    <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.js")"
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
@@ -76,8 +93,6 @@
     <script src="~/Scripts/ng-grid.min.js"></script>
     <script src="~/Scripts/jquery.cookie.js"></script>
     <script src="~/Scripts/myScripts/Chat.js"></script>
-
-    <!--SignalR-->
     <script src="~/Scripts/jquery.signalR-2.1.2.js" ></script>
     <script src="signalr/hubs"></script>
     <script src="~/Scripts/SignalR/addMessages.js"></script>

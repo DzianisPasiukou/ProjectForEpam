@@ -12,22 +12,23 @@ namespace MvcApp.Hubs
        
         ISecurityHelper _securityHelper = new SecurityHelper();
 
-        public void SendTo(string senderUserName, string recepientUserName, string message)
+        public void SendTo(string senderLogin, string recepientLogin, string message)
         {
             string date = DateTime.Now.ToString();
-            Clients.Client(recepientUserName).Send(message, date);
-            _securityHelper.AddMessage(senderUserName, recepientUserName, message, date);
+            Clients.Caller.AddToPage(senderLogin,message,date);
+            Clients.Group(recepientLogin).Send(senderLogin,message,date);
+            _securityHelper.AddMessage(senderLogin, recepientLogin, message, date);
         }
-        public void Registr(string userName)
+        public void Registr(string login)
         {
-            Groups.Add(Context.ConnectionId, userName);
+            Groups.Add(Context.ConnectionId, login);
         }
 
         //test
-        public void SendAll(string senderUserName,string message,string date)
+        public void SendAll(string senderUserName,string message)
         {         
-            date = DateTime.Now.DayOfWeek.ToString();
-            Clients.Others.addToPage(senderUserName,message,date);
+            string date = DateTime.Now.DayOfWeek.ToString();
+            Clients.Others.addToPageAll(senderUserName,message,date);
             
         }
     }
