@@ -17,7 +17,7 @@ namespace MvcApp.Hubs
             string date = DateTime.Now.ToString();
             Clients.Caller.AddToPage(senderLogin,message,date);
             Clients.Group(recepientLogin).Send(senderLogin,message,date);
-            _securityHelper.AddMessage(senderLogin, recepientLogin, message, date);
+            bool flag = _securityHelper.AddMessage(senderLogin, recepientLogin, message, date);
         }
         public void Registr(string login)
         {

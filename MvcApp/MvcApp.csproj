@@ -230,7 +230,6 @@
     <Content Include="fonts\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fonts\FontAwesome.otf" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Resources\4.jpg" />
     <None Include="Resources\161550_294946.jpg" />
     <None Include="Resources\url.jpg" />
