@@ -1064,7 +1064,7 @@
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\SignalR\addMessageToLayoutDropMessages.js" />
+    <Content Include="Scripts\SignalR\addMessages.js" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />

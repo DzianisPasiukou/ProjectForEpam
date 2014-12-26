@@ -1,82 +1,61 @@
 ﻿var app = angular.module('Chat', ['ngGrid']);
 app.controller('MyCtrl', function ($scope, $http) {
-    $scope.myData = [{ Id: 1, User: "Moroni", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 2, User: "Tiancum", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 3, User: "Jacob", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 4, User: "Nephi", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 5, User: "Moroni", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 6, User: "Moroni", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 7, User: "Nephi", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 8, User: "Moroni", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 9, User: "Moroni", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" },
-                     { Id: 10, User: "Enos", Date: "16.12.2014 22:01", Message: "Hello", Link: "~/Account/Chat" }];
+    $scope.myData = [{ Id: 1, User: "Moroni", Date: "16.12.2014 21:01", Message: "Hello1", Link: "~/Account/Chat" },
+                     { Id: 2, User: "Tiancum", Date: "16.12.2014 20:01", Message: "Hello2", Link: "~/Account/Chat" },
+                     { Id: 3, User: "Jacob", Date: "16.12.2014 19:01", Message: "Hello3", Link: "~/Account/Chat" },
+                     { Id: 4, User: "Nephi", Date: "16.12.2014 18:01", Message: "Hello4", Link: "~/Account/Chat" },
+                     { Id: 5, User: "Moroni", Date: "16.12.2014 17:01", Message: "Hello5", Link: "~/Account/Chat" },
+                     { Id: 6, User: "Moroni", Date: "16.12.2014 16:01", Message: "Hello6", Link: "~/Account/Chat" },
+                     { Id: 7, User: "Nephi", Date: "16.12.2014 15:01", Message: "Hello7", Link: "~/Account/Chat" },
+                     { Id: 8, User: "Moroni", Date: "16.12.2014 14:01", Message: "Hello8", Link: "~/Account/Chat" },
+                     { Id: 9, User: "Moroni", Date: "16.12.2014 12:01", Message: "Hello9", Link: "~/Account/Chat" },
+                     { Id: 10, User: "Enos", Date: "16.12.2014 11:01", Message: "Hello10", Link: "~/Account/Chat" }];
 
+    $scope.chatData = [{ Id: 0, User: "Moroni", Date: "16.12.2014 21:01", Message: "Hello1" },
+                 { Id: 1, User: "Tiancum", Date: "16.12.2014 20:01", Message: "Hello2" },
+                 { Id: 2, User: "Jacob", Date: "16.12.2014 19:01", Message: "Hello3" }]
+
+    $scope.messageClick = function (number) {
+
+        $.cookie('isClosed', 'false', { path: '/' });
+
+        var person = $scope.chatData[number].User;
+
+        $.cookie('withWhom', person, { path: '/' });
+
+        $scope.chatLogin = person;
+
+        $('#allChat').show();
+    };
+
+    $scope.chatLogin = $.cookie('withWhom');
 
     $scope.lol = function (id) {
         alert(id);
         console.log(id);
     };
-});
 
-$('#minimize').click(function () {
+    $(document).ready(function () {
+        var hidden = $.cookie('hidden');
 
-    var isHidden = $.cookie('hidden');
+        var isClosed = $.cookie('isClosed');
 
-    if (isHidden == 'false') {
+        if (isClosed == 'false') {
 
-        a = $('#hiddenChat').html();
-        $('#hiddenChat').hide();
+            $('#allChat').show();
 
-        $.cookie('hidden', 'true', { path: '/' });
-    }
-    else {
-
-        $('#hiddenChat').show();
-        var isReload = $.cookie('isReload');
-        if (isReload == 'true') {
-
-            //request to server (ajax)
-
-            //var url = "/api/Message/";
-
-            //var array;
-
-            //$.ajax({
-            //    url: '/api/Message',
-            //    success: function () {
-            //        alert('Load was performed.');
-            //    }
-            //});
-
-            //console.log(array);
-
-            //$('#hiddenChat').append('<div class="panel-body" id="scroll"><ul class="chat" id="chat-messages"></ul></div><!-- /.panel-body --><div class="panel-footer"><div class="input-group"><input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." /><span class="input-group-btn"><button class="btn btn-warning btn-sm" id="btn-chat">Send</button></span></div></div>');
-            $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-            $.cookie('isReload', 'false', { path: '/' });
-
-            console.log('isReload - false');
+            if (hidden == 'true') {
+                $('#hiddenChat').hide();
+                $.cookie('isReload', "true", { path: '/' });
+            }
+            else {
+                $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+            }
         }
 
-        $.cookie('hidden', 'false', { path: '/' });
-        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-    }
-});
+    });
 
-$('#close').click(function () {
-    $('#allChat').hide();
-});
-
-$(function () {
-    var b = $.cookie('hidden');
-
-    if (b == 'true') {
-        $('#hiddenChat').hide();
-        $.cookie('isReload', "true", { path: '/' });
-    }
-    else {
-        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-    }
-
-    console.log(b);
 
 });
+
+
