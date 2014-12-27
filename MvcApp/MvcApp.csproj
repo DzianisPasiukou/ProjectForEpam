@@ -1055,9 +1055,9 @@
     <Content Include="Scripts\myCSS\animate.min.css" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
-    <Content Include="Scripts\myScripts\Chat.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
+    <Content Include="Scripts\myScripts\messageCtrl.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />

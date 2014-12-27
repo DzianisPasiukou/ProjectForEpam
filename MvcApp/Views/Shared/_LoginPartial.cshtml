@@ -1,16 +1,15 @@
 ﻿@if (Request.IsAuthenticated)
 {
-
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" ng-controller="messageCtrl">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-messages">
                 <li ng-repeat="message in chatData">
-                    <a href="" ng-click="messageClick(message.Id)">
+                    <a href="" ng-click="messageClick(message.Number)">
                         <div>
-                            <strong id="loginOne">{{message.User}}</strong>
+                            <strong id="loginOne">{{message.Login}}</strong>
                             <span class="text-muted">
                                 <em>
                                     <shortdate style="color:red">
