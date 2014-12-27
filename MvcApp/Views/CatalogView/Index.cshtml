@@ -1,5 +1,5 @@
-﻿<div ng-app="myApp">
-    <div id="catalog" ng-controller="catalogCtrl">
+﻿<div ng-controller="catalogCtrl">
+    <div id="catalog">
         <div data-angular-treeview="true"
              data-tree-id="abc"
              data-tree-model="treedata"
@@ -54,10 +54,11 @@
             </script>
             <script type="text/ng-template" id="compareModal.html">
                 <div class="modal-header">
-                    <h3 class="modal-title">Compare 
-                    <label>
-                        {{records[0].Name}} with {{records[1].Name}}
-                        </label> 
+                    <h3 class="modal-title">
+                        Compare
+                        <label>
+                            {{records[0].Name}} with {{records[1].Name}}
+                        </label>
                     </h3>
                 </div>
                 <button class="btn btn-primary" ng-click="return()">Return</button>
@@ -87,6 +88,5 @@
             </div>
         </div>
     </div>
+
 </div>
-
-

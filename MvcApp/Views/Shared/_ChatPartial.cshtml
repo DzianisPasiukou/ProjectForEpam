@@ -1,10 +1,10 @@
 ﻿
-<div style="position:fixed;right:0;margin-right:20px;bottom:0px;z-index:2000000005;width:400px;overflow:hidden;" id="allChat">
+<div style="position:fixed;right:0;margin-right:20px;bottom:0px;z-index:2000000005;width:400px;overflow:hidden; display:none" id="allChat" ng-controller="messageCtrl">
 
     <div class="chat-panel panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" id="textLogin">
             <i class="fa fa-comments fa-fw"></i>
-            Chat
+            {{chatLogin}}
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default btn-xs" id="minimize">
                     <i class="fa fa-chevron-down"></i>
@@ -17,9 +17,7 @@
         <div id="hiddenChat">
             <!-- /.panel-heading -->
             <div class="panel-body" id="scroll">
-                <ul class="chat" id="chat-messages">
-
-                </ul>
+                <ul class="chat" id="chat-messages"></ul>
             </div>
             <!-- /.panel-body -->
             <div class="panel-footer">

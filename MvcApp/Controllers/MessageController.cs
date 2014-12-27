@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LogicLayer.Entities;
+using LogicLayer.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +11,23 @@ namespace MvcApp.Controllers
 {
     public class MessageController : ApiController
     {
-        // GET: api/Message
-        public IEnumerable<string> Get()
+        private ISecurityHelper _securityHelper;
+
+        public MessageController(ISecurityHelper securityHelper)
         {
-            return new string[] { "value1", "value2" };
+            if (securityHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _securityHelper = securityHelper;
         }
 
-        // GET: api/Message/5
-        public string Get(int id)
+        public IEnumerable<Message> GetLikeEnable(string sender, string recipient)
         {
-            return "value";
-        }
+            List<Message> messages = _securityHelper.GetMessages(sender, recipient).ToList<Message>();
 
-        // POST: api/Message
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Message/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Message/5
-        public void Delete(int id)
-        {
+            return messages;
         }
     }
 }
