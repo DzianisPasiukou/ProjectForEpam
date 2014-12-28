@@ -15,6 +15,7 @@
                  { Number: 1, Login: "Tiancum", Date: "16.12.2014 20:01", Message: "Hello2" },
                  { Number: 2, Login: "Jacob", Date: "16.12.2014 19:01", Message: "Hello3" }]
 
+    $scope.chatLogin = {};
     //message click on layout
     $scope.messageClick = function (number) {
 
@@ -44,6 +45,8 @@
         console.log($scope.chatLogin);
 
         $('#allChat').show();
+
+        console.log('after show');
 
         var hidden = $.cookie('hidden');
 
