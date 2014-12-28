@@ -61,6 +61,8 @@
             type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="~/signalr/hubs"></script>
 
     <script src="~/Scripts/myScripts/angular.treeview.js"></script>
     <script src="~/Scripts/myScripts/App.js"></script>
@@ -79,12 +81,7 @@
     <script src="~/Scripts/dashboard/dataTables.bootstrap.js"></script>
     <script src="~/Scripts/ng-grid.min.js"></script>
     <script src="~/Scripts/myScripts/messageCtrl.js"></script>
-
-    <!--SignalR-->
-    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
-    <script src="~/signalr/hubs"></script>
-    <script src="~/Scripts/SignalR/addMessages.js"></script>
-
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
