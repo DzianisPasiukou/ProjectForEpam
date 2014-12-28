@@ -41,20 +41,20 @@
                 <td align="center"><a href="" ng-click=""> Edit </a>| <a href="" ng-click=""> Delete </a></td>
                 <td>{{user.Name}} &nbsp; {{user.Surname}}</td>
                 <td ng-click="showInformation(user.Login)">{{user.Login}}</td>
-                <td><input type="checkbox" ng-model="user.IsActive"></td>
+                <td><input type="checkbox" ng-model="user.IsActive" ng-click="checkClick(user.Login,user.IsActive)"></td>
                 <td>{{user.Id_Group}}</td>
                 <td>{{user.DateOfRegistration}}</td>
             </tr>
 
         </table>
 
-    </div>
+        <a id="prevButton" href="" ng-click="prevClick()">
+            Previous
+        </a>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <a id="nextButton" href="" ng-click="nextClick()">
+            Next
+        </a>
 
-    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-        Previous
-    </button>
-    {{currentPage+1}}/{{numberOfPages()}}
-    <button ng-disabled="currentPage >= users.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-        Next
-    </button>
+    </div>
 </div>

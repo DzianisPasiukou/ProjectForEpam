@@ -183,5 +183,17 @@ namespace LogicLayer.Security
                 return messages;
             }
         }
+
+
+        public bool updateUserActive(string login, bool isActive)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                User user = db.Users.First(model => model.Login.Equals(login));
+                user.IsActive = isActive;
+                bool flag = db.Users.Update(user);
+                return flag;
+            }
+        }
     }
 }

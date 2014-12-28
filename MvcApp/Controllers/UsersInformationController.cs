@@ -30,13 +30,17 @@ namespace MvcApp.Controllers
 
         public IEnumerable<User> GetUsers()
         {
-
             return _securityHelper.GetUsers().ToList();
         }
 
-        //public IEnumerable<Group> GetGroups()
+        //public void Post(string login, bool isActive)
         //{
-        //    return _securityHelper.GetGroups().ToList();
+        //    _securityHelper.updateUserActive(login, isActive);
         //}
+
+        public void Put(string login, bool isActive)
+        {
+            _securityHelper.updateUserActive(login, isActive);
+        }
     }
 }

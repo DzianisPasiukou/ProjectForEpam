@@ -56,17 +56,17 @@ namespace MvcApp.Controllers
             if (noteOrFile == "note")
             {
 
-                if (_dataNoteInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_Note == id).Count() > 0)
-                {
-                    find = true;
-                }
+                //if (_dataNoteInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_Note == id).Count() > 0)
+                //{
+                //    find = true;
+                //}
             }
             else if (noteOrFile == "file")
             {
-                if (_dataFileInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_File == id).Count() > 0)
-                {
-                    find = true;
-                }
+                //if (_dataFileInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_File == id).Count() > 0)
+                //{
+                //    find = true;
+                //}
             }
             else
             {

@@ -1099,6 +1099,7 @@
     <Compile Include="Controllers\CatalogTreeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
     <Compile Include="Controllers\UsersInformationController.cs" />
     <Compile Include="Global.asax.cs">

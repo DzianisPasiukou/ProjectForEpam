@@ -40,7 +40,7 @@ namespace DataBaseLayer
 
             if (!String.IsNullOrEmpty(prop))
             {
-                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), prop);
+                string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", _table, str, _key, prop);
                 return DataBaseManager.Execute(comm, _connection);
             }
             else

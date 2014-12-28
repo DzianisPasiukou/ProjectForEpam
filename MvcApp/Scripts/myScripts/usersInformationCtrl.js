@@ -1,8 +1,24 @@
 ﻿myApp.controller('usersInformationCtrl', function ($scope, $http) {
 
+    $scope.prevClick = function () {
+        if ($scope.currentPage == 0) {
+            return;
+        }
+        else {
+            $scope.currentPage -= 1;
+        }
+    }
+
+    $scope.nextClick = function () {
+        if ($scope.currentPage > ($scope.users.length / $scope.pageSize) - 1) {
+            return;
+        }
+        else {
+            $scope.currentPage += 1;
+        }
+    }
+
     $scope.showInformation = function (login) {
-
-
 
     };
 
@@ -26,9 +42,18 @@
 
     };
 
-    $.ajax({
-        url: '/api/UsersInformation',
+    $scope.checkClick = function (login, isActive) {
 
+        $.ajax({
+            url: '/api/Users/?login=' + login + "&isActive=" + isActive,
+            type: "PUT",
+        });
+
+    };
+
+    $.ajax({
+        url: '/api/Users',
+        type: "GET",
         success: function (data) {
 
             $.each(data, function () {
@@ -41,7 +66,7 @@
 
             $scope.users = data;
 
-            var b = $http.get('/api/UsersInformation');
+            var b = $http.get('/api/Users');
 
             $scope.currentPage = 0;
             $scope.pageSize = 10;

@@ -28,7 +28,7 @@ namespace LogicLayer.Entities
       public DBSet<User_Permission> User_Permissions { get; set; }
       public DBEntities():base()
       {
-          Users = new DBSet<User>(connection, "Id_User");
+          Users = new DBSet<User>(connection, "Login");
           Groups = new DBSet<Group>(connection, "Id_Group");
           Categories = new DBSet<Category>(connection, "Id_Category");
           Notes = new DBSet<Note>(connection, "Id_Note");
