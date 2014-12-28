@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
-using LogicLayer.Security;
+using LogicLayer.Chat;
 
 namespace MvcApp.Hubs
 {
+    [Authorize]
     public class MessageHub : Hub
     {
-       
-        ISecurityHelper _securityHelper = new SecurityHelper();
 
-        public void SendTo(string senderLogin, string recepientLogin, string message)
+        IChatHelper _chatHelper;
+
+        public MessageHub(IChatHelper chatHelper)
         {
+            if (chatHelper == null)
+            {
+                throw new NullReferenceException("chatHelper/MessageHub");
+            }
+            _chatHelper = chatHelper;
+        }
+
+        public void SendTo(string recepientLogin, string message)
+        {
+            string senderLogin = Context.User.Identity.Name;
             string date = DateTime.Now.ToString();
-            Clients.Caller.AddToPage(senderLogin,message,date);
-            Clients.Group(recepientLogin).Send(senderLogin,message,date);
-            bool flag = _securityHelper.AddMessage(senderLogin, recepientLogin, message, date);
-        }
-        public void Registr(string login)
-        {
-            Groups.Add(Context.ConnectionId, login);
-        }
 
-        //test
-        public void SendAll(string senderUserName,string message)
-        {         
-            string date = DateTime.Now.DayOfWeek.ToString();
-            Clients.Others.addToPageAll(senderUserName,message,date);
-            
-        }
+            Clients.Caller.AddToPage(senderLogin, message, date);
+            Clients.User(recepientLogin).Send(senderLogin, message, date);
+            _chatHelper.AddMessage(senderLogin, recepientLogin, message, date);
+        }       
     }
 }
