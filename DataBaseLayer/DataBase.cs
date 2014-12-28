@@ -7,41 +7,40 @@ namespace DataBaseLayer
 
     public class DataBase : IDataReader
     {
-       private static SqlConnection _connection;
+       private SqlConnection _connection;
        private string _table;
        private string _key;
-        public DataBase()
+       private static object lobj = new object();
+        public DataBase(SqlConnection connection)
         {
             _table = "User";
             _key = "ID";
+            _connection = connection;
         }
-      private static string GetConnectionstring()
-       {
-         //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-           return @"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\С#\asp_project\EpamProject\MvcApp\App_Data\EpamProject.mdf;Integrated Security=True";
-       }
       
         public bool Add(object obj)
         {
             
            string nameProp, valueProp;
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
-           DataBaseManager.ClearID(obj, ref nameProp, ref valueProp);
+           DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
 
-           string comm = String.Format(@"INSERT INTO {0} ({1}) VALUES ({2})",_table,nameProp,valueProp);
+           string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
            return DataBaseManager.Execute(comm,_connection);
         }
         public bool Update(object obj)
         {
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
+            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
+            
 
             string prop = DataBaseManager.FindProperty(obj, _key);
 
-            if (String.IsNullOrEmpty(prop))
+            if (!String.IsNullOrEmpty(prop))
             {
-                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), DataBaseManager.FindProperty(obj, _key));
+                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), prop);
                 return DataBaseManager.Execute(comm, _connection);
             }
             else
@@ -62,7 +61,7 @@ namespace DataBaseLayer
        }
         public List<Dictionary<string,object>> GetData(string args)
         {
-            string comm = (args == "*") ? String.Format("SELECT * FROM {0}", _table) : String.Format("SELECT * FROM {0} Where {1}", _table, DataBaseManager.View(args));
+            string comm = (args == "*") ? String.Format("SELECT * FROM [{0}]", _table) : String.Format("SELECT * FROM [{0}] Where {1}", _table, DataBaseManager.View(args));
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
 
                 using (SqlCommand command = new SqlCommand(comm,_connection))
@@ -96,45 +95,6 @@ namespace DataBaseLayer
               _key = value;
           }
       }
-
-     static public void ConnectionOpen()
-      {
-          if (_connection == null)
-          {
-              _connection = new SqlConnection(GetConnectionstring());
-              _connection.Open();
-          }
-          else
-          {
-              _connection.Close();
-              _connection = new SqlConnection(GetConnectionstring());
-              _connection.Open();
-          }
-      }
-
-     static public void ConnectionClose()
-      {
-          _connection.Close();
-      }
-
-
-     static public void ConnectionOpen(string connectionString)
-      {
-          if (_connection == null)
-          {
-              if (_connection.ConnectionString != connectionString)
-                  _connection.Close();
-              _connection = new SqlConnection(connectionString);
-              _connection.Open();
-          }
-          else
-          {
-              _connection = new SqlConnection(connectionString);
-              _connection.Open();
-          }
-      }
-
-
       public string EntityName
       {
           get

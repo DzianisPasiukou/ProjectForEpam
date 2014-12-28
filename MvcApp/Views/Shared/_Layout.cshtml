@@ -1,16 +1,24 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="Chat">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/navigation.css" rel="stylesheet" />
-    <link href="~/Content/dashboard.css" rel="stylesheet" />
+    <link href="~/Scripts/myCSS/treeview.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/timeline.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/morris.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/MyStyle.css" rel="stylesheet" />
+    <link href="~/Content/dashboard/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Chat.css" rel="stylesheet" />
+    <link href="~/Content/ng-grid.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,31 +30,51 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Catalog", "Index", "Catalog")</li>
+                    <li>@Html.ActionLink("Catalog", "Index", "CatalogView")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </nav>
     @RenderBody()
-   
 
-    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("_ChatPartial");
+    }
+
+    <script src="~/Scripts/myScripts/jquery-1.10.2.js"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.js")"
             type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jstree.js")" type="text/javascript"></script>
     <link href="../../Scripts/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        $(function () {
-            $('#catalog')
-   .jstree();
-        });
-    </script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"
             type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"
             type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="~/Scripts/myScripts/angular.js"></script>
+    <script src="~/Scripts/myScripts/angular.treeview.js"></script>
+    <script src="~/Scripts/myScripts/App.js"></script>
+    <script src="~/Scripts/myScripts/catalogService.js"></script>
+    <script src="~/Scripts/myScripts/catalogCtrl.js"></script>
+    <script src="~/Scripts/myScripts/modalCompareCtrl.js"></script>
+    <script src="~/Scripts/myScripts/recordCtrl.js"></script>
+    <script src="~/Scripts/myScripts/modalRecordCompare.js"></script>
+    <script src="~/Scripts/myScripts/addNoteCtrl.js"></script>
+    <script src="~/Scripts/ui.bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="~/Scripts/textAngular.js"></script>
+    <script src="~/Scripts/dashboard/metisMenu.min.js"></script>
+    <script src="~/Scripts/dashboard/raphael.min.js"></script>
+    <script src="~/Scripts/dashboard/sb-admin-2.js"></script>
+    <script src="~/Scripts/dashboard/jquery.dataTables.js"></script>
+    <script src="~/Scripts/dashboard/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/ng-grid.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/myScripts/Chat.js"></script>
+    <script src="~/Scripts/myScripts/taskCtrl.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

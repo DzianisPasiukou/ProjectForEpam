@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Reflection;
+using System.Data.SqlClient;
 
 namespace DataBaseLayer
 {
@@ -13,11 +14,12 @@ namespace DataBaseLayer
     {
         private IDataReader _dataReader;
 
-        public DBSet()
+        public DBSet(SqlConnection connection, string keyEntity)
         {
-            _dataReader = new DataBase();
+            _dataReader = new DataBase(connection);
 
-            _dataReader.EntityName = typeof(TEntity).Name+"s";
+            _dataReader.EntityName = typeof(TEntity).Name;
+            _dataReader.KeyEntity = keyEntity;
         }
          
        
@@ -45,7 +47,15 @@ namespace DataBaseLayer
                     if (!String.IsNullOrEmpty(key))
                     {
                         Array.ForEach<PropertyInfo>(obj.GetType().GetProperties(),
-                            a => obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]));
+                            a => {
+                                try
+                                {
+                                    obj.GetType().GetProperty(propsName[i]).SetValue(obj, d[key]);
+                                }
+                                catch
+                                {
+                                }
+                            });
                     }
                 }
                 

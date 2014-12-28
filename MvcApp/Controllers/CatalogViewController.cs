@@ -13,34 +13,10 @@ namespace MvcApp.Controllers
     {
         //
         // GET: /CatalogView/
-        ITree _tree;
-        IDataBaseManager<Record> _recordsManager;
-        public CatalogViewController(ITree tree, IDataBaseManager<Record> recordsManager)
-        {
-            if (tree == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _tree = tree;
-            if (recordsManager == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _recordsManager = recordsManager;
-        }
-        //
-        // GET: /CatalogView/
+        [Authorize]
         public ActionResult Index()
         {
-
-            TreeView treeCatalog = _tree.GetTree();
-
-            return View(treeCatalog);
-        }
-       public PartialViewResult Details(int id)
-        {
-            Record rc = _recordsManager.GetBy(id.ToString()).First();
-            return PartialView(rc);
+            return View();
         }
     }
 }

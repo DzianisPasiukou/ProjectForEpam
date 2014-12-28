@@ -8,6 +8,7 @@ using LogicLayer;
 using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
+using LogicLayer.Security;
 
 namespace MvcApp.Controllers
 {
@@ -32,11 +33,12 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
             {
-                FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -79,16 +81,34 @@ namespace MvcApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
-        public ActionResult Account()
+        public ActionResult ProfileInformation()
         {
-            User user = new User();
+            ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
+
+        public ActionResult UsersInformation()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }
+
+        public ActionResult Chat()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }       
     }
 }
