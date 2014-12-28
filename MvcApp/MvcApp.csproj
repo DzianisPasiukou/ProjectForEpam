@@ -1061,6 +1061,7 @@
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\myScripts\usersInformationCtrl.js" />
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\npm.js" />
@@ -1099,6 +1100,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
+    <Compile Include="Controllers\UsersInformationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

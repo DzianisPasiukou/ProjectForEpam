@@ -79,7 +79,7 @@ namespace LogicLayer.Security
                     Login = login,
                     Password = _hashCalculator.Calculate(password),
                     AvatarPath = avatar,
-                    DateOfRegistration = DateTime.Now,
+                    DateOfRegistration = DateTime.Now.ToString(),
                     IsActive = false,
                     Id_Group = 2
                 });
@@ -131,7 +131,7 @@ namespace LogicLayer.Security
         {
             using (DBEntities db = new DBEntities())
             {
-                return db.Users;
+                return db.Users.ToList();
             }
         }
 
@@ -147,6 +147,15 @@ namespace LogicLayer.Security
                 return db.Groups.First(group => group.Id_Group.Equals(db.Users.First(user => user.Login.Equals(login)).Id_Group)).Name;
             }
         }
+
+        public IEnumerable<Group> GetGroups()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Groups.ToList();
+            }
+        }
+
         public bool AddMessage(string senderLogin, string recipientLogin, string text, string date)
         {
             using (DBEntities db = new DBEntities())
