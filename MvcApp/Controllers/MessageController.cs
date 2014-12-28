@@ -1,5 +1,5 @@
-﻿using LogicLayer.Entities;
-using LogicLayer.Security;
+﻿using LogicLayer.Chat;
+using LogicLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +11,21 @@ namespace MvcApp.Controllers
 {
     public class MessageController : ApiController
     {
-        private ISecurityHelper _securityHelper;
+        private IChatHelper _chatHelper;
 
-        public MessageController(ISecurityHelper securityHelper)
+        public MessageController(IChatHelper chatHelper)
         {
-            if (securityHelper == null)
+            if (chatHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
-            _securityHelper = securityHelper;
+            _chatHelper = chatHelper;
         }
 
         public IEnumerable<Message> GetLikeEnable(string sender, string recipient)
         {
-            List<Message> messages = _securityHelper.GetMessages(sender, recipient).ToList<Message>();
+            List<Message> messages = _chatHelper.GetMessages(sender, recipient).ToList<Message>();
 
             return messages;
         }

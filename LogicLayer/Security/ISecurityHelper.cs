@@ -23,10 +23,6 @@ namespace LogicLayer.Security
 
         IEnumerable<Group> GetGroups();
 
-        bool AddMessage(string senderLogin, string recepientLogin, string text, string date);
-
-        IEnumerable<Message> GetMessages(string sender, string recipient);
-
         bool updateUserActive(string login, bool isActive);
     }
 }

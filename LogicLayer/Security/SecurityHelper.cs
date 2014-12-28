@@ -156,35 +156,6 @@ namespace LogicLayer.Security
             }
         }
 
-        public bool AddMessage(string senderLogin, string recipientLogin, string text, string date)
-        {
-            using (DBEntities db = new DBEntities())
-            {
-                return db.Messages.Add(new Message() { Login_Sender = senderLogin, Login_Recipient = recipientLogin, Text = text, Date = date, IsRead = false });
-            }
-        }
-
-
-        public IEnumerable<Message> GetMessages(string sender, string recipient)
-        {
-            using (DBEntities db = new DBEntities())
-            {
-                List<Message> messages = (from message in db.Messages
-                                          where message.Login_Sender.Equals(sender) && message.Login_Recipient.Equals(recipient)
-                                          select message).ToList<Message>();
-
-                messages.OrderBy(x => x.Date);
-
-                if (messages.Count > 15)
-                {
-                    messages.RemoveRange(0, messages.Count - 15);
-                }
-
-                return messages;
-            }
-        }
-
-
         public bool updateUserActive(string login, bool isActive)
         {
             using (DBEntities db = new DBEntities())
@@ -195,5 +166,6 @@ namespace LogicLayer.Security
                 return flag;
             }
         }
+
     }
 }
