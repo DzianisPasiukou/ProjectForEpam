@@ -18,6 +18,7 @@
         }
     }
 
+
     $scope.edit = function (login) {
 
         $.each($scope.users, function () {
