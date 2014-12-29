@@ -1,4 +1,4 @@
-﻿myApp.controller('usersInformationCtrl', function ($scope, $http) {
+﻿myApp.controller('usersInformationCtrl', function ($scope, $http, $modal) {
 
     $scope.prevClick = function () {
         if ($scope.currentPage == 0) {
@@ -18,9 +18,28 @@
         }
     }
 
-    $scope.showInformation = function (login) {
+    $scope.edit = function (login) {
 
-    };
+        $.each($scope.users, function () {
+            if (this.Id_Group == 1) {
+                this.Id_Group = "Admin";
+            } else {
+                this.Id_Group = "Student";
+            }
+        });
+
+        var modalInstance = $modal.open({
+            templateUrl: 'editUserModal.html',
+            controller: 'editUserCtrl',
+            resolve: {
+
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        });
+    }
 
     $scope.loginSort = function () {
 
