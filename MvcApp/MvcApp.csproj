@@ -89,7 +89,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -212,6 +212,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\dashboard\timeline.css" />
     <Content Include="Content\themes\default-dark\32px.png" />
     <Content Include="Content\themes\default-dark\40px.png" />
     <Content Include="Content\themes\default-dark\style.css" />
@@ -222,7 +223,6 @@
     <Content Include="Content\themes\default\style.css" />
     <Content Include="Content\themes\default\style.min.css" />
     <Content Include="Content\themes\default\throbber.gif" />
-    <Content Include="Content\dashboard\timeline.css" />
     <Content Include="fonts\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -231,6 +231,8 @@
     <Content Include="fonts\fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fonts\FontAwesome.otf" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\themes\default-dark\Thumbs.db" />
+    <Content Include="Content\themes\default\Thumbs.db" />
     <None Include="Resources\4.jpg" />
     <None Include="Resources\161550_294946.jpg" />
     <None Include="Resources\url.jpg" />
@@ -263,7 +265,6 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\themes\default\Thumbs.db" />
     <Content Include="Scripts\dashboard\dataTables.bootstrap.js" />
     <Content Include="Scripts\dashboard\jquery.dataTables.js" />
     <Content Include="Scripts\dashboard\metisMenu.js" />
@@ -275,6 +276,8 @@
     <Content Include="Scripts\dashboard\raphael.min.js" />
     <Content Include="Scripts\dashboard\sb-admin-2.js" />
     <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Resources\Web.config" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
@@ -284,8 +287,6 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Resources\Web.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\flow\ng-flow-standalone.js" />
     <Content Include="Scripts\flow\ng-flow-standalone.min.js" />
