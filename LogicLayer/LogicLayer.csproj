@@ -88,6 +88,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Sha256HashCalculator.cs" />
     <Compile Include="UsersInfo.cs" />
+    <Compile Include="Users\IUserHelper.cs" />
+    <Compile Include="Users\UserHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataBaseLayer\DataBaseLayer.csproj">

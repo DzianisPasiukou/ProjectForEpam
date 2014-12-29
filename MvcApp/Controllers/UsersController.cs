@@ -1,5 +1,6 @@
 ﻿using LogicLayer.Entities;
 using LogicLayer.Security;
+using LogicLayer.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +12,22 @@ namespace MvcApp.Controllers
 {
     public class UsersController : ApiController
     {
-        private ISecurityHelper _securityHelper;
+        private IUserHelper _userHelper;
 
-        public UsersController(ISecurityHelper securityHelper)
+        public UsersController(IUserHelper userHelper)
         {
-            if (securityHelper == null)
+            if (userHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
-            _securityHelper = securityHelper;
+            _userHelper = userHelper;
         }
 
         // GET: api/Users
         public IEnumerable<User> Get()
         {
-            return _securityHelper.GetUsers().ToList();
+            return _userHelper.GetUsers().ToList();
         }
 
         // GET: api/Users/5
@@ -43,12 +44,18 @@ namespace MvcApp.Controllers
         // PUT: api/Users/5
         public void Put(string login, bool isActive)
         {
-            _securityHelper.updateUserActive(login, isActive);
+            _userHelper.UpdateUserActive(login, isActive);
+        }
+
+        public void Put(string login, string name, string surname, string email, string group)
+        {
+            _userHelper.UpdateUser(login, name, surname, email, group);
         }
 
         // DELETE: api/Users/5
-        public void Delete(int id)
+        public void Delete(string login)
         {
+            _userHelper.DeleteUser(login);
         }
     }
 }

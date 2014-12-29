@@ -9,21 +9,29 @@ using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
 using LogicLayer.Security;
+using LogicLayer.Users;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
         private ISecurityHelper _securityHelper;
+        private IUserHelper _userHelper;
 
-        public AccountController(ISecurityHelper securityHelper)
+        public AccountController(ISecurityHelper securityHelper,IUserHelper userHelper)
         {
             if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
+            if (userHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _securityHelper = securityHelper;
+            _userHelper = userHelper;
         }
 
         [HttpGet]
@@ -112,7 +120,7 @@ namespace MvcApp.Controllers
         }
         public JsonResult AutocompleteSearch(string term)
         {           
-                IEnumerable<User> users = _securityHelper.GetUsers();
+                IEnumerable<User> users = _userHelper.GetUsers();
                 var models = users.Where(a => a.Login.Contains(term)).Select(a => new { value = a.Login }).Distinct();
                 return Json(models, JsonRequestBehavior.AllowGet);
         }
