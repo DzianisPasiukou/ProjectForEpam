@@ -181,20 +181,10 @@
                 number++;
             });
             
-
             $scope.chatData.push({ Number: 0, Login: senderLogin, Date: date, Message: message });
-            angular.forEach($scope.chatData, function (item) {
-                alert(item.Login);
-            });
-            console.log($scope.chatData);
-           
-           
-
+            $scope.$apply();
         }          
-    };  
-    function UpdateDropMessages(senderLogin, message, date) {
-       
-    };
+    };     
     // end SignalR
 });
 

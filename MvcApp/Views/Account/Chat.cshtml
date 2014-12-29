@@ -5,7 +5,7 @@
 
     SecurityHelper _securityHelper = ViewBag.SecurityHelper;
 
-    if (_securityHelper.GetGroupForUser(User.Identity.Name).Contains("Admin"))
+    if (_securityHelper.GetGroupForUser(User.Identity.Name).Contains("admin"))
     {
         Layout = "~/Views/Shared/_AccountPartialAdmin.cshtml";
     }
@@ -32,8 +32,9 @@
     <div class="container-fluid" style="bottom: 0">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Chat</h1>
+                <h1 class="page-header">Chat</h1>               
             </div>
+            <input type="text" data-autocomplete-source="@Url.Action("AutocompleteSearch", "Account")" autocomplete="on" />
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -75,3 +76,4 @@
         $('#dataTables-example').dataTable();
     });
 </script>
+

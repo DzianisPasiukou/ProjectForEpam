@@ -1055,9 +1055,10 @@
     <Content Include="Scripts\myCSS\animate.min.css" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
-    <Content Include="Scripts\myScripts\Chat.js" />
+    <Content Include="Scripts\myScripts\Autocomplete.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
+    <Content Include="Scripts\myScripts\messageCtrl.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
@@ -1065,7 +1066,6 @@
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\SignalR\addMessageToLayoutDropMessages.js" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
