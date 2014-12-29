@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DataBaseLayer;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace DataBaseLayer
 {
@@ -22,8 +23,8 @@ namespace DataBaseLayer
         }
         private static string GetConnectionstring()
         {
-            //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
-            return @"Data Source=LENOVO\SQLEXPRESS2012;Initial Catalog=EPAMPROJECT;Integrated Security=True";
+            string str = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            return str;
         }
     }
 }

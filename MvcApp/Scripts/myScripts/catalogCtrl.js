@@ -18,8 +18,8 @@
          }
          else {
              getRecord(value.idNote);
+             getInfoFromNote(value.idNote);
              enableLike(value.idNote, "note");
-             CreateByUser($scope.record.Id_User);
              $('#disc').hide();
              $('#record').show();
          }
@@ -64,18 +64,70 @@
             $log.info('Modal dismissed at: ' + new Date());
         });
    }
-   function CreateByUser(idUser) {
-       userInfoData.getUserName(idUser).success(function (data) {
-           $scope.creator = data;
-       });
-   }
    function enableLike(id, noteOrFile) {
-       noteInfoData.getLikeEnable(id, noteOrFile).success(function (data) {
-           if (data == "true") {
+       userInfoData.getLikeEnable(id, noteOrFile).success(function (data) {
+           if (data.Id) {
                $('#say').attr("disabled", "disabled");
            }
            else {
                $('#say').removeAttr("disabled");
+           }
+       });
+   }
+   
+  
+   function getInfoFromNote(id) {
+       noteInfoData.getNoteInfo(id).success(function (data) {
+          
+           $scope.myInterval = 5000;
+
+           $scope.photos = [];
+           $scope.videos = [];
+           $scope.documents = [];
+           $scope.characteristics = [];
+
+           for (var i = 0; i < data.Files.length; i++) {
+             
+
+               switch (data.Files[i].Type)
+               {
+                   case 'Видео':
+                       $scope.videos.push({
+                           id: data.Files[i].Id_File,
+                           path: data.Files[i].Path,
+                           user: data.Files[i].Login,
+                           size: data.Files[i].Size,
+                           description: data.Files[i].Description,
+                       });
+                       break;
+                   case 'Фото':
+                       $scope.photos.push({
+                           id: data.Files[i].Id_File,
+                           path: data.Files[i].Path,
+                           user: data.Files[i].Login,
+                           size: data.Files[i].Size,
+                           description: data.Files[i].Description,
+                       });
+                       break;
+                   default:
+                       $scope.documents.push({
+                           id: data.Files[i].Id_File,
+                           path: data.Files[i].Path,
+                           user: data.Files[i].Login,
+                           size: data.Files[i].Size,
+                           description: data.Files[i].Description,
+                           type: data.Files[i].Type,
+                       });
+                       break;
+               }
+           }
+
+           for (var i = 0; i < data.Characteristics.length; i++) {
+               $scope.characteristics.push({
+                   id: data.Characteristics[i].Id_Characteristic,
+                   name: data.Characteristics[i].Name,
+                   value: data.CharacteristicsOfNote[i].Value
+               });
            }
        });
    }

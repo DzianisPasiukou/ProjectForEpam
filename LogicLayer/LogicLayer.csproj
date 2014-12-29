@@ -55,6 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogManager\CatalogManager.cs" />
+    <Compile Include="CatalogManager\CharacteristicHelper.cs" />
+    <Compile Include="CatalogManager\CharacteristicManager.cs" />
+    <Compile Include="CatalogManager\FileManager.cs" />
+    <Compile Include="CatalogManager\NoteInfoHelper.cs" />
+    <Compile Include="CatalogManager\Note_CharacteristicManager.cs" />
     <Compile Include="StatusOfNote.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

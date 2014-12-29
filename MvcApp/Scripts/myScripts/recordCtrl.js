@@ -1,4 +1,4 @@
-﻿myApp.controller('recordCtrl', function ($scope, noteInfoData, $modal, $log) {
+﻿myApp.controller('recordCtrl', function ($scope, userInfoData, $modal, $log) {
 
     $scope.open = function (idCategory, size) {
 
@@ -31,9 +31,45 @@
 
     $scope.sayThankToNote = function (idNote) {
         $('#say').attr("disabled", "disabled");
-        getLike("note", $scope.record.Id_Note);
+        getLike("note", idNote);
     }
-   
+
+    $scope.sayThankToFile = function (type, index) {
+        switch (type) {
+            case 'video':
+                $scope.videos[index].like = true;
+                getLike("file",  $scope.videos[index].id);
+                break;
+            case 'photo':
+                $scope.photos[index].like = true;
+                getLike("file", $scope.photos[index].id);
+                break;
+            default:
+                $scope.documents[index].like = true;
+                getLike("file", $scope.documents[index].id);
+                break;
+        }
+    }
+    $scope.openResource = function (res) {
+        $scope.items = [];
+
+        var modalInstance = $modal.open({
+            templateUrl: 'resource.html',
+            controller: 'resourceCtrl',
+            resolve: {
+                resource: function () {
+                    return res;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
     function findChild(idCategory, category) {
 
         var find = false;
@@ -63,6 +99,18 @@
     };
    
     function getLike(noteOrFile, id) {
-        noteInfoData.putLike(noteOrFile, id);
+        userInfoData.putLike(noteOrFile, id);
+    }
+    $scope.addCharacteristic = function (idNote) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'chacteristicModal.html',
+            controller: 'modalCharacteristic',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                }
+            }
+        });
     }
 });

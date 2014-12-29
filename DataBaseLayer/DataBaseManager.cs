@@ -118,7 +118,7 @@ namespace DataBaseLayer
                    nameBuilder.Append(arrName[i]);
                    if (i != props.Length - 1)
                    {
-                       if ((props[i+1].Name.ToLower() != key.ToLower()) && (i != props.Length - 2))
+                       if ((props[i+1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
                        nameBuilder.Append(", ");
                    }
                }
@@ -139,7 +139,7 @@ namespace DataBaseLayer
                    valueBuilder.Append(arrValue[i]);
                    if (i != props.Length - 1)
                    {
-                       if ((props[i + 1].Name.ToLower() != key.ToLower()) && (i != props.Length - 2))
+                       if ((props[i + 1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
                            valueBuilder.Append(", ");
                    }
                }

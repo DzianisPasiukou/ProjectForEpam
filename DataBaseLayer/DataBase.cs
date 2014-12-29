@@ -39,7 +39,7 @@ namespace DataBaseLayer
 
             if (!String.IsNullOrEmpty(prop))
             {
-                string comm = String.Format("UPDATE {0} SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), prop);
+                string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = {3}", _table, str, _key.ToUpper(), prop);
                 return DataBaseManager.Execute(comm, _connection);
             }
             else
@@ -55,7 +55,7 @@ namespace DataBaseLayer
            string str = DataBaseManager.Modification(nameProp, valueProp, "AND");
 
 
-           string comm = String.Format("DELETE FROM {0} WHERE {1}",_table,str);
+           string comm = String.Format("DELETE FROM [{0}] WHERE {1}",_table,str);
            return DataBaseManager.Execute(comm, _connection);
        }
         public List<Dictionary<string,object>> GetData(string args)

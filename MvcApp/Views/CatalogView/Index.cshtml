@@ -46,14 +46,14 @@
             </div>
         </script>
         <div id="record" hidden="hidden" ng-controller="recordCtrl">
-            <img ng-src={{record.AvatarPath}} />
+            <img ng-src={{record.AvatarPath}} width="200" height="200"/>
             <div id="nameModel">
                 {{record.Name}}
             </div>
             <div id="descriptionModel">
                 {{record.Description}}
             </div>
-            <p>Create by {{creator.Login}}</p>
+            <p>Create by {{record.Login}}</p>
             <script type="text/ng-template" id="myModalContent.html">
                 <div class="modal-header">
                     <h3 class="modal-title">Compare with:</h3>
@@ -74,34 +74,142 @@
             </script>
             <script type="text/ng-template" id="compareModal.html">
                 <div class="modal-header">
-                    <h3 class="modal-title">Compare 
-                    <label>
-                        {{records[0].Name}} with {{records[1].Name}}
-                        </label> 
+                    <h3 class="modal-title">
+                        Compare
+                        <label>
+                            {{records[0].Name}} with {{records[1].Name}}
+                        </label>
                     </h3>
                 </div>
-                <button class="btn btn-primary" ng-click="return()">Return</button>
-                <button class="btn btn-warning" ng-click="close()">Close</button>
+                <div class="modal-body" style=" margin: auto;">
+                    <img ng-src="{{records[0].AvatarPath}}" width="200" height="200" />
+                    <img src="/Resources/StaticResources/3433464-3326335211-32593.png" width="100" height="100" />
+                    <img ng-src="{{records[1].AvatarPath}}" width="200" height="200" />
+                    <br />
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Characteristics</th>
+                                <th>{{records[0].Name}}</th>
+                                <th>{{records[1].Name}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="comp in compareCharacter">
+                                <td>{{comp.name}}</td>
+                                <td>{{comp.value1}}</td>
+                                <td>{{comp.value2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="return()">Return</button>
+                    <button class="btn btn-warning" ng-click="close()">Close</button>
+                </div>
             </script>
             <button class='btn btn-success' ng-click="open(record.Id_Category)">
                 Compare
             </button>
             <button id="say" class="btn btn-primary" ng-click="sayThankToNote(record.Id_Note)">
-                To say thank you.
+                To say thank you
             </button>
             <div>
+                <script type="text/ng-template" id="resource.html">
+                    <div class="modal-body">
+                        <img ng-src="{{resource.path}}" width="530" />
+                        <div id="resourceDesc">
+                            {{resource.description}}
+                        </div>
+                        <br />
+                        Download by:{{resource.user}}
+                    </div>
+                    <div class="modal-footer">
+                        <button id="sayFile" class="btn btn-primary" ng-click="getLike()" ng-disabled="like">
+                            To say thank you
+                        </button>
+                        <button class="btn btn-warning" ng-click="close()">Close</button>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="chacteristicModal.html">
+                    <div class="modal-body">
+                        Enter your characteristic:
+                        <input type="text" ng-model="myCharacteristicName" />
+                        <br />
+                        or select existing:
+                        <div class="btn-group" dropdown is-open="status.isopen">
+                            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                Select characteristic <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="characteristic in allCharacteristics.Characteristics">
+                                    <a href="#" ng-click="dropdown(characteristic.Name)">{{characteristic.Name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        Enter value of characteristic:
+                        <input type="text" ng-model="myCharacteristicValue" />
+                    </div>
+                    <div class="modal-footer">
+                        <button id="sayFile" class="btn btn-primary" ng-click="save(myCharacteristicName, myCharacteristicValue)">
+                            Save
+                        </button>
+                        <button class="btn btn-warning" ng-click="close()">Close</button>
+                    </div>
+                </script>
                 <tabset>
                     <tab heading="Technical characteristics">
-                        Technical characteristics
+                        <div ng-repeat="characteristic in characteristics">
+                            {{characteristic.name}} {{characteristic.value}}
+                            <hr />
+                        </div>
+                        <button id="addCharacteristic" class="btn btn-primary" ng-click="addCharacteristic(record.Id_Note)" ng-disabled="">
+                            Add characteristic
+                        </button>
                     </tab>
                     <tab heading="Photo">
-                        Photo
+                        <div ng-repeat="photo in photos">
+                            <img src="{{photo.path}}" width="100" height="100" ng-click="openResource(photo)" />
+                        </div>
+                        <button id="addPhoto" class="btn btn-primary" ng-click="addPhoto()" ng-disabled="">
+                            Add photo
+                        </button>
                     </tab>
                     <tab heading="Video">
-                        Video
+                        <div ng-repeat="video in videos">
+                            <div class="video-js-box">
+                                <video class="video-js" width="640" height="264" controls preload poster="">
+                                    <source src="{{video.path}}" type='video/mp4'>
+                                </video>
+                                <br />
+                                {{video.description}}
+                                <br />
+                                Size:{{video.size}} Download by:{{video.user}}
+                                <br />
+                                <button id="sayFile" class="btn btn-primary" ng-click="sayThankToFile('document', $index)" ng-disabled="">
+                                    To say thank you
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                        <button id="addVideo" class="btn btn-primary" ng-click="addVideo()" ng-disabled="">
+                            Add video
+                        </button>
                     </tab>
                     <tab heading="Documents">
-                        Documents
+                        <div ng-repeat="document in documents">
+                            {{document.description}}[{{document.type}}] Size:{{document.size}} Download by:{{document.user}}
+                            <button class='btn btn-success' ng-click="">
+                                Download
+                            </button>
+                            <button id="sayFile" class="btn btn-primary" ng-click="sayThankToFile('document', $index)" ng-disabled="">
+                                To say thank you
+                            </button>
+                            <hr />
+                        </div>
+                        <button id="addDocument" class="btn btn-primary" ng-click="addDocument()" ng-disabled="">
+                            Add document
+                        </button>
                     </tab>
                 </tabset>
             </div>
@@ -109,4 +217,6 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+    document.createElement('video'); document.createElement('audio'); document.createElement('track');
+</script>

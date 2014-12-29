@@ -35,63 +35,45 @@ namespace MvcApp.Controllers
             }
             _dataNoteInfo = dataNoteInfo;
         }
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        public User Get(string login)
         {
-            return new string[] { "value1", "value2" };
+            return _dataUserInfo.GetBy("Login", login.ToString()).First();
         }
-
-        
-        // GET api/<controller>/5
-        public User Get(int id)
-        {
-            return _dataUserInfo.GetBy("Id_User", id.ToString()).First();
-        }
-        public bool GetLikeEnable(int id, string noteOrFile)
+        public object GetLikeEnable(int id, string noteOrFile)
         {
             string login = User.Identity.Name.ToString();
-            bool find = false;
-
-            LogicLayer.Entities.User currentUser = _dataUserInfo.GetBy("Login", login).First();
+            
             if (noteOrFile == "note")
             {
-
-                if (_dataNoteInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_Note == id).Count() > 0)
+                if (_dataNoteInfo.GetBy("Login", login).Where(a => a.Id_Note == id).Count() > 0)
                 {
-                    find = true;
+                    return _dataNoteInfo.GetBy("Login", login).Where(a => a.Id_Note == id).First();
                 }
             }
             else if (noteOrFile == "file")
             {
-                if (_dataFileInfo.GetBy("Id_User", currentUser.Id_User.ToString()).Where(a => a.Id_File == id).Count() > 0)
+                if (_dataFileInfo.GetBy("Login", login).Where(a => a.Id_File == id).Count() > 0)
                 {
-                    find = true;
+                    return _dataFileInfo.GetBy("Login", login).Where(a => a.Id_File == id).First();
                 }
             }
             else
             {
                 throw new ArgumentException("wrong description if likes");
             }
-            return find;
+            return Ok();
   
         }
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
         public void Put(string noteOrFile,int id)
         {
             string login = User.Identity.Name.ToString();
-            int idUser = _dataUserInfo.GetBy("Login", login).First().Id_User;
             
             if (noteOrFile == "note")
             {
                 _dataNoteInfo.Add(new LikeNote()
                     {
                         Id_Note = id,
-                        Id_User = idUser
+                        Login = login
                     });
             }
             else if (noteOrFile == "file")
@@ -99,18 +81,13 @@ namespace MvcApp.Controllers
                 _dataFileInfo.Add(new LikeFile()
                 {
                     Id_File = id,
-                    Id_User = idUser
+                    Login = login
                 });
             }
             else
             {
                 throw new ArgumentException("wrong description if likes");
             }
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }
