@@ -1,0 +1,5 @@
+D:\Training EPAM\ProjectEpam\ProjectForEpam\DataBaseLayer\bin\Debug\DataBaseLayer.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\DataBaseLayer\bin\Debug\DataBaseLayer.pdb
+D:\Training EPAM\ProjectEpam\ProjectForEpam\DataBaseLayer\obj\Debug\DataBaseLayer.csprojResolveAssemblyReference.cache
+D:\Training EPAM\ProjectEpam\ProjectForEpam\DataBaseLayer\obj\Debug\DataBaseLayer.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\DataBaseLayer\obj\Debug\DataBaseLayer.pdb

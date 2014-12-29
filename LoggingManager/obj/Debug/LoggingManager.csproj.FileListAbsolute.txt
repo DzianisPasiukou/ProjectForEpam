@@ -1,0 +1,15 @@
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\LoggingManager.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\LoggingManager.pdb
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Interception.Configuration.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.xml
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Interception.xml
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.Interception.Configuration.xml
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\obj\Debug\LoggingManager.csprojResolveAssemblyReference.cache
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\obj\Debug\LoggingManager.dll
+D:\Training EPAM\ProjectEpam\ProjectForEpam\LoggingManager\obj\Debug\LoggingManager.pdb
