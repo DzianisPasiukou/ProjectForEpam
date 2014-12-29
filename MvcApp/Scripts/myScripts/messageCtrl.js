@@ -23,19 +23,20 @@
         $.cookie('isClosed', 'false', { path: '/' });
 
         var person = $scope.chatData[number].Login;
-
         var number = 0;
-
-        angular.forEach($scope.chatData, function (item) {
-            if (item.Login == person) {
-                $scope.chatData.splice($.inArray(item, $scope.chatData), 1);
-            }
-        });
 
         angular.forEach($scope.chatData, function (item) {
             item.Number = number;
             number++;
         });
+
+        //angular.forEach($scope.chatData, function (item) {
+        //    if (item.Login == person) {
+        //        $scope.chatData.splice($.inArray(item, $scope.chatData), 1);
+        //    }
+        //});
+
+       
 
         $.cookie('withWhom', person, { path: '/' });
 
@@ -66,8 +67,14 @@
                 var jsonEmployees = JSON.stringify(data);//converting array into json string   
                 $.cookie("messages", jsonEmployees, { path: '/' });//storing it in a cookie
 
-                $.each(data, function () {
-                    $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + this.Date + '</small> <strong class="pull-right primary-font">' + this.Login_Sender + '</strong> </div><p>' + this.Text + ' </p></div></li>');
+                angular.forEach(data, function (item) {
+                    if (item.Login_Sender == login) {
+                        $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
+                    }
+                    else {
+                        $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
+
+                    }
                 });
             }
         });
@@ -110,8 +117,14 @@
                 var jsonEmployees = JSON.stringify(data);//converting array into json string   
                 $.cookie("messages", jsonEmployees, { path: '/' });//storing it in a cookie
 
-                $.each(data, function () {
-                    $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + this.Date + '</small> <strong class="pull-right primary-font">' + this.Login_Sender + '</strong> </div><p>' + this.Text + ' </p></div></li>');
+                angular.forEach(data, function (item) {
+                    if (item.Login_Sender == login) {
+                        $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
+                    }
+                    else {
+                        $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
+
+                    }
                 });
             }
         });
@@ -131,8 +144,14 @@
             var empString = $.cookie("messages");//retrieving data from cookie
             var data = $.parseJSON(empString);//converting "empString" to an array.
 
-            $.each(data, function () {
-                $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + this.Date + '</small> <strong class="pull-right primary-font">' + this.Login_Sender + '</strong> </div><p>' + this.Text + ' </p></div></li>');
+            angular.forEach(data, function (item) {
+                if (item.Login_Sender == login) {
+                    $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
+                }
+                else {
+                    $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
+
+                }
             });
 
             $('#allChat').show();

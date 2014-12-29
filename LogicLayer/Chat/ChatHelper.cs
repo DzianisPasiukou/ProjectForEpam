@@ -25,18 +25,26 @@ namespace LogicLayer.Chat
         {
             using (DBEntities db = new DBEntities())
             {
-                List<Message> messages = (from message in db.Messages
+                List<Message> sendermessages = (from message in db.Messages
                                           where message.Login_Sender.Equals(senderLogin) && message.Login_Recipient.Equals(recepientLogin)
                                           select message).ToList<Message>();
 
-                messages.OrderBy(x => x.Date);
 
-                if (messages.Count > 15)
+                List<Message>  recmessages = (from message in db.Messages
+                                              where message.Login_Sender.Equals(recepientLogin) && message.Login_Recipient.Equals(senderLogin)
+                                          select message).ToList<Message>();
+                foreach (var item in recmessages)
                 {
-                    messages.RemoveRange(0, messages.Count - 15);
+                    sendermessages.Add(item);
                 }
 
-                return messages;
+                sendermessages.Sort();
+                //if (messages.Count > 15)
+                //{
+                //    messages.RemoveRange(0, messages.Count - 15);
+                //}
+
+                return sendermessages;
             }            
         }
     }
