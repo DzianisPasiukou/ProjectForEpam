@@ -5,6 +5,7 @@ using System.Text;
 using DataBaseLayer;
 using System.Data.SqlClient;
 
+
 namespace DataBaseLayer
 {
     public abstract class DbContext : IDisposable
@@ -22,7 +23,7 @@ namespace DataBaseLayer
         }
         private static string GetConnectionstring()
         {
-            //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
+            //string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
             return @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\EPAMPROJECT.mdf;Initial Catalog=EPAMPROJECT;Integrated Security=True";
         }
     }
