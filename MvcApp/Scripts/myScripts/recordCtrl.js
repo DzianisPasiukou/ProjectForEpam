@@ -1,4 +1,4 @@
-﻿myApp.controller('recordCtrl', function ($scope, userInfoData, $modal, $log) {
+﻿myApp.controller('recordCtrl', function ($scope, userInfoData,fileUpload, $modal, $log) {
 
     $scope.open = function (idCategory, size) {
 
@@ -37,7 +37,7 @@
     $scope.sayThankToFile = function (type, index) {
         switch (type) {
             case 'video':
-                $scope.videos[index].like = true;
+                $scope.videoLike[index] = true;
                 getLike("file",  $scope.videos[index].id);
                 break;
             case 'photo':
@@ -45,7 +45,7 @@
                 getLike("file", $scope.photos[index].id);
                 break;
             default:
-                $scope.documents[index].like = true;
+                $scope.documentLike[index] = true;
                 getLike("file", $scope.documents[index].id);
                 break;
         }
@@ -112,5 +112,58 @@
                 }
             }
         });
+    }
+
+    $scope.addVideo = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'video'
+                }
+            }
+        });
+    }
+    $scope.addDocument = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'document'
+                }
+            }
+        });
+    }
+    $scope.addPhoto = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'photo'
+                }
+            }
+        });
+    }
+    $scope.downloadDoc = function (path, size) {
+
+         fileUpload.getTraffic().success(function (data) {
+
+            if (data >= size)
+                window.open(path);
+            else
+                alert('Traffic limits!')
+        })
     }
 });

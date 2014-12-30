@@ -75,6 +75,30 @@
        });
    }
    
+   function fileLike(id, videoOrDocument) {
+
+       if (videoOrDocument == 'video') {
+           userInfoData.getLikeEnable(id, 'file').success(function (data) {
+               if (data.Id) {
+                   $scope.videoLike.push(true);
+               }
+               else {
+                   $scope.videoLike.push(false);
+               }
+           });
+       }
+       if (videoOrDocument == 'document') {
+           userInfoData.getLikeEnable(id, 'file').success(function (data) {
+               if (data.Id) {
+                   $scope.documentLike.push(true);
+               }
+               else {
+                   $scope.documentLike.push(false);
+               }
+           });
+       }
+   }
+       
   
    function getInfoFromNote(id) {
        noteInfoData.getNoteInfo(id).success(function (data) {
@@ -85,7 +109,9 @@
            $scope.videos = [];
            $scope.documents = [];
            $scope.characteristics = [];
-
+           $scope.videoLike = [];
+           $scope.documentLike = [];
+           
            for (var i = 0; i < data.Files.length; i++) {
              
 
@@ -99,6 +125,7 @@
                            size: data.Files[i].Size,
                            description: data.Files[i].Description,
                        });
+                       fileLike(data.Files[i].Id_File, 'video');
                        break;
                    case 'Фото':
                        $scope.photos.push({
@@ -118,6 +145,7 @@
                            description: data.Files[i].Description,
                            type: data.Files[i].Type,
                        });
+                       fileLike(data.Files[i].Id_File, 'document');
                        break;
                }
            }

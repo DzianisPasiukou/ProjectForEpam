@@ -201,17 +201,17 @@
     <Content Include="Content\video-js.min.css" />
     <Content Include="Content\video-js.swf" />
     <Content Include="Content\videogular.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\icomoon.woff" />
     <Content Include="Content\fonts\icomoon.ttf" />
     <Content Include="Content\fonts\icomoon.svg" />
     <Content Include="Content\fonts\icomoon.eot" />
     <Content Include="Content\fonts\icomoon.dev.svg" />
-    <Content Include="fonts\vjs.woff" />
-    <Content Include="fonts\vjs.ttf" />
-    <Content Include="fonts\vjs.svg" />
-    <Content Include="fonts\vjs.eot" />
+    <Content Include="Scripts\myCSS\fonts\vjs.woff" />
+    <Content Include="Scripts\myCSS\fonts\vjs.ttf" />
+    <Content Include="Scripts\myCSS\fonts\vjs.svg" />
+    <Content Include="Scripts\myCSS\fonts\vjs.eot" />
     <Content Include="Content\video-js.less" />
     <None Include="Resources\4.jpg" />
     <None Include="Resources\161550_294946.jpg" />
@@ -265,12 +265,15 @@
     <Content Include="Scripts\myCSS\css\font-awesome.min.css" />
     <Content Include="Scripts\myCSS\loading-bar.css" />
     <Content Include="Scripts\myCSS\videogular.css" />
+    <Content Include="Scripts\myScripts\addFileCtrl.js" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular-bootstrap-lightbox.js" />
+    <Content Include="Scripts\myScripts\angular-file-upload.js" />
     <Content Include="Scripts\myScripts\angular-touch.min.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
     <Content Include="Scripts\myScripts\bootstrap.js" />
     <Content Include="Scripts\myScripts\chacteristicService.js" />
+    <Content Include="Scripts\myScripts\fileUploadService.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
     <Content Include="Scripts\myScripts\lightBoxCtrl.js" />
@@ -333,12 +336,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="App_Start\UnityHttpControllerActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CatalogViewController.cs" />
     <Compile Include="Controllers\CharacteristicInfoController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CatalogTreeController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
@@ -361,9 +364,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -397,6 +400,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NoteAvatars.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="fonts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
