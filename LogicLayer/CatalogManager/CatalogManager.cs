@@ -13,7 +13,7 @@ namespace LogicLayer.CatalogManager
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Categories;
+                return entity.Categories.GetAll();
             }
         }
 

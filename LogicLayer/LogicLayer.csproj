@@ -55,9 +55,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogManager\CatalogManager.cs" />
+
     <Compile Include="Chat\ChatHelper.cs" />
     <Compile Include="Chat\IChatHelper.cs" />
     <Compile Include="Entities\Contact.cs" />
+
+    <Compile Include="CatalogManager\CharacteristicHelper.cs" />
+    <Compile Include="CatalogManager\CharacteristicManager.cs" />
+    <Compile Include="CatalogManager\FileManager.cs" />
+    <Compile Include="CatalogManager\NoteInfoHelper.cs" />
+    <Compile Include="CatalogManager\Note_CharacteristicManager.cs" />
+    <Compile Include="StatusOfNote.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatusOfNote.resx</DependentUpon>
+    </Compile>
+
     <Compile Include="IDataBaseManager.cs" />
     <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />
@@ -104,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StatusOfNote.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatusOfNote.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

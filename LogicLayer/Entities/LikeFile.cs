@@ -9,7 +9,7 @@ namespace LogicLayer.Entities
    public class LikeFile
     {
        public int Id_File { get; set; }
-       public int Id_User { get; set; }
+       public string Login { get; set; }
        public int Id { get; set; }
 
     }

@@ -16,12 +16,18 @@ namespace LogicLayer
 
         public IEnumerable<LikeFile> GetBy(string nameParametr, string parametr)
         {
-            throw new NotImplementedException();
+            using (DBEntities entity = new DBEntities())
+            {
+                return entity.LikeFiles.GetBy(String.Format("{0} = {1}", nameParametr, parametr));
+            }
         }
 
         public bool Add(LikeFile t)
         {
-            throw new NotImplementedException();
+            using (DBEntities entity = new DBEntities())
+            {
+                return entity.LikeFiles.Add(t);
+            }
         }
 
         public bool Update(LikeFile t)

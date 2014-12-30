@@ -21,8 +21,14 @@ namespace DataBaseLayer
             _dataReader.EntityName = typeof(TEntity).Name;
             _dataReader.KeyEntity = keyEntity;
         }
-         
-       
+        public IEnumerable<TEntity> GetAll()
+        {
+            IEnumerable<Dictionary<string, object>> data = _dataReader.GetData("*");
+
+            IEnumerable<TEntity> valueData = Reflection(data);
+
+            return valueData;
+        }
         public IEnumerator<TEntity> GetEnumerator()
         {
             IEnumerable<Dictionary<string,object>> data = _dataReader.GetData("*");
@@ -106,7 +112,7 @@ namespace DataBaseLayer
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return default(TEntity).ToString().GetEnumerator();
+            return null;
         }
     }
 }
