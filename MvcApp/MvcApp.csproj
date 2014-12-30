@@ -1107,6 +1107,7 @@
     </Compile>
     <Compile Include="Hubs\MessageHub.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\UsersAndGroups.cs" />
     <Compile Include="NoteAvatars.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

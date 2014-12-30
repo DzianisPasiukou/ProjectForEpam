@@ -1,6 +1,7 @@
 ﻿using LogicLayer.Entities;
 using LogicLayer.Security;
 using LogicLayer.Users;
+using MvcApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,13 @@ namespace MvcApp.Controllers
         }
 
         // GET: api/Users
-        public IEnumerable<User> Get()
+        public UsersAndGroups Get()
         {
-            return _userHelper.GetUsers().ToList();
+            UsersAndGroups usersAndGroups = new UsersAndGroups();
+            usersAndGroups.users = _userHelper.GetUsers().ToList();
+            usersAndGroups.groups = _userHelper.GetGroups().ToList();
+
+            return usersAndGroups;
         }
 
         // GET: api/Users/5

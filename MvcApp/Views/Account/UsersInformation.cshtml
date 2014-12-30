@@ -17,6 +17,14 @@
 
         <div style="margin-bottom:10px">
             Records per page : {{pageSize}}
+
+            <a style="margin-left:10px" id="prevButton" href="" ng-click="prevClick()">
+                Previous
+            </a>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <a id="nextButton" href="" ng-click="nextClick()">
+                Next
+            </a>
         </div>
 
         <table class="table paginated">
@@ -51,14 +59,6 @@
             </tr>
 
         </table>
-
-        <a id="prevButton" href="" ng-click="prevClick()">
-            Previous
-        </a>
-        {{currentPage+1}}/{{numberOfPages()}}
-        <a id="nextButton" href="" ng-click="nextClick()">
-            Next
-        </a>
 
         <script type="text/ng-template" id="editUserModal.html">
             <div class="modal-header">
@@ -105,7 +105,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li ng-repeat="group in groups">
-                                        <a href="" ng-click="changeGroup(group.Group)">{{group.Group}}</a>
+                                        <a href="" ng-click="changeGroup(group.Name)">{{group.Name}}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -13,6 +13,8 @@ namespace LogicLayer.Users
 
         IEnumerable<User> GetUsers();
 
+        IEnumerable<Group> GetGroups();
+
         bool UpdateUserActive(string login, bool isActive);
 
         bool DeleteUser(string login);

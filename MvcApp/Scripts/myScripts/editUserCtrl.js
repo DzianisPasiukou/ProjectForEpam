@@ -49,3 +49,7 @@ myApp.controller('deleteUserCtrl', function ($scope, $modalInstance, userLogin, 
         $modalInstance.dismiss("Close");
     };
 });
+
+
+
+//$("#page-wrapper").css("min-height", (height) + "px");

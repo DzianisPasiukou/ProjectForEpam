@@ -1,6 +1,24 @@
 ﻿myApp.controller('messageCtrl', function ($scope) {
 
-    $scope.myData = [{ Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" },
+    $scope.prevClick = function () {
+        if ($scope.currentPage == 0) {
+            return;
+        }
+        else {
+            $scope.currentPage -= 1;
+        }
+    }
+
+    $scope.nextClick = function () {
+        if ($scope.currentPage > ($scope.contacts.length / $scope.pageSize) - 1) {
+            return;
+        }
+        else {
+            $scope.currentPage += 1;
+        }
+    }
+
+    $scope.contacts = [{ Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" },
                  { Login: "Tiancum", Date: "16.12.2014 20:01", Message: "Hello2" },
                  { Login: "Jacob", Date: "16.12.2014 19:01", Message: "Hello3" },
                  { Login: "Nephi", Date: "16.12.2014 18:01", Message: "Hello4" },
@@ -9,7 +27,8 @@
                  { Login: "Nephi", Date: "16.12.2014 15:01", Message: "Hello7" },
                  { Login: "Moroni", Date: "16.12.2014 14:01", Message: "Hello8" },
                  { Login: "Moroni", Date: "16.12.2014 12:01", Message: "Hello9" },
-                 { Login: "Enos", Date: "16.12.2014 11:01", Message: "Hello10" }];
+                 { Login: "Enos", Date: "16.12.2014 11:01", Message: "Hello10" },
+    { Login: "Enos", Date: "16.12.2014 11:01", Message: "Hello10" }];
 
     $scope.chatData = [{ Number: 0, Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" }];
 
@@ -17,7 +36,7 @@
     //message click on layout
 
     $scope.messageClick = function (number) {
-        
+
         $('#chat-messages').empty();
 
         $.cookie('isClosed', 'false', { path: '/' });
@@ -29,14 +48,6 @@
             item.Number = number;
             number++;
         });
-
-        //angular.forEach($scope.chatData, function (item) {
-        //    if (item.Login == person) {
-        //        $scope.chatData.splice($.inArray(item, $scope.chatData), 1);
-        //    }
-        //});
-
-       
 
         $.cookie('withWhom', person, { path: '/' });
 
@@ -132,6 +143,21 @@
         $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
     };
 
+    $.ajax({
+        url: '/api/Users',
+        type: "GET",
+        success: function (data) {
+
+            $scope.currentPage = 0;
+            $scope.pageSize = 10;
+            $scope.numberOfPages = function () {
+                return Math.ceil($scope.contacts.length / $scope.pageSize);
+            }
+
+            $scope.$apply();
+        }
+    });
+
     $scope.chatLogin = $.cookie('withWhom');
 
     $(document).ready(function () {
@@ -165,6 +191,13 @@
             }
         }
 
+
+        //var height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
+
+        //console.log(this.window.outerHeight);
+
+
+
     });
 
     // begin SignalR
@@ -173,8 +206,8 @@
 
     $.connection.hub.start().done(function () {
         $('#btn-chat').click(function () {
-            var message = $('#btn-input').val();           
-            chat.server.sendTo($scope.chatLogin, message);         
+            var message = $('#btn-input').val();
+            chat.server.sendTo($scope.chatLogin, message);
         });
     });
     chat.client.addToPage = function (senderLogin, message, date) {
@@ -186,7 +219,7 @@
             $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + senderLogin + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + date + '</small></div><p>' + message + '</p></div></li>');
             $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
         }
-        else {           
+        else {
             count++;
             $('#message-count').text('+' + count);
             $.each($scope.chatData, function () {
@@ -199,11 +232,11 @@
                 item.Number = number;
                 number++;
             });
-            
+
             $scope.chatData.push({ Number: 0, Login: senderLogin, Date: date, Message: message });
             $scope.$apply();
-        }          
-    };     
+        }
+    };
     // end SignalR
 });
 

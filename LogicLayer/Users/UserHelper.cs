@@ -33,6 +33,15 @@ namespace LogicLayer.Users
             }
         }
 
+
+        public IEnumerable<Group> GetGroups()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Groups.ToList();
+            }
+        }
+
         public bool UpdateUserActive(string login, bool isActive)
         {
             using (DBEntities db = new DBEntities())

@@ -65,18 +65,11 @@
 
     $scope.edit = function (login) {
 
-        $.each($scope.users, function () {
-            if (this.Id_Group == 1) {
-                this.Id_Group = "Admin";
-            }
-            if (this.Id_Group == 2) {
-                this.Id_Group = "Student";
-            }
-        });
-
         var modalInstance = $modal.open({
             templateUrl: 'editUserModal.html',
             controller: 'editUserCtrl',
+            backdrop: 'static',
+            keyboard: false,
             resolve: {
                 user: function () {
 
@@ -92,11 +85,7 @@
                 },
 
                 groups: function () {
-
-                    var group = [{ Group: 'Admin' },
-                            { Group: 'Student' }];
-
-                    return group;
+                    return $scope.groups;
                 }
             }
         });
@@ -107,6 +96,8 @@
         var modalInstance = $modal.open({
             templateUrl: 'deleteUserModal.html',
             controller: 'deleteUserCtrl',
+            backdrop: 'static',
+            keyboard: false,
             resolve: {
                 userLogin: function () {
                     return login;
@@ -151,15 +142,16 @@
         type: "GET",
         success: function (data) {
 
-            $.each(data, function () {
-                if (this.Id_Group == 1) {
-                    this.Id_Group = "Admin";
-                } else {
-                    this.Id_Group = "Student";
-                }
+            angular.forEach(data.users, function (user) {
+                angular.forEach(data.groups, function (group) {
+                    if (user.Id_Group == group.Id_Group) {
+                        user.Id_Group = group.Name;
+                    }
+                });
             });
 
-            $scope.users = data;
+            $scope.users = data.users;
+            $scope.groups = data.groups;
 
             $scope.currentPage = 0;
             $scope.pageSize = 10;
