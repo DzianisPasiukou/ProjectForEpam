@@ -20,7 +20,7 @@
 
 
 </head>
-<body>
+<body ng-controller="mainCtrl">
     <div ng-controller="messageCtrl">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -46,8 +46,8 @@
             @Html.Partial("_ChatPartial");
         }
     </div>
-    
-    
+
+
 
     @RenderBody()
 
@@ -85,10 +85,13 @@
     <script src="~/Scripts/dashboard/jquery.dataTables.js"></script>
     <script src="~/Scripts/dashboard/dataTables.bootstrap.js"></script>
     <script src="~/Scripts/ng-grid.min.js"></script>
+    <script src="~/Scripts/myScripts/mainCtrl.js"></script>
     <script src="~/Scripts/myScripts/messageCtrl.js"></script>
     <script src="~/Scripts/myScripts/usersInformationCtrl.js"></script>
     <script src="~/Scripts/myScripts/editUserCtrl.js"></script>
     <script src="~/Scripts/myScripts/Autocomplete.js"></script>
+    <script src="~/Scripts/myScripts/chatCtrl.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

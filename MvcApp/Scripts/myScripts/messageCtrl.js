@@ -1,26 +1,7 @@
 ﻿myApp.controller('messageCtrl', function ($scope) {
 
-    $scope.prevClick = function () {
-        if ($scope.currentPage == 0) {
-            return;
-        }
-        else {
-            $scope.currentPage -= 1;
-        }
-    }
-
-    $scope.nextClick = function () {
-        if ($scope.currentPage > ($scope.contacts.length / $scope.pageSize) - 1) {
-            return;
-        }
-        else {
-            $scope.currentPage += 1;
-        }
-    }
-
     $scope.chatData = [{ Number: 0, Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" }];
 
-    $scope.chatLogin = {};
     //message click on layout
 
     $scope.messageClick = function (number) {
@@ -63,8 +44,6 @@
             url: '/api/Message',
             data: "sender=" + login + "&recipient=" + person,
             success: function (data) {
-                var jsonEmployees = JSON.stringify(data);//converting array into json string   
-                $.cookie("messages", jsonEmployees, { path: '/' });//storing it in a cookie
 
                 angular.forEach(data, function (item) {
                     if (item.Login_Sender == login) {
@@ -83,111 +62,47 @@
 
     //click on chat page
 
-    $scope.chat = function (login) {
-        $('#chat-messages').empty();
-
-        $.cookie('isClosed', 'false', { path: '/' });
-
-        var person = login;
-
-        $.cookie('withWhom', person, { path: '/' });
-
-        $scope.chatLogin = person;
-
-        $('#allChat').show();
-
-        var hidden = $.cookie('hidden');
-
-        if (hidden == 'true') {
-            $('#hiddenChat').show();
-            $.cookie('hidden', 'false', { path: '/' });
-        }
-        else {
-            $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-        }
-
-        var senderLogin = $('#userLogin').text();
-
-        $.ajax({
-            url: '/api/Message',
-            data: "sender=" + senderLogin + "&recipient=" + login,
-            success: function (data) {
-                var jsonEmployees = JSON.stringify(data);//converting array into json string   
-                $.cookie("messages", jsonEmployees, { path: '/' });//storing it in a cookie
-
-                console.log($('#userLogin').text());
-
-                angular.forEach(data, function (item) {
-                    if (item.Login_Sender == login) {
-                        $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
-                    }
-                    else {
-                        $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
-
-                    }
-                });
-
-                $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-            }
-        });
-    };
-
-    $scope.chatLogin = $.cookie('withWhom');
-
-    if ($('#chatPage').text().length > 0) {
-        $.ajax({
-            url: '/api/Message/?login=' + $('#userLogin').text(),
-            type: "GET",
-            success: function (data) {
-                $scope.contacts = data;
-                $scope.currentPage = 0;
-                $scope.pageSize = 10;
-                $scope.numberOfPages = function () {
-                    return Math.ceil($scope.contacts.length / $scope.pageSize);
-                }
-
-                $scope.$apply();
-            }
-        });
-    }
+    //$scope.chatLogin = $.cookie('withWhom');
 
     $(document).ready(function () {
         var hidden = $.cookie('hidden');
 
         var isClosed = $.cookie('isClosed');
 
+        var person = $.cookie('withWhom');
+
         if (isClosed == 'false') {
 
-            var empString = $.cookie("messages");//retrieving data from cookie
-            var data = $.parseJSON(empString);//converting "empString" to an array.
+            $.ajax({
+                url: '/api/Message',
+                data: "sender=" + $('#userLogin').text() + "&recipient=" + person,
+                success: function (data) {
 
-            angular.forEach(data, function (item) {
-                if (item.Login_Sender == login) {
-                    $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
-                }
-                else {
-                    $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
+                    angular.forEach(data, function (item) {
+                        if (item.Login_Sender == $('#userLogin').text()) {
+                            $('#chat-messages').append('<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><i class="fa fa-clock-o fa-fw"></i> ' + item.Date + '</small> <strong class="pull-right primary-font">' + item.Login_Sender + '</strong> </div><p>' + item.Text + ' </p></div></li>');
+                        }
+                        else {
+                            $('#chat-messages').append(' <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + item.Login_Sender + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + item.Date + '</small></div><p>' + item.Text + '</p></div></li>');
 
+                        }
+                    });
+
+                    $('#allChat').show();
+
+                    if (hidden == 'true') {
+                        $('#hiddenChat').hide();
+                        $.cookie('isReload', "true", { path: '/' });
+                    }
+                    else {
+                        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+                    }
+
+                    $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
                 }
             });
 
-            $('#allChat').show();
-
-            if (hidden == 'true') {
-                $('#hiddenChat').hide();
-                $.cookie('isReload', "true", { path: '/' });
-            }
-            else {
-                $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
-            }
         }
-
-
-        //var height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
-
-        //console.log(this.window.outerHeight);
-
-
 
     });
 
