@@ -12,5 +12,7 @@ namespace LogicLayer.Chat
         bool AddMessage(string senderLogin, string recipientLogin, string text, string date);
 
         IEnumerable<Message> GetMessages(string senderLogin, string recipientLogin);
+
+        IEnumerable<string []> GetContacts(string login);
     }
 }

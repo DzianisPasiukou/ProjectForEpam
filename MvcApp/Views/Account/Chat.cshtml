@@ -15,6 +15,7 @@
     }
 }
 
+<div id="chatPage" style="display:none">Chat</div>
 <div id="page-wrapper" ng-controller="messageCtrl">
     <div class="container-fluid" style="bottom: 0">
         <div class="row">
@@ -59,18 +60,14 @@
                     Login
                 </th>
                 <th>
-                    Date of last message
-                </th>
-                <th>
-                    Message
+
                 </th>
             </tr>
-
+            
             <tr ng-repeat="contact in contacts | startFrom:currentPage*pageSize | limitTo:pageSize">
-                <td><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle"></td>
+                <td><img style="max-height: 50px; max-width: 50px" ng-src="~/{{contact.AvatarPath}}" alt="User Avatar" class="img-circle"></td>
                 <td>{{contact.Login}}</td>
-                <td>{{contact.Date}}</td>
-                <td>{{contact.Message}}</td>
+                <td><a href="" ng-click="chat(contact.Login)">Chat</a> | <a href="" ng-click="delete(contact.Login)">Delete</a></td>
             </tr>
         </table>
 

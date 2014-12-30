@@ -36,9 +36,11 @@ namespace MvcApp.Controllers
         }
 
         // GET: api/Users/5
-        public string Get(string id)
+        public string GetAvatar(string login)
         {
-            return "value";
+            User user = _userHelper.GetUser(login);
+
+            return user.AvatarPath;
         }
 
         // POST: api/Users

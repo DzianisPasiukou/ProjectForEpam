@@ -24,6 +24,14 @@ namespace LogicLayer.Users
             }
         }
 
+        public User GetUser(string login)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                User user = db.Users.First(model => model.Login.Equals(login));
+                return user;
+            }
+        }
 
         public IEnumerable<User> GetUsers()
         {

@@ -11,6 +11,8 @@ namespace LogicLayer.Users
     {
         bool UpdateUser(string login, string name, string surname, string email, string group);
 
+        User GetUser(string login);
+
         IEnumerable<User> GetUsers();
 
         IEnumerable<Group> GetGroups();

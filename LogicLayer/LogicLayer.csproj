@@ -57,6 +57,7 @@
     <Compile Include="CatalogManager\CatalogManager.cs" />
     <Compile Include="Chat\ChatHelper.cs" />
     <Compile Include="Chat\IChatHelper.cs" />
+    <Compile Include="Entities\Contact.cs" />
     <Compile Include="IDataBaseManager.cs" />
     <Compile Include="CatalogManager\ITree.cs" />
     <Compile Include="CatalogManager\InitializeTree.cs" />

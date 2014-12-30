@@ -18,18 +18,6 @@
         }
     }
 
-    $scope.contacts = [{ Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" },
-                 { Login: "Tiancum", Date: "16.12.2014 20:01", Message: "Hello2" },
-                 { Login: "Jacob", Date: "16.12.2014 19:01", Message: "Hello3" },
-                 { Login: "Nephi", Date: "16.12.2014 18:01", Message: "Hello4" },
-                 { Login: "Moroni", Date: "16.12.2014 17:01", Message: "Hello5" },
-                 { Login: "Moroni", Date: "16.12.2014 16:01", Message: "Hello6" },
-                 { Login: "Nephi", Date: "16.12.2014 15:01", Message: "Hello7" },
-                 { Login: "Moroni", Date: "16.12.2014 14:01", Message: "Hello8" },
-                 { Login: "Moroni", Date: "16.12.2014 12:01", Message: "Hello9" },
-                 { Login: "Enos", Date: "16.12.2014 11:01", Message: "Hello10" },
-    { Login: "Enos", Date: "16.12.2014 11:01", Message: "Hello10" }];
-
     $scope.chatData = [{ Number: 0, Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" }];
 
     $scope.chatLogin = {};
@@ -87,16 +75,15 @@
 
                     }
                 });
+                $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
             }
         });
-
-        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
 
     };
 
     //click on chat page
-    $scope.showChat = function (login) {
 
+    $scope.chat = function (login) {
         $('#chat-messages').empty();
 
         $.cookie('isClosed', 'false', { path: '/' });
@@ -119,14 +106,16 @@
             $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
         }
 
-        var login = $('#userLogin').text();
+        var senderLogin = $('#userLogin').text();
 
         $.ajax({
             url: '/api/Message',
-            data: "sender=" + login + "&recipient=" + person,
+            data: "sender=" + senderLogin + "&recipient=" + login,
             success: function (data) {
                 var jsonEmployees = JSON.stringify(data);//converting array into json string   
                 $.cookie("messages", jsonEmployees, { path: '/' });//storing it in a cookie
+
+                console.log($('#userLogin').text());
 
                 angular.forEach(data, function (item) {
                     if (item.Login_Sender == login) {
@@ -137,28 +126,30 @@
 
                     }
                 });
+
+                $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
             }
         });
-
-        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
     };
 
-    $.ajax({
-        url: '/api/Users',
-        type: "GET",
-        success: function (data) {
-
-            $scope.currentPage = 0;
-            $scope.pageSize = 10;
-            $scope.numberOfPages = function () {
-                return Math.ceil($scope.contacts.length / $scope.pageSize);
-            }
-
-            $scope.$apply();
-        }
-    });
-
     $scope.chatLogin = $.cookie('withWhom');
+
+    if ($('#chatPage').text().length > 0) {
+        $.ajax({
+            url: '/api/Message/?login=' + $('#userLogin').text(),
+            type: "GET",
+            success: function (data) {
+                $scope.contacts = data;
+                $scope.currentPage = 0;
+                $scope.pageSize = 10;
+                $scope.numberOfPages = function () {
+                    return Math.ceil($scope.contacts.length / $scope.pageSize);
+                }
+
+                $scope.$apply();
+            }
+        });
+    }
 
     $(document).ready(function () {
         var hidden = $.cookie('hidden');
