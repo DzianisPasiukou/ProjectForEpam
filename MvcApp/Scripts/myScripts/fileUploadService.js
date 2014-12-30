@@ -5,7 +5,8 @@
         return $http.get(url);
     }
     this.upload = function (file) {
-        var url = "/api/FileUpload?file=" + file;
-        return $http.post(url);
+        var url = "/api/FileUpload";
+        console.log(file);
+        return $http.post(url, "file=" + file);
     }
 });
