@@ -11,7 +11,7 @@ namespace LogicLayer.Security
 {
     public enum LoginValidate
     {
-        Seccess,
+        Success,
         NotApproved,
         NotRegistered
     }
@@ -19,6 +19,11 @@ namespace LogicLayer.Security
     public class SecurityHelper : ISecurityHelper
     {
         IHashCalculator _hashCalculator;
+
+        public SecurityHelper()
+        {
+
+        }
 
         public SecurityHelper(IHashCalculator hashCalculator)
         {
@@ -74,7 +79,7 @@ namespace LogicLayer.Security
                     Login = login,
                     Password = _hashCalculator.Calculate(password),
                     AvatarPath = avatar,
-                    DateOfRegistration = DateTime.Now,
+                    DateOfRegistration = DateTime.Now.ToString(),
                     IsActive = false,
                     Id_Group = 2
                 });
@@ -102,7 +107,7 @@ namespace LogicLayer.Security
             {
                 if (user.IsActive == true)
                 {
-                    return LoginValidate.Seccess;
+                    return LoginValidate.Success;
                 }
                 else
                 {
@@ -122,14 +127,6 @@ namespace LogicLayer.Security
             }
         }
 
-        public IEnumerable<User> GetUsers()
-        {
-            using (DBEntities db = new DBEntities())
-            {
-                return db.Users;
-            }
-        }
-
         public bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive)
         {
             throw new NotImplementedException();
@@ -142,5 +139,14 @@ namespace LogicLayer.Security
                 return db.Groups.First(group => group.Id_Group.Equals(db.Users.First(user => user.Login.Equals(login)).Id_Group)).Name;
             }
         }
+
+        public IEnumerable<Group> GetGroups()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Groups.ToList();
+            }
+        }
+
     }
 }

@@ -1,5 +1,5 @@
-﻿<div ng-app="myApp">
-    <div id="catalog" ng-controller="catalogCtrl">
+﻿<div ng-controller="catalogCtrl">
+    <div id="catalog">
         <div data-angular-treeview="true"
              data-tree-id="abc"
              data-tree-model="treedata"
@@ -122,6 +122,7 @@
                         <button class="btn btn-primary" ng-click="return()">Return</button>
                         <button class="btn btn-warning" ng-click="close()">Close</button>
                     </div>
+                </div>
             </script>
             <button class='btn btn-success' ng-click="open(record.Id_Category)">
                 Compare

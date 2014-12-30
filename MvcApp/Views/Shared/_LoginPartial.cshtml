@@ -1,11 +1,54 @@
 ﻿@if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink(@User.Identity.Name, "Account", "Account")
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <span id="message-count" style="color:yellow"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-messages">
+                <li ng-repeat="message in chatData">
+                    <a href="" ng-click="messageClick(message.Number)">
+                        <div>
+                            <strong id="loginOne">{{message.Login}}</strong>
+                            <span class="text-muted">
+                                <em>
+                                    <shortdate style="color:red">
+                                        {{message.Date}}
+                                    </shortdate>
+                                </em>
+                            </span>
+                        </div>
+                        <div>{{message.Message}}</div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a class="text-center" href="~/Account/Chat">
+                        <strong>Read All Messages</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.dropdown-messages -->
         </li>
-        <li>
-            @Html.ActionLink("Log Out", "Logout", "Account")
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i><span id="userLogin">@HttpContext.Current.User.Identity.Name</span><i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="/Account/ProfileInformation"><i class="fa fa-user fa-fw"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="/Account/Settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="/Account/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
         </li>
     </ul>
     

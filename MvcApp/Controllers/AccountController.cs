@@ -9,21 +9,29 @@ using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
 using LogicLayer.Security;
+using LogicLayer.Users;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
         private ISecurityHelper _securityHelper;
+        private IUserHelper _userHelper;
 
-        public AccountController(ISecurityHelper securityHelper)
+        public AccountController(ISecurityHelper securityHelper,IUserHelper userHelper)
         {
             if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
+            if (userHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _securityHelper = securityHelper;
+            _userHelper = userHelper;
         }
 
         [HttpGet]
@@ -65,7 +73,7 @@ namespace MvcApp.Controllers
 
             LoginValidate valid = _securityHelper.LoginUser(model.Login, model.Password);
 
-            if (valid == LoginValidate.Seccess)
+            if (valid == LoginValidate.Success)
             {
                 FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                 return RedirectToAction("Index", "Home");
@@ -81,16 +89,40 @@ namespace MvcApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
-        public ActionResult Account()
+        public ActionResult ProfileInformation()
         {
-            User user = new User();
+            ViewBag.SecurityHelper = _securityHelper;
             return View();
+        }
+
+        public ActionResult UsersInformation()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }
+
+        public ActionResult Chat()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }
+        public JsonResult AutocompleteSearch(string term)
+        {           
+                IEnumerable<User> users = _userHelper.GetUsers();
+                var models = users.Where(a => a.Login.Contains(term)).Select(a => new { value = a.Login }).Distinct();
+                return Json(models, JsonRequestBehavior.AllowGet);
         }
     }
 }
