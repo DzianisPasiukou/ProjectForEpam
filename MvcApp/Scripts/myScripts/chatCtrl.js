@@ -34,7 +34,6 @@
         url: '/api/Message/?login=' + $('#userLogin').text(),
         type: "GET",
         success: function (data) {
-            console.log(data);
             $scope.contacts = data;
             $scope.currentPage = 0;
             $scope.pageSize = 10;
