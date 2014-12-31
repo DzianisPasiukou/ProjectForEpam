@@ -96,23 +96,27 @@ namespace MvcApp.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [Authorize]
         public ActionResult ProfileInformation()
         {
             ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult UsersInformation()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Settings()
         {
             ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
 
+        [Authorize]
         public ActionResult Chat()
         {
             ViewBag.SecurityHelper = _securityHelper;

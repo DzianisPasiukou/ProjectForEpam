@@ -80,5 +80,58 @@ namespace LogicLayer.Chat
                 return contacts;
             }
         }
+
+
+        public string[] AddContact(string login, string userLogin)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                User user = db.Users.FirstOrDefault(model => model.Login.Equals(userLogin));
+
+                if (user == null)
+                {
+                    return null;
+                }
+
+                Contact contact = new Contact() { Login = login, User_Login = userLogin };
+
+                foreach (var item in db.Contacts)
+                {
+                    if (item.Login.Equals(login) && item.User_Login.Equals(userLogin))
+                    {
+                        return null;
+                    }
+                }
+
+                bool flag = db.Contacts.Add(contact);
+                if (flag)
+                {
+                    return new string[] { user.Login, user.AvatarPath };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+
+        public bool DeleteContact(string login, string userLogin)
+        {
+            bool flag = false;
+            using (DBEntities db = new DBEntities())
+            {
+                foreach (var item in db.Contacts)
+                {
+                    if (item.Login.Equals(login) && item.User_Login.Equals(userLogin))
+                    {
+                        Contact contact = item;
+                        flag = db.Contacts.Delete(contact);
+                        return flag;
+                    }
+                }
+                return flag;
+            }
+        }
     }
 }

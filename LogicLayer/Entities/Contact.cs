@@ -8,6 +8,8 @@ namespace LogicLayer.Entities
 {
     public class Contact
     {
+        public int Id { get; set; }
+
         public string Login { get; set; }
 
         public string User_Login { get; set; }

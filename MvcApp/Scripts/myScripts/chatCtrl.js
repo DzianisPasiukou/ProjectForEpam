@@ -1,4 +1,4 @@
-﻿myApp.controller('chatCtrl', function ($scope) {
+﻿myApp.controller('chatCtrl', function ($scope, $modal) {
 
     $scope.prevClick = function () {
         if ($scope.currentPage == 0) {
@@ -18,10 +18,23 @@
         }
     }
 
+    $scope.addContact = function () {
+        var newContact = $('#addContact').val();
+        $.ajax({
+            url: '/api/Message/?login=' + $('#userLogin').text() + '&userLogin=' + newContact,
+            type: "POST",
+            success: function (data) {
+                $scope.contacts.push(data);
+                $scope.$apply();
+            }
+        });
+    };
+
     $.ajax({
         url: '/api/Message/?login=' + $('#userLogin').text(),
         type: "GET",
         success: function (data) {
+            console.log(data);
             $scope.contacts = data;
             $scope.currentPage = 0;
             $scope.pageSize = 10;
@@ -34,7 +47,7 @@
     });
 
     $scope.chat = function (login) {
-        
+
         $scope.setLogin(login);
 
         $('#chat-messages').empty();
@@ -80,4 +93,19 @@
             }
         });
     };
+});
+myApp.controller('contactDeleteCtrl', function ($scope, $modalInstance, login, userLogin) {
+
+    $scope.ok = function () {
+        $.ajax({
+            url: '/api/Message/?login=' + login + '&userLogin=' + userLogin,
+            type: "DELETE",
+        });
+        $modalInstance.close("Ok");
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss("Close");
+    };
+
 });
