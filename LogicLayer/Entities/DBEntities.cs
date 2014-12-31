@@ -31,7 +31,7 @@ namespace LogicLayer.Entities
         public DBEntities()
             : base()
         {
-            Users = new DBSet<User>(connection, "Login");
+            Users = new DBSet<User>(connection, "");
             Groups = new DBSet<Group>(connection, "Id_Group");
             Categories = new DBSet<Category>(connection, "Id_Category");
             Notes = new DBSet<Note>(connection, "Id_Note");
@@ -47,7 +47,7 @@ namespace LogicLayer.Entities
             Permission = new DBSet<Permission>(connection, "Id_Permission");
             Tags = new DBSet<Tag>(connection, "Id_Tag");
             User_Permissions = new DBSet<User_Permission>(connection, "Id");
-            Contacts = new DBSet<Contact>(connection, "Login");
+            Contacts = new DBSet<Contact>(connection,"Id");
         }
     }
 }
