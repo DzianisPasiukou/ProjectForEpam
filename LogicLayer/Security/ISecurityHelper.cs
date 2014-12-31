@@ -17,8 +17,12 @@ namespace LogicLayer.Security
 
         bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive);
 
+        IEnumerable<User> GetUsers();
+
         string GetGroupForUser(string login);
 
         IEnumerable<Group> GetGroups();
+
+        bool updateUserActive(string login, bool isActive);
     }
 }

@@ -9,29 +9,21 @@ using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
 using LogicLayer.Security;
-using LogicLayer.Users;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
         private ISecurityHelper _securityHelper;
-        private IUserHelper _userHelper;
 
-        public AccountController(ISecurityHelper securityHelper,IUserHelper userHelper)
+        public AccountController(ISecurityHelper securityHelper)
         {
             if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (userHelper == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             _securityHelper = securityHelper;
-            _userHelper = userHelper;
         }
 
         [HttpGet]
@@ -118,11 +110,12 @@ namespace MvcApp.Controllers
             ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
-        public JsonResult AutocompleteSearch(string term)
-        {           
-                IEnumerable<User> users = _userHelper.GetUsers();
-                var models = users.Where(a => a.Login.Contains(term)).Select(a => new { value = a.Login }).Distinct();
-                return Json(models, JsonRequestBehavior.AllowGet);
+
+        [Authorize(Roles="Admin")]
+        public ActionResult Task()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
         }
     }
 }

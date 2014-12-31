@@ -7,26 +7,22 @@ namespace DataBaseLayer
 {
    static public class DataBaseManager
     {
-       /// <summary>
-       /// Выполнение Sql команды.
-       /// </summary>
-       /// <param name="comm">Запрос</param>
-       /// <param name="connection">Соединение</param>
-       /// <returns></returns>
        static public bool Execute(string comm, SqlConnection connection)
         {
-            using (SqlCommand command = new SqlCommand(comm, connection))
+            try
             {
-                command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(comm, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+            }
+            catch
+            {
+                return false;
             }
             return true;
         }
-       /// <summary>
-       /// Занесение в nameProp, valueProp значение имён свойств и их значений с объекта.
-       /// </summary>
-       /// <param name="obj"></param>
-       /// <param name="nameProp"></param>
-       /// <param name="valueProp"></param>
+
        static public void Properties(object obj, out string nameProp, out string valueProp)
         {
             PropertyInfo[] prop = obj.GetType().GetProperties();
@@ -116,17 +112,15 @@ namespace DataBaseLayer
                if (props[i].Name.ToLower() != key.ToLower())
                {
                    nameBuilder.Append(arrName[i]);
-                   if (i != props.Length - 1)
-                   {
-                       if ((props[i+1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
-                       nameBuilder.Append(", ");
-                   }
                }
                else
                {
                    indexId = i;
                }
-               
+               if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
+               {
+                   nameBuilder.Append(", ");
+               }
            }
            
            arrValue[indexId] = arrValue[indexId].Remove(0);
@@ -134,15 +128,11 @@ namespace DataBaseLayer
 
            for (int i = 0; i < props.Length; i++)
            {
-               if (props[i].Name.ToLower() != key.ToLower())
-               {
-                   valueBuilder.Append(arrValue[i]);
-                   if (i != props.Length - 1)
-                   {
-                       if ((props[i + 1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
-                           valueBuilder.Append(", ");
-                   }
-               }
+                valueBuilder.Append(arrValue[i]);
+                if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
+                {
+                    valueBuilder.Append(", ");
+                }
            }
 
            nameProp = nameBuilder.ToString();

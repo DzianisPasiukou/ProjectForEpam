@@ -127,6 +127,14 @@ namespace LogicLayer.Security
             }
         }
 
+        public IEnumerable<User> GetUsers()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Users.ToList();
+            }
+        }
+
         public bool UpdateUser(string login, string name, string surname, string email, string role, bool isActive)
         {
             throw new NotImplementedException();
@@ -145,6 +153,17 @@ namespace LogicLayer.Security
             using (DBEntities db = new DBEntities())
             {
                 return db.Groups.ToList();
+            }
+        }
+
+        public bool updateUserActive(string login, bool isActive)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                User user = db.Users.First(model => model.Login.Equals(login));
+                user.IsActive = isActive;
+                bool flag = db.Users.Update(user);
+                return flag;
             }
         }
 

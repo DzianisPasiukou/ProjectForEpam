@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using DataBaseLayer;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace DataBaseLayer
 {
@@ -23,8 +22,8 @@ namespace DataBaseLayer
         }
         private static string GetConnectionstring()
         {
-            string str = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
-            return str;
+            //  string str = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
+            return @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\EPAMPROJECT.mdf;Initial Catalog=ProjectForEpam-ValikBranch;Integrated Security=True";
         }
     }
 }

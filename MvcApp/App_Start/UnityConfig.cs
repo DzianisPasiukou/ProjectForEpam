@@ -10,7 +10,7 @@ using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 using System.Web.Http.Dispatcher;
 using LogicLayer.Security;
 using LogicLayer.Chat;
-using LogicLayer.Users;
+using LogicLayer.Tasks;
 
 namespace MvcApp.App_Start
 {
@@ -50,10 +50,10 @@ namespace MvcApp.App_Start
             // container.AddExtension(Interceptio)
 
             //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
-
+           
             container.RegisterType<IChatHelper, ChatHelper>();
-            container.RegisterType<IUserHelper, UserHelper>();
             container.RegisterType<ISecurityHelper, SecurityHelper>();
+            container.RegisterType<ITaskHelper, TaskHelper>();
             container.RegisterType<IDataBaseManager<Category>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
@@ -68,12 +68,8 @@ namespace MvcApp.App_Start
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<LikeNote>, LikeNoteInfo>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IDataBaseManager<File>, FileManager>(new Interceptor<InterfaceInterceptor>(),
-            new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IDataBaseManager<Note_Characteristic>, Note_CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
-            new InterceptionBehavior<LoggingInterceptionBehavior>());
-            container.RegisterType<IDataBaseManager<Characteristic>, CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
-            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            
+            
         }
     }
 }

@@ -89,7 +89,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -164,11 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\EpamProject.mdf" />
-    <Content Include="App_Data\EpamProject_log.ldf">
-      <DependentUpon>EpamProject.mdf</DependentUpon>
-    </Content>
-    <Content Include="Content\1418616345_174742.ico" />
-    <Content Include="Content\1418616470_message.png" />
+    <Content Include="App_Data\EpamProject_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chat.css" />
@@ -216,7 +212,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\dashboard\timeline.css" />
     <Content Include="Content\themes\default-dark\32px.png" />
     <Content Include="Content\themes\default-dark\40px.png" />
     <Content Include="Content\themes\default-dark\style.css" />
@@ -227,6 +222,7 @@
     <Content Include="Content\themes\default\style.css" />
     <Content Include="Content\themes\default\style.min.css" />
     <Content Include="Content\themes\default\throbber.gif" />
+    <Content Include="Content\dashboard\timeline.css" />
     <Content Include="fonts\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,11 +230,13 @@
     <Content Include="fonts\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fonts\FontAwesome.otf" />
-    <Content Include="Content\video-js.css" />
-    <Content Include="Content\video-js.min.css" />
-    <Content Include="Content\video-js.swf" />
-    <Content Include="Content\videogular.css" />
+    <None Include="Resources\4.jpg" />
+    <None Include="Resources\161550_294946.jpg" />
+    <None Include="Resources\url.jpg" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
@@ -246,12 +244,52 @@
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-messages.js" />
     <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\themes\default\Thumbs.db" />
+    <Content Include="Scripts\dashboard\dataTables.bootstrap.js" />
+    <Content Include="Scripts\dashboard\jquery.dataTables.js" />
+    <Content Include="Scripts\dashboard\metisMenu.js" />
+    <Content Include="Scripts\dashboard\metisMenu.min.js" />
+    <Content Include="Scripts\dashboard\morris-data.js" />
+    <Content Include="Scripts\dashboard\morris.js" />
+    <Content Include="Scripts\dashboard\morris.min.js" />
+    <Content Include="Scripts\dashboard\ng-grid.debug.js" />
+    <Content Include="Scripts\dashboard\raphael.min.js" />
+    <Content Include="Scripts\dashboard\sb-admin-2.js" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Resources\Web.config" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\flow\ng-flow-standalone.js" />
+    <Content Include="Scripts\flow\ng-flow-standalone.min.js" />
+    <Content Include="Scripts\flow\ng-flow.js" />
+    <Content Include="Scripts\flow\ng-flow.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -995,64 +1033,6 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
-    <Content Include="Scripts\jstree.js" />
-    <Content Include="Scripts\jstree.min.js" />
-    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\icomoon.woff" />
-    <Content Include="Content\fonts\icomoon.ttf" />
-    <Content Include="Content\fonts\icomoon.svg" />
-    <Content Include="Content\fonts\icomoon.eot" />
-    <Content Include="Content\fonts\icomoon.dev.svg" />
-    <Content Include="Scripts\myCSS\fonts\vjs.woff" />
-    <Content Include="Scripts\myCSS\fonts\vjs.ttf" />
-    <Content Include="Scripts\myCSS\fonts\vjs.svg" />
-    <Content Include="Scripts\myCSS\fonts\vjs.eot" />
-    <Content Include="Content\video-js.less" />
-    <Content Include="Content\themes\default-dark\Thumbs.db" />
-    <Content Include="Content\themes\default\Thumbs.db" />
-    <None Include="Resources\4.jpg" />
-    <None Include="Resources\161550_294946.jpg" />
-    <None Include="Resources\url.jpg" />
-    <Content Include="Resources\StaticResources\3433464-3326335211-32593.png" />
-    <Content Include="Resources\Video\Mariah Carey - All I Want For Christmas Is You - Ten Second Songs 20 Style Christmas Cover.mp4" />
-    <Content Include="Scripts\angular-animate.js" />
-    <Content Include="Scripts\angular-animate.min.js" />
-    <Content Include="Scripts\angular-aria.min.js" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular-route.min.js" />
-    <Content Include="Scripts\angular-sanitize.js" />
-    <Content Include="Scripts\angular-sanitize.min.js" />
-    <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\dashboard\dataTables.bootstrap.js" />
-    <Content Include="Scripts\dashboard\jquery.dataTables.js" />
-    <Content Include="Scripts\dashboard\metisMenu.js" />
-    <Content Include="Scripts\dashboard\metisMenu.min.js" />
-    <Content Include="Scripts\dashboard\morris-data.js" />
-    <Content Include="Scripts\dashboard\morris.js" />
-    <Content Include="Scripts\dashboard\morris.min.js" />
-    <Content Include="Scripts\dashboard\ng-grid.debug.js" />
-    <Content Include="Scripts\dashboard\raphael.min.js" />
-    <Content Include="Scripts\dashboard\sb-admin-2.js" />
-    <Content Include="Scripts\buffering.js" />
-    <Content Include="Scripts\buffering.min.js" />
-    <Content Include="Scripts\controls.js" />
-    <Content Include="Scripts\controls.min.js" />
-    <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Resources\Web.config" />
-    <Content Include="Scripts\angular-sanitize.min.js.map" />
-    <Content Include="Scripts\angular-touch.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="Scripts\angular-messages.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js.map" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.2.js" />
@@ -1069,59 +1049,24 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\myCSS\angular-bootstrap-lightbox.css" />
     <Content Include="Scripts\myCSS\animate.min.css" />
-    <Content Include="Scripts\myCSS\bootstrap-theme.css" />
-    <Content Include="Scripts\myCSS\bootstrap.css" />
-    <Content Include="Scripts\myCSS\css\font-awesome.css" />
-    <Content Include="Scripts\myCSS\css\font-awesome.min.css" />
-    <Content Include="Scripts\myCSS\loading-bar.css" />
-    <Content Include="Scripts\myCSS\videogular.css" />
-    <Content Include="Scripts\myScripts\addFileCtrl.js" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
-    <Content Include="Scripts\myScripts\angular-bootstrap-lightbox.js" />
-    <Content Include="Scripts\myScripts\angular-file-upload.js" />
-    <Content Include="Scripts\myScripts\angular-touch.min.js" />
     <Content Include="Scripts\myScripts\angular.treeview.js" />
-    <Content Include="Scripts\myScripts\chatCtrl.js" />
     <Content Include="Scripts\myScripts\editUserCtrl.js" />
-    <Content Include="Scripts\myScripts\Autocomplete.js" />
     <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
     <Content Include="Scripts\myScripts\angular.js" />
-    <Content Include="Scripts\myScripts\mainCtrl.js" />
-    <Content Include="Scripts\myScripts\messageCtrl.js" />
-    <Content Include="Scripts\myScripts\bootstrap.js" />
-    <Content Include="Scripts\myScripts\chacteristicService.js" />
-    <Content Include="Scripts\myScripts\fileUploadService.js" />
-    <Content Include="Scripts\myScripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\myScripts\angular.js" />
-    <Content Include="Scripts\myScripts\lightBoxCtrl.js" />
-    <Content Include="Scripts\myScripts\loading-bar.js" />
-    <Content Include="Scripts\myScripts\modalCharacteristic.js" />
     <Content Include="Scripts\myScripts\modalCompareCtrl.js" />
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
-    <Content Include="Scripts\myScripts\noteInfoService.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\myScripts\taskCtrl.js" />
     <Content Include="Scripts\myScripts\usersInformationCtrl.js" />
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
-    <Content Include="Scripts\myScripts\resourceCtrl.js" />
-    <Content Include="Scripts\myScripts\userService.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\overlay-play.js" />
-    <Content Include="Scripts\overlay-play.min.js" />
-    <Content Include="Scripts\poster.js" />
-    <Content Include="Scripts\poster.min.js" />
-    <Content Include="Scripts\scripts\angular-animate.js" />
-    <Content Include="Scripts\scripts\angular-loader.js" />
-    <Content Include="Scripts\scripts\angular-touch.js" />
-    <Content Include="Scripts\scripts\angular.js" />
-    <Content Include="Scripts\scripts\bootstrap-theme.css" />
-    <Content Include="Scripts\scripts\bootstrap.css" />
-    <Content Include="Scripts\scripts\bootstrap.js" />
-    <Content Include="Scripts\scripts\ng-grid.debug.js" />
-    <Content Include="Scripts\scripts\ui-grid.js" />
+    <Content Include="Scripts\SignalR\addMessageToLayoutDropMessages.js" />
     <Content Include="Scripts\textAngular.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
@@ -1141,45 +1086,29 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\video.dev.js" />
-    <Content Include="Scripts\video.js" />
-    <Content Include="Scripts\videogular.js" />
-    <Content Include="Scripts\videogular.min.js" />
-    <Content Include="Scripts\vjs-lang\de.js" />
-    <Content Include="Scripts\vjs-lang\es.js" />
-    <Content Include="Scripts\vjs-lang\fr.js" />
-    <Content Include="Scripts\vjs-lang\it.js" />
-    <Content Include="Scripts\vjs-lang\ja.js" />
-    <Content Include="Scripts\vjs-lang\ko.js" />
-    <Content Include="Scripts\vjs-lang\nl.js" />
-    <Content Include="Scripts\vjs-lang\pt-BR.js" />
-    <Content Include="Scripts\vjs-lang\ru.js" />
-    <Content Include="Scripts\vjs-lang\uk.js" />
-    <Content Include="Scripts\vjs-lang\zh.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\UnityHttpControllerActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CatalogViewController.cs" />
-    <Compile Include="Controllers\CharacteristicInfoController.cs" />
-    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CatalogTreeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
+    <Compile Include="Controllers\UsersInformationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\MessageHub.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
-    <Compile Include="Models\UsersAndGroups.cs" />
-    <Compile Include="Models\UsersForChat.cs" />
     <Compile Include="NoteAvatars.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1197,9 +1126,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Scripts\myCSS\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1213,11 +1142,7 @@
     <Content Include="Views\Account\Settings.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_ChatPartial.cshtml" />
-    <Content Include="Scripts\myCSS\fonts\fontawesome-webfont.eot" />
-    <Content Include="Scripts\myCSS\fonts\fontawesome-webfont.svg" />
-    <Content Include="Scripts\myCSS\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Scripts\myCSS\fonts\fontawesome-webfont.woff" />
-    <Content Include="Scripts\myCSS\fonts\FontAwesome.otf" />
+    <Content Include="Views\Account\Task.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

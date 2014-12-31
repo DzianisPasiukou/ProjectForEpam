@@ -1,7 +1,5 @@
 ﻿using LogicLayer.Entities;
 using LogicLayer.Security;
-using LogicLayer.Users;
-using MvcApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,34 +11,28 @@ namespace MvcApp.Controllers
 {
     public class UsersController : ApiController
     {
-        private IUserHelper _userHelper;
+        private ISecurityHelper _securityHelper;
 
-        public UsersController(IUserHelper userHelper)
+        public UsersController(ISecurityHelper securityHelper)
         {
-            if (userHelper == null)
+            if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
-            _userHelper = userHelper;
+            _securityHelper = securityHelper;
         }
 
         // GET: api/Users
-        public UsersAndGroups Get()
+        public IEnumerable<User> Get()
         {
-            UsersAndGroups usersAndGroups = new UsersAndGroups();
-            usersAndGroups.users = _userHelper.GetUsers().ToList();
-            usersAndGroups.groups = _userHelper.GetGroups().ToList();
-
-            return usersAndGroups;
+            return _securityHelper.GetUsers().ToList();
         }
 
         // GET: api/Users/5
-        public string GetAvatar(string login)
+        public string Get(string id)
         {
-            User user = _userHelper.GetUser(login);
-
-            return user.AvatarPath;
+            return "value";
         }
 
         // POST: api/Users
@@ -50,19 +42,13 @@ namespace MvcApp.Controllers
 
         // PUT: api/Users/5
         public void Put(string login, bool isActive)
-        {
-            _userHelper.UpdateUserActive(login, isActive);
-        }
-
-        public void Put(string login, string name, string surname, string email, string group)
-        {
-            _userHelper.UpdateUser(login, name, surname, email, group);
+            {
+            _securityHelper.updateUserActive(login, isActive);
         }
 
         // DELETE: api/Users/5
-        public void Delete(string login)
+        public void Delete(int id)
         {
-            _userHelper.DeleteUser(login);
         }
     }
 }

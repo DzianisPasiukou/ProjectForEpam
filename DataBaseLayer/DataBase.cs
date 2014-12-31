@@ -56,7 +56,7 @@ namespace DataBaseLayer
            string str = DataBaseManager.Modification(nameProp, valueProp, "AND");
 
 
-           string comm = String.Format("DELETE FROM [{0}] WHERE {1}",_table,str);
+           string comm = String.Format("DELETE FROM {0} WHERE {1}",_table,str);
            return DataBaseManager.Execute(comm, _connection);
        }
         public List<Dictionary<string,object>> GetData(string args)

@@ -1,19 +1,6 @@
-﻿myApp.controller('addNoteCtrl', function ($scope, $modalInstance, catalogData, chacteristicService) {
-
-    function getCharacter() {
-        chacteristicService.getCharacteristic().success(function (data) {
-            $scope.allCharacteristics = data;
-        });
-    }
-
-    getCharacter();
-
-    $scope.dropdown = function (name) {
-        $scope.myCharacteristicName = name;
-    }
+﻿myApp.controller('addNoteCtrl', function ($scope, $modalInstance, catalogData) {
 
     $scope.addingNote = {};
-
 
     $scope.ok = function () {
 

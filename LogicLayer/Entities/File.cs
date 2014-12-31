@@ -11,10 +11,9 @@ namespace LogicLayer.Entities
        public int Id_File { get; set; }
        public string Type { get; set; }
        public string Path { get; set; }
-       public string Login { get; set; }
+       public int Id_User { get; set; }
        public string Status { get; set; }
        public string Size { get; set; }
        public int Id_Note { get; set; }
-       public string Description { get; set; }
     }
 }

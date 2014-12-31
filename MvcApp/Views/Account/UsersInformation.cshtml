@@ -17,14 +17,6 @@
 
         <div style="margin-bottom:10px">
             Records per page : {{pageSize}}
-
-            <a style="margin-left:10px" id="prevButton" href="" ng-click="prevClick()">
-                Previous
-            </a>
-            {{currentPage+1}}/{{numberOfPages()}}
-            <a id="nextButton" href="" ng-click="nextClick()">
-                Next
-            </a>
         </div>
 
         <table class="table paginated">
@@ -35,11 +27,11 @@
                 <th>
                     Full name
                 </th>
-                <th>
-                    <a href="" style="color:black" ng-click="loginSort()">Login</a>
+                <th ng-click="loginSort()">
+                    Login
                 </th>
-                <th>
-                    <a href="" style="color:black" ng-click="isActiveSort()">IsActive</a>
+                <th ng-click="isActiveSort()">
+                    IsActive
                 </th>
                 <th>
                     Group
@@ -50,7 +42,7 @@
             </tr>
 
             <tr ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize">
-                <td align="center"><a href="" ng-click="edit(user.Login)"> Edit </a>| <a href="" ng-click="delete(user.Login)"> Delete </a></td>
+                <td align="center"><a href="" ng-click="edit(user.Login)"> Edit </a>| <a href="" ng-click=""> Delete </a></td>
                 <td>{{user.Name}} &nbsp; {{user.Surname}}</td>
                 <td>{{user.Login}}</td>
                 <td><input type="checkbox" ng-model="user.IsActive" ng-click="checkClick(user.Login,user.IsActive)"></td>
@@ -59,6 +51,14 @@
             </tr>
 
         </table>
+
+        <a id="prevButton" href="" ng-click="prevClick()">
+            Previous
+        </a>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <a id="nextButton" href="" ng-click="nextClick()">
+            Next
+        </a>
 
         <script type="text/ng-template" id="editUserModal.html">
             <div class="modal-header">
@@ -97,21 +97,11 @@
                             <div class="col-md-2 control-label">
                                 Group
                             </div>
-
-                            <div class="dropdown btn-group">
-                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
-                                    {{userGroup}}
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li ng-repeat="group in groups">
-                                        <a href="" ng-click="changeGroup(group.Name)">{{group.Name}}</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <input ng-model="user.Group" class="col-md-10 form-control inline" />
                         </div>
 
                     </div>
+
 
                 </div>
 
@@ -139,20 +129,6 @@
                     </tr>
 
                 </table>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="ok()">Ok</button>
-                <button class="btn btn-warning" ng-click="cancel()">Close</button>
-            </div>
-        </script>
-
-        <script type="text/ng-template" id="deleteUserModal.html">
-            <div class="modal-header">
-                <h3 class="modal-title">
-                    Are you sure you want to delete user
-                    <br />
-                    <b>{{fullName}}</b>?
-                </h3>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">Ok</button>
