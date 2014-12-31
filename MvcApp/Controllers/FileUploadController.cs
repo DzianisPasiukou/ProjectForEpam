@@ -21,15 +21,17 @@ namespace MvcApp.Controllers
             return 0;
         }
         [HttpPost]
-        public void Post(HttpPostedFileBase file)
+        public void Post(object file)
         {
+            var a = Request.Content;
+            /*
             if (file != null && file.ContentLength > 0)
            {
                var fileName = Path.GetFileName(file.FileName);
                var path = Path.Combine("~/Resources/", fileName);
                file.SaveAs(path);
            }
-             
+             */
        
         }
 
