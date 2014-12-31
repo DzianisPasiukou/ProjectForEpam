@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
@@ -13,14 +14,15 @@ namespace DataBaseLayer
        /// <param name="comm">Запрос</param>
        /// <param name="connection">Соединение</param>
        /// <returns></returns>
-       static public bool Execute(string comm, SqlConnection connection)
-        {
-            using (SqlCommand command = new SqlCommand(comm, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-            return true;
-        }
+       static public bool Execute(string comm, SqlConnection connection, Dictionary<string, object> param)
+       {
+           SqlCommand command = new SqlCommand(comm, connection);
+           CommandParametr(ref command, param);
+           command.ExecuteNonQuery();
+           command.Dispose();
+
+           return true;
+       }
        /// <summary>
        /// Занесение в nameProp, valueProp значение имён свойств и их значений с объекта.
        /// </summary>
@@ -153,5 +155,36 @@ namespace DataBaseLayer
            nameProp = nameBuilder.ToString();
            valueProp = valueBuilder.ToString();
        }
+       static public Dictionary<string, object> Parameters(ref string value)
+       {
+           StringBuilder builder = new StringBuilder();
+           Dictionary<string, object> dict = new Dictionary<string, object>();
+
+           value = value.Trim();
+           string[] split = value.Split(',');
+
+           for (int i = 0; i < split.Length; i++)
+           {
+               builder.Append(String.Format("@Param_{0}", i));
+
+               if (i != split.Length - 1)
+               {
+                   builder.Append(",");
+               }
+               split[i] = split[i].Trim('\'', ' ');
+               dict.Add(String.Format("@Param_{0}", i), split[i]);
+           }
+
+           value = builder.ToString();
+           return dict;
+       }
+        static public void CommandParametr(ref SqlCommand command, Dictionary<string,object> param)
+       {
+           foreach (var p in param.Keys)
+           {
+               command.Parameters.AddWithValue(p, param[p]);
+           }
+       }
     }
+   
 }
