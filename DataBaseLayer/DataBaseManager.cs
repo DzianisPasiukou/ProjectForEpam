@@ -104,6 +104,11 @@ namespace DataBaseLayer
        }
        static public void ClearID(object obj, ref string nameProp, ref string valueProp, string key)
        {
+           if (String.IsNullOrEmpty(key))
+           {
+               return;    
+           }
+
            PropertyInfo[] props = obj.GetType().GetProperties();
            string[] arrName = nameProp.Split(',');
            string[] arrValue = valueProp.Split(',');

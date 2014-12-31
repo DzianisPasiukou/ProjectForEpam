@@ -37,9 +37,8 @@ namespace MvcApp.Models.Account
         public string Surname { get; set; }
 
         [Display(Name = "Avatar")]
-        public string Avatar { get; set; }
+        public HttpPostedFileBase Avatar { get; set; }
 
-        public bool RememberMe { get; set; }
     }
 
     public class LoginViewModel
