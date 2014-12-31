@@ -22,15 +22,13 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Chat</h1>
             </div>
-
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="col-md-2 control-label">
-                        Add contact
+                        Add new contact
                     </div>
-                    <input type="text" class="col-md-10 form-control inline" data-autocomplete-source="@Url.Action("AutocompleteSearch", "Account")" autocomplete="on" />
-
-                    <input style="margin-left:15px" class="btn btn-success" type="button" value="+Add" />
+                    <input type="text" id="addContact" style="color:green" class="col-md-10 form-control inline" data-autocomplete-source="@Url.Action("AutocompleteSearch", "Account")" autocomplete="on" />
+                    <input style="margin-left:15px" ng-click="addContact()" class="btn btn-success" type="button" value="+Add" />
                 </div>
             </div>
         </div>

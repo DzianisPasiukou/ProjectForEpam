@@ -13,6 +13,10 @@ namespace LogicLayer.Chat
 
         IEnumerable<Message> GetMessages(string senderLogin, string recipientLogin);
 
-        IEnumerable<string []> GetContacts(string login);
+        IEnumerable<string[]> GetContacts(string login);
+
+        string[] AddContact(string login, string userLogin);
+
+        bool DeleteContact(string login, string userLogin);
     }
 }

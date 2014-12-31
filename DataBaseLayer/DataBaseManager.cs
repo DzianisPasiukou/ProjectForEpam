@@ -106,7 +106,7 @@ namespace DataBaseLayer
        {
            if (String.IsNullOrEmpty(key))
            {
-               return;    
+               return;
            }
 
            PropertyInfo[] props = obj.GetType().GetProperties();

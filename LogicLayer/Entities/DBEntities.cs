@@ -47,7 +47,7 @@ namespace LogicLayer.Entities
             Permission = new DBSet<Permission>(connection, "Id_Permission");
             Tags = new DBSet<Tag>(connection, "Id_Tag");
             User_Permissions = new DBSet<User_Permission>(connection, "Id");
-            Contacts = new DBSet<Contact>(connection, "Login");
+            Contacts = new DBSet<Contact>(connection,"Id");
         }
     }
 }

@@ -44,5 +44,24 @@ namespace MvcApp.Controllers
 
             return users;
         }
+
+        public UsersForChat Post(string login, string userLogin)
+        {
+            string[] contact = _chatHelper.AddContact(login, userLogin);
+
+            if (contact == null)
+            {
+                return null;
+            }
+
+            UsersForChat userForChat = new UsersForChat { Login = contact[0], AvatarPath = contact[1] };
+
+            return userForChat;
+        }
+
+        public bool Delete(string login, string userLogin)
+        {
+            return _chatHelper.DeleteContact(login, userLogin);
+        }
     }
 }

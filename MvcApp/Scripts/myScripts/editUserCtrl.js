@@ -29,20 +29,27 @@
         $scope.user.Id_Group = cookieUser.Id_Group;
 
         $modalInstance.dismiss();
-    };
+    }; 
 
 });
 
-myApp.controller('deleteUserCtrl', function ($scope, $modalInstance, userLogin, fullName) {
+myApp.controller('deleteUserCtrl', function ($scope, $modalInstance, login, userLogin) {
 
     $scope.fullName = fullName;
 
     $scope.ok = function () {
         $.ajax({
-            url: '/api/Users/?login=' + userLogin,
+            url: '/api/Users/?login=' + login + '&userLogin=' + userLogin,
             type: "DELETE",
+            success: function (data) {
+                if (data) {
+                    $modalInstance.close("Ok");
+                } else {
+                    $modalInstance.close("Not delete");
+                }
+            }
         });
-        $modalInstance.close("Ok");
+
     };
 
     $scope.cancel = function () {
