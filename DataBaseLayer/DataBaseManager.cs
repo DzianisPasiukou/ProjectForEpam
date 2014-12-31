@@ -106,6 +106,11 @@ namespace DataBaseLayer
        }
        static public void ClearID(object obj, ref string nameProp, ref string valueProp, string key)
        {
+           if (String.IsNullOrEmpty(key))
+           {
+               return;
+           }
+
            PropertyInfo[] props = obj.GetType().GetProperties();
            string[] arrName = nameProp.Split(',');
            string[] arrValue = valueProp.Split(',');
@@ -150,14 +155,15 @@ namespace DataBaseLayer
            nameProp = nameBuilder.ToString();
            valueProp = valueBuilder.ToString();
        }
-       static public Dictionary<string, object> Parameters(ref string value)
+       static public Dictionary<string, object> Parameters(ref string value, char splitter)
        {
            StringBuilder builder = new StringBuilder();
            Dictionary<string, object> dict = new Dictionary<string, object>();
 
            value = value.Trim();
-           string[] split = value.Split(',');
-
+           string[] split;
+           split = value.Split(splitter);
+         
            for (int i = 0; i < split.Length; i++)
            {
                builder.Append(String.Format("@Param_{0}", i));
@@ -180,6 +186,7 @@ namespace DataBaseLayer
                command.Parameters.AddWithValue(p, param[p]);
            }
        }
+     
     }
    
 }

@@ -24,7 +24,7 @@ namespace DataBaseLayer
            string nameProp, valueProp;
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
-           Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp);
+           Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
 
            string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
 
@@ -39,7 +39,7 @@ namespace DataBaseLayer
             
 
             string prop = DataBaseManager.FindProperty(obj, _key);
-            Dictionary<string, object> param = DataBaseManager.Parameters(ref str);
+            Dictionary<string, object> param = DataBaseManager.Parameters(ref str, ',');
 
             if (!String.IsNullOrEmpty(prop))
             {
@@ -56,8 +56,9 @@ namespace DataBaseLayer
            string nameProp, valueProp;
            DataBaseManager.Properties(obj, out nameProp, out valueProp);
 
+           Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
            string str = DataBaseManager.Modification(nameProp, valueProp, "AND");
-           Dictionary<string, object> param = DataBaseManager.Parameters(ref str);
+          
 
            string comm = String.Format("DELETE FROM [{0}] WHERE {1}",_table,str);
            return DataBaseManager.Execute(comm, _connection, param);

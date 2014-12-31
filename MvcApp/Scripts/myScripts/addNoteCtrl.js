@@ -22,17 +22,33 @@
 
     $scope.ok = function () {
 
-        var f = document.getElementById('avatarId').files[0];
-        fileUpload.upload(f);
-        $modalInstance.close();
+                var data = new FormData();
 
-    }
+                var files = $("#uploadAvatar").get(0).files;
 
-    $scope.cancel = function () {
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
 
-        $modalInstance.close();
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    url: "/api/fileupload/Post",
+                    contentType: false,
+                    processData: false,
+                    data: data
+                });
 
+                ajaxRequest.done(function (xhr, textStatus) {
+                });
+
+                $modalInstance.close();
     };
+
+        $scope.cancel = function () {
+
+            $modalInstance.close();
+
+        };
 
     $scope.addPhoto = function () {
         $scope.photosNewNote.push({
@@ -55,4 +71,4 @@
             value: myCharacteristicValue
         });
     }
-});
+    });
