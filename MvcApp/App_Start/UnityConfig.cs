@@ -6,11 +6,11 @@ using Microsoft.Practices.Unity.InterceptionExtension;
 using LoggingManager;
 using LogicLayer.CatalogManager;
 using LogicLayer.Entities;
-using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 using System.Web.Http.Dispatcher;
 using LogicLayer.Security;
 using LogicLayer.Chat;
 using LogicLayer.Users;
+using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 
 namespace MvcApp.App_Start
 {
@@ -47,9 +47,8 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            // container.AddExtension(Interceptio)
-
-            //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
+          //  container.LoadConfiguration();
+           container.AddNewExtension<Interception>();
 
             container.RegisterType<IChatHelper, ChatHelper>();
             container.RegisterType<IUserHelper, UserHelper>();
@@ -74,6 +73,7 @@ namespace MvcApp.App_Start
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Characteristic>, CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
+            
         }
     }
 }
