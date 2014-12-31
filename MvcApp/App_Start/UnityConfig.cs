@@ -11,6 +11,7 @@ using LogicLayer.Security;
 using LogicLayer.Chat;
 using LogicLayer.Users;
 using LogicLayer.CatalogManager.ThemeManager.RecordManager;
+using System.Configuration;
 
 namespace MvcApp.App_Start
 {
@@ -35,7 +36,7 @@ namespace MvcApp.App_Start
             return container.Value;
         }
         #endregion
-
+        
         /// <summary>Registers the type mappings with the Unity container.</summary>
         /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
@@ -47,7 +48,10 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-          //  container.LoadConfiguration();
+         //   var section = ConfigurationManager.GetSection("unity") as UnityConfigurationSection;
+          //  section.Containers["container"].Configure(container);
+        //   container.LoadConfiguration();
+            
            container.AddNewExtension<Interception>();
 
             container.RegisterType<IChatHelper, ChatHelper>();
@@ -73,7 +77,7 @@ namespace MvcApp.App_Start
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<Characteristic>, CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
-            
+           
         }
     }
 }
