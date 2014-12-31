@@ -1,1 +1,1 @@
-﻿var myApp = angular.module("myApp", ['bootstrapLightbox', 'angularTreeview', 'textAngular', 'ui.bootstrap']);
+﻿var myApp = angular.module("myApp", ['bootstrapLightbox', 'textAngular', 'ui.bootstrap', 'angularBootstrapNavTree']);

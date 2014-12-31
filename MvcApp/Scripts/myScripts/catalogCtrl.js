@@ -1,5 +1,7 @@
 ﻿myApp.controller('catalogCtrl', function ($scope, catalogData, userInfoData, noteInfoData, $modal, $log) {
 
+    $scope.treedata = [];
+
     function getCatalogs() {
         catalogData.getTree().success(function (data) {
 
@@ -35,7 +37,8 @@
                  id: childNode[i].ID,
                  idNote: childNode[i].IDNote,
                  children: init(childNode[i].ChildNode),
-                 collapsed: true
+                 collapsed: true,
+                 noLeaf: !childNode[i].IDNote
              });
          };
          return child;

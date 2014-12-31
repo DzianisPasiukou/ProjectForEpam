@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MvcApp.App_Start;
 using System.Web.Http;
+using System.Web.Optimization;
 
 namespace MvcApp
 {
@@ -16,7 +17,7 @@ namespace MvcApp
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.RegisterRoutes(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-           
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
