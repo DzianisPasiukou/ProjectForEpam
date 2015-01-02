@@ -10,21 +10,28 @@ namespace DataBaseLayer
 {
     public abstract class DbContext : IDisposable
     {
-       public SqlConnection connection;
+       private SqlConnection _connection;
 
-        public DbContext()
+        public DbContext(string nameConnectionString)
         {
-            connection = new SqlConnection(GetConnectionstring());
-            connection.Open();
+            _connection = new SqlConnection(GetConnectionstring(nameConnectionString));
+            _connection.Open();
         }
         public void Dispose()
         {
-            connection.Close();
+            _connection.Close();
         }
-        private static string GetConnectionstring()
+        private static string GetConnectionstring(string nameConnectionString)
         {
-            string str = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string str = ConfigurationManager.ConnectionStrings[nameConnectionString].ConnectionString;
             return str;
+        }
+        public SqlConnection Connection
+        {
+            get
+            {
+                return _connection;
+            }
         }
     }
 }

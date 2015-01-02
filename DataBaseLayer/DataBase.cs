@@ -10,11 +10,8 @@ namespace DataBaseLayer
        private SqlConnection _connection;
        private string _table;
        private string _key;
-       private static object lobj = new object();
         public DataBase(SqlConnection connection)
         {
-            _table = "User";
-            _key = "ID";
             _connection = connection;
         }
       
@@ -23,7 +20,10 @@ namespace DataBaseLayer
             
            string nameProp, valueProp;
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
-           DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
+           if (_key != "Login")
+           {
+               DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
+           }
            Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
 
            string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
@@ -35,21 +35,17 @@ namespace DataBaseLayer
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
             DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
+            Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
+
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
-            
+
 
             string prop = DataBaseManager.FindProperty(obj, _key);
-            Dictionary<string, object> param = DataBaseManager.Parameters(ref str, ',');
 
-            if (!String.IsNullOrEmpty(prop))
-            {
-                string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", _table, str, _key, prop);
-                return DataBaseManager.Execute(comm, _connection, param);
-            }
-            else
-            {
-                return false;
-            }
+
+            string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", _table, str, _key, prop);
+            return DataBaseManager.Execute(comm, _connection, param);
+
         }
        public bool Delete(object obj)
        {
