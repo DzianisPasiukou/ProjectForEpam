@@ -16,12 +16,18 @@ namespace LogicLayer
 
         public IEnumerable<LikeNote> GetBy(string nameParametr, string parametr)
         {
-            throw new NotImplementedException();
+            using (DBEntities entity = new DBEntities())
+            {
+                return entity.LikeNotes.GetBy(String.Format("{0} = {1}", nameParametr, parametr));
+            }
         }
 
         public bool Add(LikeNote t)
         {
-            throw new NotImplementedException();
+            using (DBEntities entity = new DBEntities())
+            {
+                return entity.LikeNotes.Add(t);
+            }
         }
 
         public bool Update(LikeNote t)

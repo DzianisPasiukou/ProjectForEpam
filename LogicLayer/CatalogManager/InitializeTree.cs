@@ -49,15 +49,18 @@ namespace LogicLayer.CatalogManager
            {
                if (node[i].ID == note.Id_Category)
                {
-                   node[i].ChildNode.Add(new TreeView()
-                       {
-                           ChildNode = new List<TreeView>(),
-                           ID = note.Id_Category,
-                           IDNote = note.Id_Note,
-                           NodeDescription = note.Description,
-                           NodeName = note.Name
-                       });
-                   break;
+                   if (note.Status == StatusOfNote.Ready)
+                   {
+                       node[i].ChildNode.Add(new TreeView()
+                           {
+                               ChildNode = new List<TreeView>(),
+                               ID = note.Id_Category,
+                               IDNote = note.Id_Note,
+                               NodeDescription = note.Description,
+                               NodeName = note.Name
+                           });
+                       break;
+                   }
                }
                else
                {

@@ -1,6 +1,4 @@
-﻿myApp.controller('recordCtrl', function ($scope, $modal, $log) {
-   
-    $scope.thankDisable = false;
+﻿myApp.controller('recordCtrl', function ($scope, userInfoData,fileUpload, $modal, $log) {
 
     $scope.open = function (idCategory, size) {
 
@@ -31,10 +29,47 @@
         });
     };
 
-    $scope.sayThank = function (idRecord) {
-        $scope.thankDisable = true;
+    $scope.sayThankToNote = function (idNote) {
+        $('#say').attr("disabled", "disabled");
+        getLike("note", idNote);
     }
-   
+
+    $scope.sayThankToFile = function (type, index) {
+        switch (type) {
+            case 'video':
+                $scope.videoLike[index] = true;
+                getLike("file",  $scope.videos[index].id);
+                break;
+            case 'photo':
+                $scope.photos[index].like = true;
+                getLike("file", $scope.photos[index].id);
+                break;
+            default:
+                $scope.documentLike[index] = true;
+                getLike("file", $scope.documents[index].id);
+                break;
+        }
+    }
+    $scope.openResource = function (res) {
+        $scope.items = [];
+
+        var modalInstance = $modal.open({
+            templateUrl: 'resource.html',
+            controller: 'resourceCtrl',
+            resolve: {
+                resource: function () {
+                    return res;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
     function findChild(idCategory, category) {
 
         var find = false;
@@ -62,4 +97,73 @@
         }
         return find;
     };
+   
+    function getLike(noteOrFile, id) {
+        userInfoData.putLike(noteOrFile, id);
+    }
+    $scope.addCharacteristic = function (idNote) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'chacteristicModal.html',
+            controller: 'modalCharacteristic',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                }
+            }
+        });
+    }
+
+    $scope.addVideo = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'video'
+                }
+            }
+        });
+    }
+    $scope.addDocument = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'document'
+                }
+            }
+        });
+    }
+    $scope.addPhoto = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addFileModal.html',
+            controller: 'addFileCtrl',
+            resolve: {
+                note: function () {
+                    return $scope.record;
+                },
+                file: function () {
+                    return 'photo'
+                }
+            }
+        });
+    }
+    $scope.downloadDoc = function (path, size) {
+
+         fileUpload.getTraffic().success(function (data) {
+
+            if (data >= size)
+                window.open(path);
+            else
+                alert('Traffic limits!')
+        })
+    }
 });

@@ -14,6 +14,6 @@ namespace LogicLayer.Entities
         public int Id_Category { get; set; }
         public string AvatarPath { get; set; }
         public string Status { get; set; }
-        public int Id_User { get; set; }
+        public string Login { get; set; }
     }
 }

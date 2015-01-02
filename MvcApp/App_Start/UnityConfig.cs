@@ -6,10 +6,12 @@ using Microsoft.Practices.Unity.InterceptionExtension;
 using LoggingManager;
 using LogicLayer.CatalogManager;
 using LogicLayer.Entities;
-using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 using System.Web.Http.Dispatcher;
 using LogicLayer.Security;
 using LogicLayer.Chat;
+using LogicLayer.Users;
+using LogicLayer.CatalogManager.ThemeManager.RecordManager;
+using System.Configuration;
 using LogicLayer.Tasks;
 
 namespace MvcApp.App_Start
@@ -35,7 +37,7 @@ namespace MvcApp.App_Start
             return container.Value;
         }
         #endregion
-
+        
         /// <summary>Registers the type mappings with the Unity container.</summary>
         /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
@@ -47,11 +49,14 @@ namespace MvcApp.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            // container.AddExtension(Interceptio)
+         //   var section = ConfigurationManager.GetSection("unity") as UnityConfigurationSection;
+          //  section.Containers["container"].Configure(container);
+        //   container.LoadConfiguration();
+            
+           container.AddNewExtension<Interception>();
 
-            //  container.RegisterInstance<IHttpControllerActivator>(new UnityHttpControllerActivator(container)); 
-           
             container.RegisterType<IChatHelper, ChatHelper>();
+            container.RegisterType<IUserHelper, UserHelper>();
             container.RegisterType<ISecurityHelper, SecurityHelper>();
             container.RegisterType<ITaskHelper, TaskHelper>();
             container.RegisterType<IDataBaseManager<Category>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
@@ -68,8 +73,13 @@ namespace MvcApp.App_Start
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<IDataBaseManager<LikeNote>, LikeNoteInfo>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
-            
-            
+            container.RegisterType<IDataBaseManager<File>, FileManager>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<Note_Characteristic>, Note_CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<IDataBaseManager<Characteristic>, CharacteristicManager>(new Interceptor<InterfaceInterceptor>(),
+            new InterceptionBehavior<LoggingInterceptionBehavior>());
+           
         }
     }
 }

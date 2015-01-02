@@ -9,7 +9,7 @@ namespace LogicLayer.Entities
    public class LikeNote
     {
        public int Id_Note { get; set; }
-       public int Id_User { get; set; }
+       public string Login { get; set; }
        public int Id { get; set; }
     }
 }

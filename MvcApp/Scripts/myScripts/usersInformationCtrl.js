@@ -1,5 +1,49 @@
 ﻿myApp.controller('usersInformationCtrl', function ($scope, $http, $modal) {
 
+    $scope.isLoginSort = false;
+    $scope.isIsActiveSort = false;
+
+    $scope.loginSort = function () {
+
+        $scope.users.sort(function (a, b) {
+
+            if ($scope.isLoginSort == false) {
+                $scope.isLoginSort = true;
+                $scope.isIsActiveSort = false;
+                if (a.Login < b.Login) return -1;
+                if (a.Login > b.Login) return 1;
+                return 0;
+            }
+            else {
+                $scope.isLoginSort = false;
+                if (a.Login < b.Login) return 1;
+                if (a.Login > b.Login) return -1;
+                return 0;
+            }
+        });
+    };
+
+    $scope.isActiveSort = function () {
+
+        $scope.users.sort(function (a, b) {
+
+            if ($scope.isIsActiveSort == false) {
+                $scope.isLoginSort = false;
+                $scope.isIsActiveSort = true;
+                if (a.IsActive < b.IsActive) return 1;
+                if (a.IsActive > b.IsActive) return -1;
+                return 0;
+            }
+            else {
+                $scope.isIsActiveSort = false;
+                if (a.IsActive < b.IsActive) return -1;
+                if (a.IsActive > b.IsActive) return 1;
+                return 0;
+            }
+        });
+
+    };
+
     $scope.prevClick = function () {
         if ($scope.currentPage == 0) {
             return;
@@ -21,45 +65,67 @@
 
     $scope.edit = function (login) {
 
-        $.each($scope.users, function () {
-            if (this.Id_Group == 1) {
-                this.Id_Group = "Admin";
-            } else {
-                this.Id_Group = "Student";
-            }
-        });
-
         var modalInstance = $modal.open({
             templateUrl: 'editUserModal.html',
             controller: 'editUserCtrl',
+            backdrop: 'static',
+            keyboard: false,
             resolve: {
+                user: function () {
 
+                    var u;
+
+                    angular.forEach($scope.users, function (item) {
+                        if (item.Login == login) {
+                            u = item;
+                        }
+                    });
+
+                    return u;
+                },
+
+                groups: function () {
+                    return $scope.groups;
+                }
             }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
         });
     }
 
-    $scope.loginSort = function () {
+    $scope.delete = function (login) {
 
-        $scope.users.sort(function (a, b) {
-            if (a.Login < b.Login) return -1;
-            if (a.Login > b.Login) return 1;
-            return 0;
+        var modalInstance = $modal.open({
+            templateUrl: 'deleteUserModal.html',
+            controller: 'deleteUserCtrl',
+            backdrop: 'static',
+            keyboard: false,
+            resolve: {
+                userLogin: function () {
+                    return login;
+                },
+                fullName: function () {
+
+                    var fullName;
+
+                    angular.forEach($scope.users, function (item) {
+                        if (item.Login == login) {
+                            fullName = item.Name + " " + item.Surname;
+                        }
+                    });
+
+                    return fullName;
+                }
+            }
         });
 
-    };
+        modalInstance.result.then(function () {
 
-    $scope.isActiveSort = function () {
+            angular.forEach($scope.users, function (item) {
+                if (item.Login == login) {
+                    $scope.users.splice($.inArray(item, $scope.users), 1);
+                }
+            });
 
-        $scope.users.sort(function (a, b) {
-            if (a.IsActive < b.IsActive) return 1;
-            if (a.IsActive > b.IsActive) return -1;
-            return 0;
         });
-
     };
 
     $scope.checkClick = function (login, isActive) {
@@ -76,23 +142,24 @@
         type: "GET",
         success: function (data) {
 
-            $.each(data, function () {
-                if (this.Id_Group == 1) {
-                    this.Id_Group = "Admin";
-                } else {
-                    this.Id_Group = "Student";
-                }
+            angular.forEach(data.users, function (user) {
+                angular.forEach(data.groups, function (group) {
+                    if (user.Id_Group == group.Id_Group) {
+                        user.Id_Group = group.Name;
+                    }
+                });
             });
 
-            $scope.users = data;
-
-            var b = $http.get('/api/Users');
+            $scope.users = data.users;
+            $scope.groups = data.groups;
 
             $scope.currentPage = 0;
             $scope.pageSize = 10;
             $scope.numberOfPages = function () {
                 return Math.ceil($scope.users.length / $scope.pageSize);
             }
+
+            $scope.$apply();
         }
     });
 });

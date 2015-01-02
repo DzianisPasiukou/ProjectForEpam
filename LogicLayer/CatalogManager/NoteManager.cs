@@ -13,7 +13,7 @@ namespace LogicLayer.CatalogManager.ThemeManager.RecordManager
         {
             using (DBEntities entity = new DBEntities())
             {
-                return entity.Notes;
+                return entity.Notes.GetAll();
             }
         }
 

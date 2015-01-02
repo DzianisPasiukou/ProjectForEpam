@@ -24,40 +24,40 @@ namespace DataBaseLayer
            string nameProp, valueProp;
            DataBaseManager.Properties(obj,out nameProp,out valueProp);
            DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
+           Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
 
            string comm = String.Format(@"INSERT INTO [{0}] ({1}) VALUES ({2})",_table,nameProp,valueProp);
-           return DataBaseManager.Execute(comm,_connection);
+
+           return DataBaseManager.Execute(comm,_connection, param);
         }
         public bool Update(object obj)
         {
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
             DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
+            Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
+
             string str = DataBaseManager.Modification(nameProp, valueProp, ",");
-            
+
 
             string prop = DataBaseManager.FindProperty(obj, _key);
 
-            if (!String.IsNullOrEmpty(prop))
-            {
-                string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", _table, str, _key, prop);
-                return DataBaseManager.Execute(comm, _connection);
-            }
-            else
-            {
-                return false;
-            }
+
+            string comm = String.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", _table, str, _key, prop);
+            return DataBaseManager.Execute(comm, _connection, param);
+
         }
        public bool Delete(object obj)
        {
            string nameProp, valueProp;
            DataBaseManager.Properties(obj, out nameProp, out valueProp);
 
+           Dictionary<string, object> param = DataBaseManager.Parameters(ref valueProp, ',');
            string str = DataBaseManager.Modification(nameProp, valueProp, "AND");
+          
 
-
-           string comm = String.Format("DELETE FROM {0} WHERE {1}",_table,str);
-           return DataBaseManager.Execute(comm, _connection);
+           string comm = String.Format("DELETE FROM [{0}] WHERE {1}",_table,str);
+           return DataBaseManager.Execute(comm, _connection, param);
        }
         public List<Dictionary<string,object>> GetData(string args)
         {

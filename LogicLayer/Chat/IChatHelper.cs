@@ -10,6 +10,13 @@ namespace LogicLayer.Chat
     public interface IChatHelper
     {
         bool AddMessage(string senderLogin, string recipientLogin, string text, string date);
+
         IEnumerable<Message> GetMessages(string senderLogin, string recipientLogin);
+
+        IEnumerable<string[]> GetContacts(string login);
+
+        string[] AddContact(string login, string userLogin);
+
+        bool DeleteContact(string login, string userLogin);
     }
 }

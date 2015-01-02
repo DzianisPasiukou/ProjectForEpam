@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
@@ -7,22 +8,27 @@ namespace DataBaseLayer
 {
    static public class DataBaseManager
     {
-       static public bool Execute(string comm, SqlConnection connection)
-        {
-            try
-            {
-                    using (SqlCommand command = new SqlCommand(comm, connection))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
+       /// <summary>
+       /// Выполнение Sql команды.
+       /// </summary>
+       /// <param name="comm">Запрос</param>
+       /// <param name="connection">Соединение</param>
+       /// <returns></returns>
+       static public bool Execute(string comm, SqlConnection connection, Dictionary<string, object> param)
+       {
+           SqlCommand command = new SqlCommand(comm, connection);
+           CommandParametr(ref command, param);
+           command.ExecuteNonQuery();
+           command.Dispose();
 
+           return true;
+       }
+       /// <summary>
+       /// Занесение в nameProp, valueProp значение имён свойств и их значений с объекта.
+       /// </summary>
+       /// <param name="obj"></param>
+       /// <param name="nameProp"></param>
+       /// <param name="valueProp"></param>
        static public void Properties(object obj, out string nameProp, out string valueProp)
         {
             PropertyInfo[] prop = obj.GetType().GetProperties();
@@ -100,6 +106,11 @@ namespace DataBaseLayer
        }
        static public void ClearID(object obj, ref string nameProp, ref string valueProp, string key)
        {
+           if (String.IsNullOrEmpty(key))
+           {
+               return;
+           }
+
            PropertyInfo[] props = obj.GetType().GetProperties();
            string[] arrName = nameProp.Split(',');
            string[] arrValue = valueProp.Split(',');
@@ -112,15 +123,17 @@ namespace DataBaseLayer
                if (props[i].Name.ToLower() != key.ToLower())
                {
                    nameBuilder.Append(arrName[i]);
+                   if (i != props.Length - 1)
+                   {
+                       if ((props[i+1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
+                       nameBuilder.Append(", ");
+                   }
                }
                else
                {
                    indexId = i;
                }
-               if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
-               {
-                   nameBuilder.Append(", ");
-               }
+               
            }
            
            arrValue[indexId] = arrValue[indexId].Remove(0);
@@ -128,15 +141,52 @@ namespace DataBaseLayer
 
            for (int i = 0; i < props.Length; i++)
            {
-                valueBuilder.Append(arrValue[i]);
-                if ((i != props.Length - 1) && (props[i].Name.ToLower() != key.ToLower()))
-                {
-                    valueBuilder.Append(", ");
-                }
+               if (props[i].Name.ToLower() != key.ToLower())
+               {
+                   valueBuilder.Append(arrValue[i]);
+                   if (i != props.Length - 1)
+                   {
+                       if ((props[i + 1].Name.ToLower() != key.ToLower()) || (i == props.Length - 3))
+                           valueBuilder.Append(", ");
+                   }
+               }
            }
 
            nameProp = nameBuilder.ToString();
            valueProp = valueBuilder.ToString();
        }
+       static public Dictionary<string, object> Parameters(ref string value, char splitter)
+       {
+           StringBuilder builder = new StringBuilder();
+           Dictionary<string, object> dict = new Dictionary<string, object>();
+
+           value = value.Trim();
+           string[] split;
+           split = value.Split(splitter);
+         
+           for (int i = 0; i < split.Length; i++)
+           {
+               builder.Append(String.Format("@Param_{0}", i));
+
+               if (i != split.Length - 1)
+               {
+                   builder.Append(",");
+               }
+               split[i] = split[i].Trim('\'', ' ');
+               dict.Add(String.Format("@Param_{0}", i), split[i]);
+           }
+
+           value = builder.ToString();
+           return dict;
+       }
+        static public void CommandParametr(ref SqlCommand command, Dictionary<string,object> param)
+       {
+           foreach (var p in param.Keys)
+           {
+               command.Parameters.AddWithValue(p, param[p]);
+           }
+       }
+     
     }
+   
 }

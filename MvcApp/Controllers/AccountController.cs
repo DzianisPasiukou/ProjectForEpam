@@ -9,21 +9,37 @@ using MvcApp.Models.Account;
 using System.Web.Security;
 using LogicLayer.Entities;
 using LogicLayer.Security;
+using LogicLayer.Users;
+using System.Web.Configuration;
+using System.IO;
 
 namespace MvcApp.Controllers
 {
     public class AccountController : Controller
     {
         private ISecurityHelper _securityHelper;
+        private IUserHelper _userHelper;
+        IHashCalculator _hashCalculator;
 
-        public AccountController(ISecurityHelper securityHelper)
+        public AccountController(ISecurityHelper securityHelper,IUserHelper userHelper,IHashCalculator hashCalculator)
         {
             if (securityHelper == null)
             {
                 throw new ArgumentNullException();
             }
 
+            if (userHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (hashCalculator == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _securityHelper = securityHelper;
+            _userHelper = userHelper;
+            _hashCalculator = hashCalculator;
         }
 
         [HttpGet]
@@ -37,7 +53,30 @@ namespace MvcApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, model.Avatar))
+            string avatar = "";
+            if (Request.Files.Count > 0)
+            {
+                string folderPath = Server.MapPath(WebConfigurationManager.AppSettings["UsersAvatars"]);
+                string fileName = _hashCalculator.Calculate(Request.Files[0].FileName);
+
+                char[] charInvalidFileChars = Path.GetInvalidFileNameChars();
+                foreach (char charInvalid in charInvalidFileChars)
+                {
+                    fileName = fileName.Replace(charInvalid, ' ');
+                }
+
+                string ext = Path.GetExtension(Request.Files[0].FileName);
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                string filePath = Path.Combine(folderPath, fileName + ext);
+                Request.Files[0].SaveAs(filePath);
+                avatar = fileName;
+            }
+
+            if (ModelState.IsValid && _securityHelper.RegisterUser(model.Login, model.Password, model.Email, model.Name, model.Surname, avatar))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -88,27 +127,37 @@ namespace MvcApp.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [Authorize]
         public ActionResult ProfileInformation()
         {
             ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult UsersInformation()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Settings()
         {
             ViewBag.SecurityHelper = _securityHelper;
             return View();
         }
 
+        [Authorize]
         public ActionResult Chat()
         {
             ViewBag.SecurityHelper = _securityHelper;
             return View();
+        }
+        public JsonResult AutocompleteSearch(string term)
+        {           
+                IEnumerable<User> users = _userHelper.GetUsers();
+                var models = users.Where(a => a.Login.Contains(term)).Select(a => new { value = a.Login }).Distinct();
+                return Json(models, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles="Admin")]
