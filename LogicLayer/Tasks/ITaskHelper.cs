@@ -9,6 +9,7 @@ namespace LogicLayer.Tasks
     public interface ITaskHelper
     {
         IEnumerable<Task> GetTasks();
+        IEnumerable<Adapter> GetAdapters();
         bool updateTaskEnable(string task, bool isEnable, string whoChange);
     }
 }

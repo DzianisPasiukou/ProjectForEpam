@@ -1,5 +1,6 @@
 ﻿using LogicLayer.Entities;
 using LogicLayer.Tasks;
+using MvcApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,14 @@ namespace MvcApp.Controllers
             _taskHelper = taskHelper;
         }
 
-        public IEnumerable<Task> Get()
+        public TasksAndAdapters Get()
         {
-            List<Task> tasks = _taskHelper.GetTasks().ToList();
-            return tasks;
+            TasksAndAdapters tasksAndAdapters = new TasksAndAdapters();
+            tasksAndAdapters.Tasks = _taskHelper.GetTasks().ToList();
+            tasksAndAdapters.Adapters = _taskHelper.GetAdapters().ToList();
+            return tasksAndAdapters;
         }
-
-        
+  
         public void Put(string task, bool isEnable, string whoChange)
         {
             _taskHelper.updateTaskEnable(task, isEnable, whoChange);

@@ -61,32 +61,32 @@
 
         <div class="form-horizontal">
             <div class="form-group">
-                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label">
+                <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label">
                     Название
                 </div>
-                <input type="text" class="col-md-10 form-control inline" />
+                <input type="text" class="col-md-9 col-lg-9 col-xs-9 col-sm-9 form-control inline"/>
             </div>
 
             <div class="form-group">
-                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label">
+                <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label">
                     Задача
                 </div>
-
-                <div class="dropdown btn-group">
-                    <a class="btn btn-default dropdown-toggle   col-md-10 col-lg-10 col-xs-10 col-sm-10 inline" data-toggle="dropdown" href="#">
+                <div class="dropdown btn-group col-md-9 col-lg-9 col-xs-9 col-sm-9 inline">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span ng-bind="taskAdapter"> No Change </span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="task in tasks">
-                            <a ng-bind="task.Adapter"></a>
+                        <li ng-repeat="adapter in adapters">
+                            <a href="" ng-click="changeAdapter(adapter.Name)">
+                                <span ng-bind="adapter.Name"> </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
-
-
-
-
         </div>
+
+
     </div>
 </div>

@@ -18,6 +18,11 @@
         }
     }
 
+    $scope.taskAdapter = "No Change";
+    $scope.changeAdapter = function (adapter) {
+        $scope.taskAdapter = adapter;
+    };
+
     $scope.checkClick = function (task, isEnable) {
         $.ajax({
             url: '/api/Task/?task=' + task + "&isEnable=" + isEnable + "&WhoChange=" + $('#userLogin').text(),
@@ -38,7 +43,8 @@
         url: '/api/Task',
         type: "GET",
         success: function (data) {
-            $scope.tasks = data;
+            $scope.tasks = data.Tasks;
+            $scope.adapters = data.Adapters;
 
             $scope.currentPage = 0;
             $scope.pageSize = 10;

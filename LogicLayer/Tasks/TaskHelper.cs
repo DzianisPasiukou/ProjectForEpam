@@ -16,6 +16,14 @@ namespace LogicLayer.Tasks
             }
         }
 
+        public IEnumerable<Adapter> GetAdapters()
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                return db.Adapters.ToList();
+            }
+        }
+
         public bool updateTaskEnable(string task, bool isEnable, string whoChange)
         {
             using (DBEntities db = new DBEntities())
