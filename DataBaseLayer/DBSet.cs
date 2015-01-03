@@ -14,12 +14,13 @@ namespace DataBaseLayer
     {
         private IDataReader _dataReader;
 
-        public DBSet(SqlConnection connection, string keyEntity)
+        public DBSet(SqlConnection connection, string keyEntity,bool isAutoinc)
         {
             _dataReader = new DataBase(connection);
 
             _dataReader.EntityName = typeof(TEntity).Name;
             _dataReader.KeyEntity = keyEntity;
+            _dataReader.IsAutoinc = isAutoinc;
         }
         public DBSet(SqlConnection connection)
         {
@@ -27,6 +28,7 @@ namespace DataBaseLayer
 
             _dataReader.EntityName = typeof(TEntity).Name;
             _dataReader.KeyEntity = "";
+            _dataReader.IsAutoinc = true;
         }
         public IEnumerable<TEntity> GetAll()
         {

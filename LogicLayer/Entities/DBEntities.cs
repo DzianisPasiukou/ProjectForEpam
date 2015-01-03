@@ -33,25 +33,25 @@ namespace LogicLayer.Entities
         public DBEntities()
             : base("ProjectDB")
         {
-            Users = new DBSet<User>(Connection, "Login");
-            Groups = new DBSet<Group>(Connection, "Id_Group");
-            Categories = new DBSet<Category>(Connection, "Id_Category");
-            Notes = new DBSet<Note>(Connection, "Id_Note");
-            Characteristics = new DBSet<Characteristic>(Connection, "Id_Characteristic");
-            Files = new DBSet<File>(Connection, "Id_File");
-            Group_Categories = new DBSet<Group_Category>(Connection, "Id");
-            Group_Permissions = new DBSet<Group_Permission>(Connection, "Id");
-            LikeFiles = new DBSet<LikeFile>(Connection, "Id");
-            LikeNotes = new DBSet<LikeNote>(Connection, "Id");
-            Messages = new DBSet<Message>(Connection, "Id_Message");
-            Note_Characteristics = new DBSet<Note_Characteristic>(Connection, "Id");
-            Note_Tags = new DBSet<Note_Tag>(Connection, "Id");
-            Permission = new DBSet<Permission>(Connection, "Id_Permission");
-            Tags = new DBSet<Tag>(Connection, "Id_Tag");
-            User_Permissions = new DBSet<User_Permission>(Connection, "Id");
-            Contacts = new DBSet<Contact>(Connection, "Id");
-            Tasks = new DBSet<Task>(Connection, "Name");
-            Adapters = new DBSet<Adapter>(Connection, "Name");
+            Users = new DBSet<User>(Connection, "Login", false);
+            Groups = new DBSet<Group>(Connection, "Id_Group", true);
+            Categories = new DBSet<Category>(Connection, "Id_Category", true);
+            Notes = new DBSet<Note>(Connection, "Id_Note", true);
+            Characteristics = new DBSet<Characteristic>(Connection, "Id_Characteristic", true);
+            Files = new DBSet<File>(Connection, "Id_File", true);
+            Group_Categories = new DBSet<Group_Category>(Connection, "Id", true);
+            Group_Permissions = new DBSet<Group_Permission>(Connection, "Id", true);
+            LikeFiles = new DBSet<LikeFile>(Connection, "Id", true);
+            LikeNotes = new DBSet<LikeNote>(Connection, "Id", true);
+            Messages = new DBSet<Message>(Connection, "Id_Message", true);
+            Note_Characteristics = new DBSet<Note_Characteristic>(Connection, "Id", true);
+            Note_Tags = new DBSet<Note_Tag>(Connection, "Id", true);
+            Permission = new DBSet<Permission>(Connection, "Id_Permission", true);
+            Tags = new DBSet<Tag>(Connection, "Id_Tag", true);
+            User_Permissions = new DBSet<User_Permission>(Connection, "Id", true);
+            Contacts = new DBSet<Contact>(Connection, "Id", true);
+            Tasks = new DBSet<Task>(Connection, "Name", false);
+            Adapters = new DBSet<Adapter>(Connection, "Name", false);
         }
     }
 }

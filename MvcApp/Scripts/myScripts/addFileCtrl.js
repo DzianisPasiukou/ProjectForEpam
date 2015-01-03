@@ -1,4 +1,4 @@
-﻿myApp.controller('addFileCtrl', ['$scope', ' $modalInstance', 'fileUpload', 'file', function ($scope, $modalInstance, fileUpload, file) {
+﻿myApp.controller('addFileCtrl', ['$scope', '$modalInstance', 'fileUpload', 'file', function ($scope, $modalInstance, fileUpload, file) {
 
     $scope.add = function () {
 

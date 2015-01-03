@@ -1,4 +1,4 @@
-﻿myApp.controller('modalRecordCompare', ['$scope', '$modalInstance', 'catalogData', 'chacteristicService', ' items', 'modal', 'comparer', 'mainRecord', function ($scope, $modalInstance, catalogData, chacteristicService, items, modal, comparer, mainRecord) {
+﻿myApp.controller('modalRecordCompare', ['$scope', '$modalInstance', 'catalogData', 'chacteristicService', 'items', 'modal', 'comparer', 'mainRecord', function ($scope, $modalInstance, catalogData, chacteristicService, items, modal, comparer, mainRecord) {
 
     $scope.records = [];
     $scope.recordsCharacter = [];

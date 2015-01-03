@@ -1,4 +1,4 @@
-﻿myApp.controller('modalCharacteristic', ['$scope', ' $modalInstance', 'chacteristicService', 'note', function ($scope, $modalInstance, chacteristicService, note) {
+﻿myApp.controller('modalCharacteristic', ['$scope', '$modalInstance', 'chacteristicService', 'note', function ($scope, $modalInstance, chacteristicService, note) {
     $scope.note = note;
 
     $scope.close = function () {

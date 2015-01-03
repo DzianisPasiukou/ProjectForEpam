@@ -10,6 +10,7 @@ namespace DataBaseLayer
         private SqlConnection _connection;
         private string _table;
         private string _key;
+        private bool _isAutoinc;
         public DataBase(SqlConnection connection)
         {
             _connection = connection;
@@ -20,7 +21,7 @@ namespace DataBaseLayer
 
             string nameProp, valueProp;
             DataBaseManager.Properties(obj, out nameProp, out valueProp);
-            if (_key != "Login")
+            if (_isAutoinc)
             {
                 DataBaseManager.ClearID(obj, ref nameProp, ref valueProp, _key);
             }
@@ -104,6 +105,18 @@ namespace DataBaseLayer
             set
             {
                 _table = value;
+            }
+        }
+
+        public bool IsAutoinc
+        {
+            get
+            {
+                return _isAutoinc;
+            }
+            set
+            {
+                _isAutoinc = value;
             }
         }
     }
