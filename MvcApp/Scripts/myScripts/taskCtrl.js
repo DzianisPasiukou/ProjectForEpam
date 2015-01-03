@@ -23,22 +23,32 @@
         $scope.taskAdapter = adapter;
     };
 
+    $scope.time = "No Change";
+    $scope.times = [];
+    for (var i = 0; i < 24; i++) {
+        $scope.times[i] = i.toString() + ":00";
+    }
+    $scope.changeTime = function (time) {
+        $scope.time = time;
+    };
+
+
     $scope.checkClick = function (task, isEnable) {
+        dateNeedFormat = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
         $.ajax({
-            url: '/api/Task/?task=' + task + "&isEnable=" + isEnable + "&WhoChange=" + $('#userLogin').text(),
+            url: '/api/Task/?task=' + task + "&isEnable=" + isEnable + "&WhoChange=" + $('#userLogin').text() + "&DateChange=" + dateNeedFormat,
             type: "PUT",
         });
         for (var i = 0; i < $scope.tasks.length; i++) {
             if ($scope.tasks[i].Name == task)
             {
-                dateNeedFormat = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
                 $scope.tasks[i].DateChange = dateNeedFormat;
 
                 $scope.tasks[i].WhoChange = $('#userLogin').text();
             }
         }
     };
-    
+
     $.ajax({
         url: '/api/Task',
         type: "GET",
@@ -56,4 +66,13 @@
         }
     });
 
+});
+
+$(document).ready(function () {
+    $('.weekday').click(function () {
+        if (this.checked) {
+            $('.weekday').attr('checked', false);
+            this.checked = true;
+        };
+    });
 });

@@ -32,9 +32,9 @@ namespace MvcApp.Controllers
             return tasksAndAdapters;
         }
   
-        public void Put(string task, bool isEnable, string whoChange)
+        public void Put(string task, bool isEnable, string whoChange, string dateChange)
         {
-            _taskHelper.updateTaskEnable(task, isEnable, whoChange);
+            _taskHelper.UpdateTaskEnable(task, isEnable, whoChange, dateChange);
         }
     }
 }

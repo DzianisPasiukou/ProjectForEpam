@@ -10,6 +10,6 @@ namespace LogicLayer.Tasks
     {
         IEnumerable<Task> GetTasks();
         IEnumerable<Adapter> GetAdapters();
-        bool updateTaskEnable(string task, bool isEnable, string whoChange);
+        bool UpdateTaskEnable(string task, bool isEnable, string whoChange, string dateChange);
     }
 }

@@ -24,13 +24,13 @@ namespace LogicLayer.Tasks
             }
         }
 
-        public bool updateTaskEnable(string task, bool isEnable, string whoChange)
+        public bool UpdateTaskEnable(string task, bool isEnable, string whoChange, string dateChange)
         {
             using (DBEntities db = new DBEntities())
             {
                 Task getTask = db.Tasks.First(model => model.Name.Equals(task));
                 getTask.IsEnable = isEnable;
-                getTask.DateChange = DateTime.Now.ToString();
+                getTask.DateChange = dateChange;
                 getTask.WhoChange = whoChange;
                 bool flag = db.Tasks.Update(getTask);
                 return flag;
