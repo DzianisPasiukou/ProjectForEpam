@@ -12,6 +12,7 @@ using LogicLayer.Chat;
 using LogicLayer.Users;
 using LogicLayer.CatalogManager.ThemeManager.RecordManager;
 using System.Configuration;
+using LogicLayer.Tasks;
 
 namespace MvcApp.App_Start
 {
@@ -57,6 +58,7 @@ namespace MvcApp.App_Start
             container.RegisterType<IChatHelper, ChatHelper>();
             container.RegisterType<IUserHelper, UserHelper>();
             container.RegisterType<ISecurityHelper, SecurityHelper>();
+            container.RegisterType<ITaskHelper, TaskHelper>();
             container.RegisterType<IDataBaseManager<Category>, CatalogManager>(new Interceptor<InterfaceInterceptor>(),
             new InterceptionBehavior<LoggingInterceptionBehavior>());
             container.RegisterType<ITree, CatalogManager>(new Interceptor<InterfaceInterceptor>(),

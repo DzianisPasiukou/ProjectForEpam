@@ -1024,6 +1024,7 @@
     <Content Include="Scripts\myScripts\modalRecordCompare.js" />
     <Content Include="Scripts\myScripts\noteInfoService.js" />
     <Content Include="Scripts\myScripts\recordCtrl.js" />
+    <Content Include="Scripts\myScripts\taskCtrl.js" />
     <Content Include="Scripts\myScripts\usersInformationCtrl.js" />
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
@@ -1074,6 +1075,7 @@
     <Compile Include="Controllers\CatalogTreeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NoteInfoController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1081,6 +1083,7 @@
     </Compile>
     <Compile Include="Hubs\MessageHub.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\TasksAndAdapters.cs" />
     <Compile Include="Models\UsersAndGroups.cs" />
     <Compile Include="Models\UsersForChat.cs" />
     <Compile Include="NoteAvatars.Designer.cs">
@@ -1112,6 +1115,7 @@
     <Content Include="Views\Account\Settings.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_ChatPartial.cshtml" />
+    <Content Include="Views\Account\Task.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

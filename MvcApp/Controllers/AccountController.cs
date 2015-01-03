@@ -159,5 +159,12 @@ namespace MvcApp.Controllers
                 var models = users.Where(a => a.Login.Contains(term)).Select(a => new { value = a.Login }).Distinct();
                 return Json(models, JsonRequestBehavior.AllowGet);
         }
+
+        [Authorize(Roles="Admin")]
+        public ActionResult Task()
+        {
+            ViewBag.SecurityHelper = _securityHelper;
+            return View();
+        }
     }
 }

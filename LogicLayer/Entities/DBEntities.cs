@@ -27,6 +27,8 @@ namespace LogicLayer.Entities
         public DBSet<Tag> Tags { get; set; }
         public DBSet<User_Permission> User_Permissions { get; set; }
         public DBSet<Contact> Contacts { get; set; }
+        public DBSet<Task> Tasks { get; set; }
+        public DBSet<Adapter> Adapters { get; set; }
 
         public DBEntities()
             : base("ProjectDB")
@@ -48,6 +50,8 @@ namespace LogicLayer.Entities
             Tags = new DBSet<Tag>(Connection, "Id_Tag");
             User_Permissions = new DBSet<User_Permission>(Connection, "Id");
             Contacts = new DBSet<Contact>(Connection, "Id");
+            Tasks = new DBSet<Task>(Connection, "Name");
+            Adapters = new DBSet<Adapter>(Connection, "Name");
         }
     }
 }
