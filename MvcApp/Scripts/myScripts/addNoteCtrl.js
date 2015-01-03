@@ -1,4 +1,4 @@
-﻿myApp.controller('addNoteCtrl', function ($scope, $modalInstance, catalogData,fileUpload, chacteristicService) {
+﻿myApp.controller('addNoteCtrl', ['$scope', '$modalInstance', 'catalogData', 'fileUpload', 'chacteristicService', function ($scope, $modalInstance, catalogData, fileUpload, chacteristicService) {
 
     $scope.characteristicsNewNote = [];
     $scope.photosNewNote = [];
@@ -22,33 +22,33 @@
 
     $scope.ok = function () {
 
-                var data = new FormData();
+        var data = new FormData();
 
-                var files = $("#uploadAvatar").get(0).files;
+        var files = $("#uploadAvatar").get(0).files;
 
-                if (files.length > 0) {
-                    data.append("UploadedImage", files[0]);
-                }
+        if (files.length > 0) {
+            data.append("UploadedImage", files[0]);
+        }
 
-                var ajaxRequest = $.ajax({
-                    type: "POST",
-                    url: "/api/fileupload/Post",
-                    contentType: false,
-                    processData: false,
-                    data: data
-                });
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: "/api/fileupload/Post",
+            contentType: false,
+            processData: false,
+            data: data
+        });
 
-                ajaxRequest.done(function (xhr, textStatus) {
-                });
+        ajaxRequest.done(function (xhr, textStatus) {
+        });
 
-                $modalInstance.close();
+        $modalInstance.close();
     };
 
-        $scope.cancel = function () {
+    $scope.cancel = function () {
 
-            $modalInstance.close();
+        $modalInstance.close();
 
-        };
+    };
 
     $scope.addPhoto = function () {
         $scope.photosNewNote.push({
@@ -71,4 +71,4 @@
             value: myCharacteristicValue
         });
     }
-    });
+}]);

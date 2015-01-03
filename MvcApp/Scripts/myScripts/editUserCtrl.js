@@ -1,4 +1,4 @@
-﻿myApp.controller('editUserCtrl', function ($scope, $modalInstance, user, groups) {
+﻿myApp.controller('editUserCtrl', ['$scope', '$modalInstance', 'user', 'groups', function ($scope, $modalInstance, user, groups) {
 
     var jsonUser = JSON.stringify(user);
     $.cookie("user", jsonUser, { path: '/' });
@@ -29,17 +29,16 @@
         $scope.user.Id_Group = cookieUser.Id_Group;
 
         $modalInstance.dismiss();
-    }; 
+    };
 
-});
-
-myApp.controller('deleteUserCtrl', function ($scope, $modalInstance, login, userLogin) {
+}])
+.controller('deleteUserCtrl', ['$scope', '$modalInstance', 'userLogin', 'fullName', function ($scope, $modalInstance, userLogin, fullName) {
 
     $scope.fullName = fullName;
 
     $scope.ok = function () {
         $.ajax({
-            url: '/api/Users/?login=' + login + '&userLogin=' + userLogin,
+            url: '/api/Users/?login=' + userLogin,
             type: "DELETE",
             success: function (data) {
                 if (data) {
@@ -55,8 +54,4 @@ myApp.controller('deleteUserCtrl', function ($scope, $modalInstance, login, user
     $scope.cancel = function () {
         $modalInstance.dismiss("Close");
     };
-});
-
-
-
-//$("#page-wrapper").css("min-height", (height) + "px");
+}]);

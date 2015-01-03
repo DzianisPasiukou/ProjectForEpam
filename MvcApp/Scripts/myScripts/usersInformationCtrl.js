@@ -1,4 +1,4 @@
-﻿myApp.controller('usersInformationCtrl', function ($scope, $http, $modal) {
+﻿myApp.controller('usersInformationCtrl', ['$scope', '$modal', function ($scope, $modal) {
 
     $scope.isLoginSort = false;
     $scope.isIsActiveSort = false;
@@ -162,7 +162,7 @@
             $scope.$apply();
         }
     });
-});
+}]);
 
 myApp.filter('startFrom', function () {
     return function (input, start) {

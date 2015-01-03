@@ -1,4 +1,4 @@
-﻿myApp.controller('recordCtrl', function ($scope, userInfoData,fileUpload, $modal, $log) {
+﻿myApp.controller('recordCtrl', ['$scope', 'userInfoData', 'fileUpload', '$modal', '$log', function ($scope, userInfoData, fileUpload, $modal, $log) {
 
     $scope.open = function (idCategory, size) {
 
@@ -38,7 +38,7 @@
         switch (type) {
             case 'video':
                 $scope.videoLike[index] = true;
-                getLike("file",  $scope.videos[index].id);
+                getLike("file", $scope.videos[index].id);
                 break;
             case 'photo':
                 $scope.photos[index].like = true;
@@ -73,11 +73,10 @@
     function findChild(idCategory, category) {
 
         var find = false;
-       
+
         for (var i = 0; i < category.length; i++) {
             if (category[i].id == idCategory) {
-                if ((category[i].idNote) && ($scope.record.Id_Note != category[i].idNote))
-                {
+                if ((category[i].idNote) && ($scope.record.Id_Note != category[i].idNote)) {
                     $scope.items.push({
                         name: category[i].label,
                         description: category[i].description,
@@ -97,7 +96,7 @@
         }
         return find;
     };
-   
+
     function getLike(noteOrFile, id) {
         userInfoData.putLike(noteOrFile, id);
     }
@@ -158,7 +157,7 @@
     }
     $scope.downloadDoc = function (path, size) {
 
-         fileUpload.getTraffic().success(function (data) {
+        fileUpload.getTraffic().success(function (data) {
 
             if (data >= size)
                 window.open(path);
@@ -166,4 +165,4 @@
                 alert('Traffic limits!')
         })
     }
-});
+}]);

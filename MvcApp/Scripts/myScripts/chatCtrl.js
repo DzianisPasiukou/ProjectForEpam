@@ -1,4 +1,4 @@
-﻿myApp.controller('chatCtrl', function ($scope, $modal) {
+﻿myApp.controller('chatCtrl', ['$scope', '$modal', function ($scope, $modal) {
 
     $scope.prevClick = function () {
         if ($scope.currentPage == 0) {
@@ -92,8 +92,8 @@
             }
         });
     };
-});
-myApp.controller('contactDeleteCtrl', function ($scope, $modalInstance, login, userLogin) {
+}])
+.controller('contactDeleteCtrl', ['$scope', '$modalInstance', 'login', 'userLogin', function ($scope, $modalInstance, login, userLogin) {
 
     $scope.ok = function () {
         $.ajax({
@@ -107,4 +107,4 @@ myApp.controller('contactDeleteCtrl', function ($scope, $modalInstance, login, u
         $modalInstance.dismiss("Close");
     };
 
-});
+}]);

@@ -1,4 +1,4 @@
-﻿myApp.controller('modalRecordCompare', function ($scope, $modalInstance,catalogData,chacteristicService, items, modal, comparer, mainRecord) {
+﻿myApp.controller('modalRecordCompare', ['$scope', '$modalInstance', 'catalogData', 'chacteristicService', ' items', 'modal', 'comparer', 'mainRecord', function ($scope, $modalInstance, catalogData, chacteristicService, items, modal, comparer, mainRecord) {
 
     $scope.records = [];
     $scope.recordsCharacter = [];
@@ -47,11 +47,11 @@
                 compareNotes();
         });
 
-        
+
     }
     function compareNotes() {
         for (var i = 0; i < $scope.recordsCharacter[0].Characteristics.length; i++) {
-            
+
             for (var j = 0; j < $scope.recordsCharacter[1].Characteristics.length; j++) {
 
                 if ($scope.recordsCharacter[0].Characteristics[i].Id_Characteristic == $scope.recordsCharacter[1].Characteristics[j].Id_Characteristic) {
@@ -65,7 +65,7 @@
         }
     }
     function findCharacterById(id, array) {
-        
+
         for (var i = 0; i < array.length; i++) {
 
             if (array[i].Id_Characteristic == id) {
@@ -73,4 +73,4 @@
             }
         }
     }
-});
+}]);

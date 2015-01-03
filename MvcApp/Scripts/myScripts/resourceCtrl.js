@@ -1,4 +1,4 @@
-﻿myApp.controller('resourceCtrl', function ($scope, $modalInstance,userInfoData, resource) {
+﻿myApp.controller('resourceCtrl', ['$scope', '$modalInstance', 'userInfoData', 'resource', function ($scope, $modalInstance, userInfoData, resource) {
     $scope.resource = resource;
     $scope.close = function () {
         $modalInstance.close();
@@ -16,4 +16,4 @@
         userInfoData.putLike('file', resource.id);
     }
     likeEnabled();
-});
+}]);

@@ -1003,6 +1003,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Content\recordCSS.css" />
+    <Content Include="Scripts\myScripts\abn_tree_directive.js" />
     <Content Include="Scripts\myScripts\addFileCtrl.js" />
     <Content Include="Scripts\myScripts\addNoteCtrl.js" />
     <Content Include="Scripts\myScripts\angular-bootstrap-lightbox.js" />
@@ -1033,7 +1034,9 @@
     <Content Include="Scripts\overlay-play.min.js" />
     <Content Include="Scripts\poster.js" />
     <Content Include="Scripts\poster.min.js" />
+    <Content Include="Scripts\textAngular-sanitize.js" />
     <Content Include="Scripts\textAngular.js" />
+    <Content Include="Scripts\textAngularSetup.js" />
     <Content Include="Scripts\themes\default\32px.png" />
     <Content Include="Scripts\themes\default\40px.png" />
     <Content Include="Scripts\themes\jquery-ui.css" />

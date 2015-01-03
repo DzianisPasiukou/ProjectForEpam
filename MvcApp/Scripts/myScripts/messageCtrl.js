@@ -1,4 +1,4 @@
-﻿myApp.controller('messageCtrl', function ($scope) {
+﻿myApp.controller('messageCtrl', ['$scope', function ($scope) {
 
     $scope.chatData = [{ Number: 0, Login: "user", Date: "16.12.2014 21:01", Message: "Hello1" }];
 
@@ -144,7 +144,7 @@
         }
     };
     // end SignalR
-});
+}]);
 
 $('#close').click(function () {
     $('#allChat').hide();

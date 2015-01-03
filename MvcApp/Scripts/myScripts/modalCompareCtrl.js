@@ -1,4 +1,4 @@
-﻿myApp.controller('modalCompareCtrl', function ($scope, $modalInstance, items, modal, mainRecord) {
+﻿myApp.controller('modalCompareCtrl', ['$scope', '$modalInstance', 'items', 'modal', 'mainRecord', function ($scope, $modalInstance, items, modal, mainRecord) {
 
     $scope.items = items;
     $scope.selected = {
@@ -26,12 +26,12 @@
             }
         });
     }
-       
+
     $scope.ok = function () {
         $modalInstance.close($scope.selected.item);
     };
 
-    $scope.cancel = function () { 
+    $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-});
+}]);

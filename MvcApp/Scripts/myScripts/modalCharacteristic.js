@@ -1,24 +1,24 @@
-﻿myApp.controller('modalCharacteristic', function ($scope, $modalInstance, chacteristicService, note) {
+﻿myApp.controller('modalCharacteristic', ['$scope', ' $modalInstance', 'chacteristicService', 'note', function ($scope, $modalInstance, chacteristicService, note) {
     $scope.note = note;
 
     $scope.close = function () {
         $modalInstance.close();
     }
 
-     function getCharacter() {
-         chacteristicService.getCharacteristic().success(function (data) {
-             $scope.allCharacteristics = data;
-         });
-     }
-     getCharacter();
+    function getCharacter() {
+        chacteristicService.getCharacteristic().success(function (data) {
+            $scope.allCharacteristics = data;
+        });
+    }
+    getCharacter();
 
-     $scope.dropdown = function (name) {
-         $scope.myCharacteristicName = name;
-     }
+    $scope.dropdown = function (name) {
+        $scope.myCharacteristicName = name;
+    }
 
-     $scope.save = function (name, value) {
-         chacteristicService.putCharacteristic(name, value, $scope.note.Id_Note);
-         alert('Saving is done!')
-         $modalInstance.close();
-     }
-});
+    $scope.save = function (name, value) {
+        chacteristicService.putCharacteristic(name, value, $scope.note.Id_Note);
+        alert('Saving is done!')
+        $modalInstance.close();
+    }
+}]);

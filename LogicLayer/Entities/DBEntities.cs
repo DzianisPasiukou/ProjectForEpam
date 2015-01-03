@@ -31,7 +31,7 @@ namespace LogicLayer.Entities
         public DBEntities()
             : base()
         {
-            Users = new DBSet<User>(connection, "");
+            Users = new DBSet<User>(connection, "Login");
             Groups = new DBSet<Group>(connection, "Id_Group");
             Categories = new DBSet<Category>(connection, "Id_Category");
             Notes = new DBSet<Note>(connection, "Id_Note");
