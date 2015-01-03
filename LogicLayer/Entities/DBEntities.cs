@@ -29,25 +29,25 @@ namespace LogicLayer.Entities
         public DBSet<Contact> Contacts { get; set; }
 
         public DBEntities()
-            : base()
+            : base("ProjectDB")
         {
-            Users = new DBSet<User>(connection, "Login");
-            Groups = new DBSet<Group>(connection, "Id_Group");
-            Categories = new DBSet<Category>(connection, "Id_Category");
-            Notes = new DBSet<Note>(connection, "Id_Note");
-            Characteristics = new DBSet<Characteristic>(connection, "Id_Characteristic");
-            Files = new DBSet<File>(connection, "Id_File");
-            Group_Categories = new DBSet<Group_Category>(connection, "Id");
-            Group_Permissions = new DBSet<Group_Permission>(connection, "Id");
-            LikeFiles = new DBSet<LikeFile>(connection, "Id");
-            LikeNotes = new DBSet<LikeNote>(connection, "Id");
-            Messages = new DBSet<Message>(connection, "Id_Message");
-            Note_Characteristics = new DBSet<Note_Characteristic>(connection, "Id");
-            Note_Tags = new DBSet<Note_Tag>(connection, "Id");
-            Permission = new DBSet<Permission>(connection, "Id_Permission");
-            Tags = new DBSet<Tag>(connection, "Id_Tag");
-            User_Permissions = new DBSet<User_Permission>(connection, "Id");
-            Contacts = new DBSet<Contact>(connection,"Id");
+            Users = new DBSet<User>(Connection, "Login");
+            Groups = new DBSet<Group>(Connection, "Id_Group");
+            Categories = new DBSet<Category>(Connection, "Id_Category");
+            Notes = new DBSet<Note>(Connection, "Id_Note");
+            Characteristics = new DBSet<Characteristic>(Connection, "Id_Characteristic");
+            Files = new DBSet<File>(Connection, "Id_File");
+            Group_Categories = new DBSet<Group_Category>(Connection, "Id");
+            Group_Permissions = new DBSet<Group_Permission>(Connection, "Id");
+            LikeFiles = new DBSet<LikeFile>(Connection, "Id");
+            LikeNotes = new DBSet<LikeNote>(Connection, "Id");
+            Messages = new DBSet<Message>(Connection, "Id_Message");
+            Note_Characteristics = new DBSet<Note_Characteristic>(Connection, "Id");
+            Note_Tags = new DBSet<Note_Tag>(Connection, "Id");
+            Permission = new DBSet<Permission>(Connection, "Id_Permission");
+            Tags = new DBSet<Tag>(Connection, "Id_Tag");
+            User_Permissions = new DBSet<User_Permission>(Connection, "Id");
+            Contacts = new DBSet<Contact>(Connection, "Id");
         }
     }
 }

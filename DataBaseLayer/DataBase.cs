@@ -10,11 +10,8 @@ namespace DataBaseLayer
        private SqlConnection _connection;
        private string _table;
        private string _key;
-       private static object lobj = new object();
         public DataBase(SqlConnection connection)
         {
-            _table = "User";
-            _key = "ID";
             _connection = connection;
         }
       

@@ -21,6 +21,13 @@ namespace DataBaseLayer
             _dataReader.EntityName = typeof(TEntity).Name;
             _dataReader.KeyEntity = keyEntity;
         }
+        public DBSet(SqlConnection connection)
+        {
+            _dataReader = new DataBase(connection);
+
+            _dataReader.EntityName = typeof(TEntity).Name;
+            _dataReader.KeyEntity = "";
+        }
         public IEnumerable<TEntity> GetAll()
         {
             IEnumerable<Dictionary<string, object>> data = _dataReader.GetData("*");

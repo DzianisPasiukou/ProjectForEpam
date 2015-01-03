@@ -17,8 +17,9 @@
     }
 
     $scope.save = function (name, value) {
+
         chacteristicService.putCharacteristic(name, value, $scope.note.Id_Note);
-        alert('Saving is done!')
         $modalInstance.close();
     }
 }]);
+
