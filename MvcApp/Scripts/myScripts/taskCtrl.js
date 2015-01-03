@@ -32,6 +32,20 @@
         $scope.time = time;
     };
 
+    $scope.AddTask = function () {
+        dateNeedFormat = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+        $.ajax({
+            url: '/api/Task/?selectWeekDay=' + $scope.selectWeekDay + "&WhoChange=" + $('#userLogin').text() + "&DateChange=" + dateNeedFormat + "&TimeStart=" + $scope.time + "&nameTask=" + $('#nameTask').val() + "&adapter=" + $scope.taskAdapter,
+            type: "POST",
+            success: function () {
+                var data = { Adapter: $scope.taskAdapter, DateChange: dateNeedFormat, DateWeekStart: $scope.selectWeekDay, IsEnable: true, Name: $('#nameTask').val(), TimeStart: $scope.time, WhoChange: $('#userLogin').text() };
+                $scope.tasks.push(data);
+                $scope.$apply();
+            }
+        });
+    };
+
+
 
     $scope.checkClick = function (task, isEnable) {
         dateNeedFormat = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
@@ -43,7 +57,6 @@
             if ($scope.tasks[i].Name == task)
             {
                 $scope.tasks[i].DateChange = dateNeedFormat;
-
                 $scope.tasks[i].WhoChange = $('#userLogin').text();
             }
         }
@@ -66,13 +79,16 @@
         }
     });
 
+    $scope.selectWeekDay = "No Change";
+    $(document).ready(function () {
+        $('.weekday').click(function () {
+            if (this.checked) {
+                $('.weekday').attr('checked', false);
+                this.checked = true;
+                $scope.selectWeekDay = $(this).parent().text();    
+            };
+        });
+    });
+
 });
 
-$(document).ready(function () {
-    $('.weekday').click(function () {
-        if (this.checked) {
-            $('.weekday').attr('checked', false);
-            this.checked = true;
-        };
-    });
-});

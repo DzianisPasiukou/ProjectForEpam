@@ -27,6 +27,8 @@
         <table class="table paginated table-bordered">
             <tr>
                 <th>
+                </th>
+                <th>
                     Название
                 </th>
                 <th>
@@ -49,6 +51,7 @@
                 </th>
             </tr>
             <tr ng-repeat="task in tasks | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <td align="center"><a href="" ng-click=""> Изменить </a>  <a href="" ng-click="delete(user.Login)"> Удалить </a></td>
                 <td><span ng-bind="task.Name"></span></td>
                 <td><span ng-bind="task.Adapter"></span></td>
                 <td><input type="checkbox" ng-model="task.IsEnable" ng-click="checkClick(task.Name,task.IsEnable)"></td>
@@ -64,7 +67,7 @@
                 <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label">
                     Название
                 </div>
-                <input type="text" class="col-md-9 col-lg-9 col-xs-9 col-sm-9  form-control inline" />
+                <input type="text" id="nameTask" class="col-md-9 col-lg-9 col-xs-9 col-sm-9  form-control inline" />
             </div>
 
             <div class="form-group">
@@ -144,7 +147,7 @@
             </div>
         </div>
 
-        <button class="btn btn-success"> Добавить </button>
+        <button class="btn btn-success" ng-click="AddTask()"> Добавить </button>
 
     </div>
 </div>

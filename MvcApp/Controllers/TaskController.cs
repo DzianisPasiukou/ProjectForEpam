@@ -36,5 +36,10 @@ namespace MvcApp.Controllers
         {
             _taskHelper.UpdateTaskEnable(task, isEnable, whoChange, dateChange);
         }
+
+        public void Post(string selectWeekDay, string whoChange, string dateChange, string timeStart, string nameTask, string adapter)
+        {
+            _taskHelper.AddTask(selectWeekDay.Trim(), whoChange, dateChange, timeStart, nameTask, adapter);
+        }
     }
 }

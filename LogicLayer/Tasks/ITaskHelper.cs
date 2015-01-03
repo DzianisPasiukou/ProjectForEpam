@@ -11,5 +11,6 @@ namespace LogicLayer.Tasks
         IEnumerable<Task> GetTasks();
         IEnumerable<Adapter> GetAdapters();
         bool UpdateTaskEnable(string task, bool isEnable, string whoChange, string dateChange);
+        bool AddTask(string selectWeekDay, string whoChange, string dateChange, string timeStart, string nameTask, string adapter);
     }
 }

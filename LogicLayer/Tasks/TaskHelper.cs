@@ -36,5 +36,23 @@ namespace LogicLayer.Tasks
                 return flag;
             }
         }
+
+        public bool AddTask(string selectWeekDay, string whoChange, string dateChange, string timeStart, string nameTask, string adapter)
+        {
+            using (DBEntities db = new DBEntities())
+            {
+                Task task = new Task();
+                task.IsEnable = true;
+                task.DateChange = dateChange;
+                task.WhoChange = whoChange;
+                task.DateWeekStart = selectWeekDay;
+                task.TimeStart = timeStart;
+                task.Name = nameTask;
+                task.Adapter = adapter;
+
+                bool flag = db.Tasks.Add(task);
+                return flag;
+            }
+        }
     }
 }
